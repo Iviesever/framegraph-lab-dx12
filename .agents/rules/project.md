@@ -8,11 +8,11 @@
 - All scratch, shaders, binaries, reports and captures remain inside this repository.
 - At most two non-overlapping review subagents. Prefer read-only review. One GPU validation process at a time.
 - Never stop unknown processes. Defer long GPU validation while another UE/GPU task is active.
-- Commit/push and Draft PR are authorized. Merge, tags, official releases and global configuration changes are not.
+- Commit/push are authorized. Tags and official releases require explicit user authorization; v0.1.0 binary release is explicitly authorized in the current session. Global configuration changes remain unauthorized.
 - Generated artifacts must report a clean exact source HEAD. Do not claim a later documentation commit generated earlier artifacts.
 - This is AI-assisted engineering; do not claim the user hand-wrote the implementation.
 - This is the final new repository in this goal. No other project/repository may be created.
-- Keep large binaries and bundles in ignored artifacts only. Draft PR lists local relative paths, sizes, SHA-256, generation and verification commands; do not upload binaries. A future separately authorized release is source-only (annotated tag, notes, automatic GitHub source archives; no manual source ZIP upload).
+- Keep generated binaries and bundles ignored under `artifacts/`. Draft PRs list local evidence without attachments. The explicitly authorized v0.1.0 GitHub Release uploads the verified Win64 ZIP, its SHA-256 file, and Delivery Manifest alongside GitHub automatic source archives; do not upload PDBs, loose shader binaries, or a duplicate manual source ZIP.
 - Updated freeze: 2026-09-05 12:00 JST; internal stop 16:00 JST; deadline 16:30 JST. Reset preparation starts on user's request, never on a guessed usage percentage.
 - PACT-70 may start only after all P0/package/debug/parity/Draft PR baseline gates are green, before 2026-09-05 10:30 JST and before user freeze. Then measured performance/memory and reliability work; no unrelated features.
 - MQB is not a complete UE build entry without evidence for .uproject/.Build.cs/.Target.cs/UHT/UBT. UE targets remain UBT/UHT; external C++ SDKs may use MQB. Do not implement UE work here.

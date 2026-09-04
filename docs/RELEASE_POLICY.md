@@ -1,5 +1,5 @@
-# Source-only release policy
+# Release artifact policy
 
-Large binaries remain under ignored `artifacts/`. A Draft PR records relative path, size, SHA-256, generation command and validation result without attaching them. A future release requires separate authorization and contains an annotated tag, notes and GitHub automatic source archives only. It will not attach EXE, Win64 ZIP, PDB, compiled shaders, capture/report bundle, or a manually uploaded source archive.
+Generated outputs remain ignored under `artifacts/`. The explicitly authorized v0.1.0 GitHub Release contains an annotated tag, release notes, GitHub automatic source archives, the clean-head Win64 ZIP, its SHA-256 file, and `DELIVERY_MANIFEST.json`.
 
-This policy does not weaken local acceptance: Win64/source ZIP, primary capture/plan/report/Inspector, manifests/hashes and a fresh-directory 240-frame WARP smoke are mandatory before publication can be recommended. No tag/release/merge occurs in this goal.
+The Win64 ZIP includes the executable, HLSL sources, quick start, sample configuration, canonical plan/report, offline Inspector, capture, license, and inner manifest. PDBs, loose shader binaries, separate capture/report bundles, and a duplicate manually uploaded source ZIP are excluded. Full verification, SHA-256 comparison, and two fresh-directory 240-frame WARP smokes are required before upload.

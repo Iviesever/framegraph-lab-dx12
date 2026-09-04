@@ -15,6 +15,6 @@
 - LLVM-MinGW's driver does not support local coverage-guided libFuzzer mode; bounded fuzz and ASan+UBSan structured sweeps are used.
 - Static HTML uses modern browser APIs including Map.groupBy; browser QA targets current Edge/in-app Chromium.
 - GitHub CI builds/tests Core and Windows code but does not claim hosted GPU validation.
-- Local binary/source packages are required and validated, but binaries are never attached to the source-only release policy.
+- The published Win64 package targets Windows 10+ with D3D12/WARP. Other platforms build/test portable Core from source; no prebuilt Linux/macOS executable is supplied.
 - Culling handles the fixed 160-pillar demo with one direct-queue compute group and stable prefix compaction. There is no occlusion hierarchy, async compute, GPU scene system or variable-size indirect command stream.
 - `Expected<T,E>` implements only the value/error/void operations used by this project; it is not a drop-in implementation of every `std::expected` convenience API.

@@ -42,7 +42,7 @@ Interactive hardware: `FrameGraphLab.exe --hardware`
 
 Bounded WARP evidence: `FrameGraphLab.exe --warp --headless --frames 240 --scene-seed 24301 --capture smoke.png --report smoke.json --plan plan.json`
 
-Controls: arrows/left drag camera; Space pause; N step; R reset; A alias; V Final/HDR/Bloom.
+Controls: arrows/left drag camera; Space pause; N step; R reset; A alias; G GPU/CPU draw; V Final/HDR/Bloom.
 The executable compiles HLSL from the adjacent shaders directory and requires Windows 10+, D3D12/WARP, and the Debug Layer system component for validation policy.
 '@
 [IO.File]::WriteAllText((Join-Path $stage 'QUICK_START.md'),$quick)
@@ -60,7 +60,7 @@ git archive --format=zip --output=$sourceZip HEAD
 if($LASTEXITCODE -ne 0){throw 'git archive failed'}
 $packages=@(Get-Item $winZip,$sourceZip|ForEach-Object{Entry $_ $projectRoot})
 $innerHash=(Get-FileHash -LiteralPath (Join-Path $stage 'DELIVERY_MANIFEST.json') -Algorithm SHA256).Hash.ToLowerInvariant()
-$outer=[ordered]@{schema_version=1;product='FrameGraphLab';version='0.1.0';git_sha=$head;source_clean=$true;source_only_github_release=$true;binary_upload_authorized=$false;inner_manifest_sha256=$innerHash;packages=$packages}
+$outer=[ordered]@{schema_version=1;product='FrameGraphLab';version='0.1.0';git_sha=$head;source_clean=$true;source_only_github_release=$false;binary_upload_authorized=$true;github_release_assets=@([IO.Path]::GetRelativePath($projectRoot,$winZip).Replace('\','/'),[IO.Path]::GetRelativePath($projectRoot,$winZip).Replace('\','/')+'.sha256','artifacts/release/DELIVERY_MANIFEST.json');inner_manifest_sha256=$innerHash;packages=$packages}
 $outerPath=Join-Path $releaseRoot 'DELIVERY_MANIFEST.json'
 [IO.File]::WriteAllText($outerPath,($outer|ConvertTo-Json -Depth 8))
 foreach($package in $packages){$name=[IO.Path]::GetFileName($package.path);[IO.File]::WriteAllText((Join-Path $releaseRoot ($name+'.sha256')),($package.sha256+' *'+$name+"`n"))}

@@ -31,7 +31,7 @@ All work and artifacts remain inside this repository. Never kill unrelated proce
 
 This is the last new repository. Do not start any second project. UE targets remain UBT/UHT unless installed MQB has complete evidence of .uproject/.Build.cs/.Target.cs/UHT/UBT handling; external SDKs or an outer invocation are not proof of replacement. This policy adds no UE work here.
 
-Local Win64 ZIP, source snapshot, captures, plans, reports, inspector, manifests/SHA and clean-extraction smoke remain mandatory. Large binaries stay in ignored artifacts. PR records relative paths, sizes, SHA-256 and reproduction/verification commands without binary attachments. A future explicitly authorized GitHub release contains only an annotated tag, notes, and GitHub-generated source ZIP/tar.gz; no uploaded prebuilt demo or manually uploaded source ZIP. Current merge/tag/release authorization remains absent.
+Local Win64 ZIP, source snapshot, captures, plans, reports, inspector, manifests/SHA and clean-extraction smoke remain mandatory. Generated binaries stay ignored in Git. The user subsequently merged PR #1 and explicitly authorized the v0.1.0 GitHub Release with final binary artifacts. That release uploads the verified Win64 ZIP, its SHA-256 file and Delivery Manifest alongside GitHub-generated source archives; it does not upload PDBs, loose shader binaries, separate evidence bundles or a duplicate manual source ZIP.
 
 ## Authorship
 

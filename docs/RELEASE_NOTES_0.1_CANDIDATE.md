@@ -1,4 +1,4 @@
-# FrameGraphLab 0.1.0 candidate
+# FrameGraphLab 0.1.0
 
 This candidate delivers a deterministic portable C++23 render-graph compiler and native D3D12 executor with actual placed-resource reuse, automatic whole-resource barriers, GPU frustum culling and ExecuteIndirect, hardware/WARP parity, GPU timings, procedural HDR/bloom demo and offline Inspector.
 
@@ -6,6 +6,6 @@ Highlights: stable RAW/WAR/WAW/topology/cycle/dead-pass/lifetimes; typed validat
 
 Reliability gates repeat 15 resizes and five minimize/restore cycles per adapter, validate descriptor exhaustion on a real WARP device, retain shader/adapter/watchdog/graph/access/capture negatives, review fence wrap/lifetime and preserve the earlier real device-removal diagnostic packet.
 
-Distribution policy is source-only on GitHub. Local Win64 and source snapshots are still built, SHA-256-manifested and clean-extraction-tested. To avoid large binary transfer, a future explicitly authorized release will attach no precompiled demo, EXE/PDB/shader binary/capture bundle/report bundle or manually re-uploaded source ZIP. It consists only of an annotated tag, notes, and GitHub-generated source ZIP/tar.gz. This task does not create that tag or release.
+The GitHub Release publishes the verified Win64 ZIP, its SHA-256 file, and Delivery Manifest alongside GitHub-generated source ZIP/tar.gz. The binary package passed the full clean-head matrix and two independent fresh-extraction WARP smokes. PDBs, loose compiled shaders, separate evidence bundles, and a duplicate manual source ZIP are not uploaded.
 
 See [known limitations](KNOWN_LIMITATIONS.md), [building](BUILDING.md), [testing](TESTING.md), and [AI assistance](AI_ASSISTANCE.md). PACT-70 deliberately excludes async compute, mesh shaders, ray tracing and occlusion hierarchy.
