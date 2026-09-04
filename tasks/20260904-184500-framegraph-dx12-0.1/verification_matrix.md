@@ -8,15 +8,15 @@
 | Sanitizers | ASan and UBSan execution | CTest 12/12 final code; initial reserve version also passed 100k + 100k sweep |
 | Determinism | repeated byte-identical canonical plans | Passed full-plan sweeps, fresh processes, parsed JSON and MSVC/Clang equality |
 | Runtime | hardware interactive, WARP headless, adapter report | Full hardware/WARP scene, PACT-70 CPU/GPU validation and repeated resize passed |
-| Barriers/alias | real heap/resource counts, on/off byte parity | WARP+hardware probe passed; actual 589824 vs 851968 bytes, exact RGBA parity |
+| Barriers/alias | real heap/resource counts, on/off byte parity | Probe and default GPU scene compare complete on/off RGBA on WARP/hardware; audit-fix rerun pending |
 | GPU culling | compute visible IDs, indirect args/draw, CPU oracle and parity | WARP+hardware fixed-frame 149/160 count, CPU/GPU exact RGBA, stable same-source identities, Debug 0/0/0 |
 | Performance | raw compile/allocation/barrier and native alias samples/medians | Clean 57dfbab: 31×1000, compile -24.65%, barrier -6.09%, stable identity/counts; 7 native pairs |
-| Debug | error 0 / corruption 0 / unclassified warning 0 | 0/0/0 in all final 3279c8b WARP/hardware parity, reliability and 1,000-frame runs |
-| Stress | 100k+100k Core, 100k mutation, 1,000 WARP/hardware, resize | All passed at clean 3279c8b; successor evidence commit needs exact-head rerun |
+| Debug | error 0 / corruption 0 / unclassified warning 0 | 0/0/0 in all final 624f07b WARP/hardware parity, reliability and 1,000-frame runs |
+| Stress | 100k+100k Core, 100k mutation, 1,000 WARP/hardware, resize | All passed at clean 624f07b; audit-fix successor needs exact-head rerun |
 | Negative | shader, adapter, graph/access/capture/descriptor bounds | All passed; descriptor test uses real WARP device and typed exhaustion |
 | Capture | seed/frame/camera, dimensions/color/hash, PNG | Hardware/WARP scene PNG/distribution/hash and same-adapter parity passed |
-| Inspector | actual browser desktop/narrow, selection/highlight, console | Final 11-pass 3279c8b passed: console 0, Indirect chain, 375px overflow 0 |
-| Package | fresh unzip 240-frame WARP smoke, JSON/PNG/alias/debug | 3279c8b package and two fresh extraction invocations passed; final docs successor rerun pending |
-| CI | Windows and Ubuntu core/unit/property/canonical/build/links | Runs 33886103170/33886097929 green for 3279c8b; final docs successor CI pending |
-| Audit | fresh read-only full origin/main...HEAD review | P0 whole-diff and ABI fix approved; PACT-70 final whole-diff audit pending |
-| Delivery | clean exact HEAD, ZIP + SHA manifest, push, Draft PR | 3279c8b full package passed; final docs successor package/PR/audit pending |
+| Inspector | actual browser desktop/narrow, selection/highlight, console | Final 11-pass 624f07b passed: console 0, Indirect chain, 375px overflow 0 |
+| Package | fresh unzip 240-frame WARP smoke, JSON/PNG/alias/debug | 624f07b package and two fresh extraction invocations passed; audit-fix successor rerun pending |
+| CI | Windows and Ubuntu core/unit/property/canonical/build/links | Runs 33887204927/33887200941 green for 624f07b; audit-fix successor CI pending |
+| Audit | fresh read-only full origin/main...HEAD review | No Blocker/High; 4 Medium addressed, follow-up approval pending after rerun/PR refresh |
+| Delivery | clean exact HEAD, ZIP + SHA manifest, push, Draft PR | 624f07b full package passed; audit-fix successor package and PR refresh pending |

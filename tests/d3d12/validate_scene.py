@@ -12,11 +12,14 @@ backend = sys.argv[2] if len(sys.argv) > 2 else "warp"
 base = root / "artifacts/scene-validation"
 base.mkdir(parents=True, exist_ok=True)
 directory = Path(tempfile.mkdtemp(prefix=f"{backend}-", dir=base))
-required = ["InitCulling","GPUFrustumCulling","DepthPrepass", "SceneHDR", "BloomExtract", "BloomBlurHorizontal", "BloomBlurVertical", "ToneMap","ReadbackCulling", "Capture", "Present"]
+required = [
+    "InitCulling", "GPUFrustumCulling", "DepthPrepass", "SceneHDR", "BloomExtract",
+    "BloomBlurHorizontal", "BloomBlurVertical", "ToneMap", "ReadbackCulling", "Capture", "Present",
+]
 pixels, reports = [], []
 for policy in ("on", "off"):
     command = [str(exe), f"--{backend}", "--headless", "--frames", "12", "--width", "640", "--height", "360", "--scene-seed", "24301",
-        "--draw-mode","cpu","--aliasing", policy, "--capture", str(directory / f"{policy}.png"), "--rgba", str(directory / f"{policy}.rgba"),
+        "--draw-mode", "gpu", "--aliasing", policy, "--capture", str(directory / f"{policy}.png"), "--rgba", str(directory / f"{policy}.rgba"),
         "--plan", str(directory / f"{policy}-plan.json"), "--report", str(directory / f"{policy}.json")]
     result = subprocess.run(command, capture_output=True, encoding="utf-8", timeout=180)
     assert result.returncode == 0, (result.returncode, result.stdout, result.stderr)
@@ -31,6 +34,7 @@ for policy in ("on", "off"):
     assert (len(plan["allocation"]["aliases"]) >= 1) == (policy == "on")
     report = json.loads((directory / f"{policy}.json").read_text(encoding="utf-8"))
     assert report["success"] and report["debug_errors"] == report["debug_warnings"] == report["debug_corruptions"] == 0
+    assert report["draw_mode"] == "gpu" and report["cpu_visible_count"] == report["gpu_visible_count"]
     assert report["plan_identity"] == plan["plan_identity"] and report["plan_compile_count"] == 1
     assert report["non_black_fraction"] > 0.20 and report["color_buckets"] >= 32
     assert report["luminance_max"] - report["luminance_min"] >= 50
@@ -43,5 +47,5 @@ for policy in ("on", "off"):
     pixels.append(rgba); reports.append(report)
 assert pixels[0] == pixels[1], "neon scene alias on/off RGBA differs"
 assert reports[0]["actual_heap_bytes"] < reports[1]["actual_heap_bytes"]
-print(json.dumps({"success": True, "backend": backend, "directory": str(directory.relative_to(root)), "pixel_hash": reports[0]["pixel_hash"],
+print(json.dumps({"success": True, "backend": backend, "draw_mode": "gpu", "directory": str(directory.relative_to(root)), "pixel_hash": reports[0]["pixel_hash"],
     "on_bytes": reports[0]["actual_heap_bytes"], "off_bytes": reports[1]["actual_heap_bytes"], "color_buckets": reports[0]["color_buckets"]}))

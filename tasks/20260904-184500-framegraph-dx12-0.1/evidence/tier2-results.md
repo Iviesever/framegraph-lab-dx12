@@ -4,7 +4,7 @@ Environment: Windows 11 x64, MSVC 19.51.36248 Release (`/O2`, static CRT), NVIDI
 
 ## Core fixed-graph benchmark
 
-Input: 64 transient UAV-capable buffers, 192 retained passes/usages, 31 raw samples, 1,000 operations per sample after warmup. Raw JSON is retained at `artifacts/benchmarks/core-before.json` and `artifacts/benchmarks/core-after.json`.
+Input: 64 transient UAV-capable buffers, 192 retained passes/usages, 31 raw samples, 1,000 operations per sample after warmup. The table uses raw JSON retained at `artifacts/benchmarks/core-before.json` and `artifacts/benchmarks/core-final.json`; `core-after.json` is the intermediate reserve iteration.
 
 | Stage | Before median (µs) | After median (µs) | Change |
 |---|---:|---:|---:|

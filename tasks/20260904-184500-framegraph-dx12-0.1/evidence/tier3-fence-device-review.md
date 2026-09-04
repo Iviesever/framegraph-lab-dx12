@@ -16,7 +16,7 @@ No fence code change was justified by this review.
 
 - `wait` treats `ID3D12Fence::GetCompletedValue() == UINT64_MAX` as device removal and records `GetDeviceRemovedReason` plus DRED output.
 - Every native HRESULT passes through `check_hr`. When `GetDeviceRemovedReason` is failed, it throws typed `DeviceRemoved` with original HRESULT, removal reason and `removal_diagnostics`.
-- `removal_diagnostics` queries `ID3D12DeviceRemovedExtendedData1` and records auto-breadcrumb node/command-list/queue names, completed operation count, page-fault virtual address and allocation names when available. Missing DRED support is stated explicitly.
+- `removal_diagnostics` queries `ID3D12DeviceRemovedExtendedData1` and records the auto-breadcrumb command-list name, completed breadcrumb operation count and page-fault virtual address when available. It does not traverse queue or allocation-name nodes. Missing DRED support is stated explicitly.
 - Runtime failure handling retains the current compiled graph identity/current pass, HRESULT, removal reason, diagnostic text and collected Debug messages in the report.
 - PACT-40's real invalid imported-UAV attempt reached device removal and produced the recorded `root-cause-executor-device-remove.md`; the queue pre-submit gate and descriptor fix then passed WARP/hardware. Tier 3 does not intentionally hang or remove a healthy device, so it makes no new induced-removal claim.
 
