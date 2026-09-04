@@ -1,0 +1,20 @@
+[0/1] Re-running CMake...
+build contract passed: 10 targets; shared sources and MSVC policies
+-- Configuring done (0.8s)
+-- Generating done (0.1s)
+-- Build files have been written to: D:/program/FrameGraphLab/build/msvc
+[1/14] Building CXX object CMakeFiles\FrameGraphLab.dir\Debug\src\app\report.cpp.obj
+[2/14] Building CXX object CMakeFiles\FrameGraphLab.dir\Debug\src\d3d12\arena.cpp.obj
+[3/14] Building CXX object CMakeFiles\FrameGraphLab.dir\Debug\src\app\main.cpp.obj
+[4/14] Building CXX object CMakeFiles\FrameGraphLab.dir\Debug\src\app\options.cpp.obj
+D:\program\FrameGraphLab\src\app\options.cpp(32): warning C4996: 'std::filesystem::u8path': warning STL4021: The std::filesystem::u8path() overloads are deprecated in C++20. The constructors of std::filesystem::path provide equivalent functionality via construction from u8string, u8string_view, or iterators with value_type char8_t. You can define _SILENCE_CXX20_U8PATH_DEPRECATION_WARNING or _SILENCE_ALL_CXX20_DEPRECATION_WARNINGS to suppress this warning.
+[5/14] Building CXX object CMakeFiles\framegraph_options_tests.dir\Debug\src\app\options.cpp.obj
+D:\program\FrameGraphLab\src\app\options.cpp(32): warning C4996: 'std::filesystem::u8path': warning STL4021: The std::filesystem::u8path() overloads are deprecated in C++20. The constructors of std::filesystem::path provide equivalent functionality via construction from u8string, u8string_view, or iterators with value_type char8_t. You can define _SILENCE_CXX20_U8PATH_DEPRECATION_WARNING or _SILENCE_ALL_CXX20_DEPRECATION_WARNINGS to suppress this warning.
+[6/14] Building CXX object CMakeFiles\framegraph_options_tests.dir\Debug\tests\unit\options_tests.cpp.obj
+[7/14] Building CXX object CMakeFiles\FrameGraphLab.dir\Debug\src\d3d12\capture.cpp.obj
+[8/14] Building CXX object CMakeFiles\FrameGraphLab.dir\Debug\src\d3d12\context.cpp.obj
+[9/14] Linking CXX executable Debug\framegraph_options_tests.exe
+[10/14] Building CXX object CMakeFiles\FrameGraphLab.dir\Debug\src\app\probe_graph.cpp.obj
+[11/14] Building CXX object CMakeFiles\FrameGraphLab.dir\Debug\src\d3d12\runtime.cpp.obj
+[12/14] Building CXX object CMakeFiles\FrameGraphLab.dir\Debug\src\d3d12\executor.cpp.obj
+[13/14] Linking CXX executable Debug\FrameGraphLab.exe

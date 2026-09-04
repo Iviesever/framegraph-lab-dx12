@@ -31,4 +31,8 @@ CASE(max_seed_and_explicit_hardware) {
     const auto o = parse({"--hardware", "--scene-seed", "4294967295", "--frames", "1"});
     CHECK(o && o->scene_seed == UINT32_MAX && o->adapter == fgl::AdapterMode::Hardware);
 }
+CASE(debug_and_negative_switches) {
+    const auto o = parse({"--barrier-trace", "--lifetime-trace", "--validation-undeclared", "--validation-invalid-graph"});
+    CHECK(o && o->barrier_trace && o->lifetime_trace && o->validation_undeclared && o->validation_invalid_graph);
+}
 int main() { return test::run(); }

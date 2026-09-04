@@ -77,13 +77,13 @@ void Dx12Context::create_backbuffers() {
     }
     report_.width = width_; report_.height = height_;
 }
-void Dx12Context::wait(std::uint64_t value) {
+void Dx12Context::wait(std::uint64_t value, std::uint32_t timeout_ms) {
     if (!value) return;
     const auto completed = fence_->GetCompletedValue();
     if (completed == UINT64_MAX) throw GpuFailure("DeviceRemoved", "fence reports device removal", DXGI_ERROR_DEVICE_REMOVED, device_->GetDeviceRemovedReason(), removal_diagnostics(device_.Get()));
     if (completed >= value) return;
     check_hr(fence_->SetEventOnCompletion(value, event_.get()), "SetEventOnCompletion", device_.Get());
-    const auto result = WaitForSingleObject(event_.get(), options_.timeout_ms);
+    const auto result = WaitForSingleObject(event_.get(), timeout_ms ? timeout_ms : options_.timeout_ms);
     if (result == WAIT_TIMEOUT) throw GpuFailure("FenceTimeout", "bounded GPU fence wait timed out at " + current_pass, HRESULT_FROM_WIN32(WAIT_TIMEOUT), device_->GetDeviceRemovedReason());
     if (result != WAIT_OBJECT_0) throw GpuFailure("FenceWait", "GPU event wait failed", HRESULT_FROM_WIN32(GetLastError()));
     check_hr(device_->GetDeviceRemovedReason(), "GetDeviceRemovedReason", device_.Get());

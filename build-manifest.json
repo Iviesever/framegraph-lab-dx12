@@ -15,7 +15,8 @@
     "reporting": ["src/app/report.cpp"],
     "platform": ["src/d3d12/diagnostics.cpp"],
     "shader": ["src/d3d12/shader.cpp"],
-    "runtime": ["src/d3d12/runtime.cpp", "src/d3d12/window.cpp", "src/d3d12/context.cpp"]
+    "runtime": ["src/d3d12/runtime.cpp", "src/d3d12/window.cpp", "src/d3d12/context.cpp", "src/d3d12/capture.cpp", "src/d3d12/arena.cpp", "src/d3d12/executor.cpp"],
+    "probe": ["src/app/probe_graph.cpp"]
   },
   "targets": {
     "core": {"type": "static", "groups": ["core"], "sources": [], "libraries": []},
@@ -26,7 +27,7 @@
     "plan": {"type": "exe", "groups": ["core"], "sources": ["tools/core_plan.cpp"], "libraries": []},
     "smoke": {"type": "exe", "groups": [], "sources": ["tests/unit/smoke.cpp"], "libraries": []},
     "options_tests": {"type": "exe", "groups": ["options"], "sources": ["tests/unit/options_tests.cpp"], "libraries": []},
-    "app": {"type": "exe", "groups": ["core", "options", "reporting", "platform", "shader", "runtime"], "sources": ["src/app/main.cpp"], "libraries": ["d3d12", "dxgi", "d3dcompiler", "windowscodecs", "ole32", "user32"]},
+    "app": {"type": "exe", "groups": ["core", "options", "reporting", "platform", "shader", "runtime", "probe"], "sources": ["src/app/main.cpp"], "libraries": ["d3d12", "dxgi", "d3dcompiler", "windowscodecs", "ole32", "user32"]},
     "shader_tests": {"type": "exe", "groups": ["platform", "shader"], "sources": ["tests/d3d12/shader_tests.cpp"], "libraries": ["d3dcompiler", "user32"]}
   }
 }

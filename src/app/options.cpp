@@ -16,6 +16,10 @@ std::expected<Options, OptionError> parse_options(std::span<const std::string_vi
         }
         if (key == "--headless") { options.headless = true; continue; }
         if (key == "--resize-stress") { options.resize_stress = true; continue; }
+        if (key == "--barrier-trace") { options.barrier_trace = true; continue; }
+        if (key == "--lifetime-trace") { options.lifetime_trace = true; continue; }
+        if (key == "--validation-undeclared") { options.validation_undeclared = true; continue; }
+        if (key == "--validation-invalid-graph") { options.validation_invalid_graph = true; continue; }
         if (key == "--help" || key == "-h") { options.help = true; continue; }
         const bool numeric = key == "--frames" || key == "--scene-seed" || key == "--width" || key == "--height"
             || key == "--timeout-ms" || key == "--watchdog-ms" || key == "--capture-timeout-ms" || key == "--adapter-index";
@@ -25,7 +29,9 @@ std::expected<Options, OptionError> parse_options(std::span<const std::string_vi
         const auto value = arguments[i];
         if (path) {
             if (value.empty() || value.starts_with("--")) return fail(OptionCode::InvalidValue, "invalid output/shader path");
-            auto p = std::filesystem::u8path(value);
+            std::u8string encoded(value.size(), u8'\0');
+            for (std::size_t byte = 0; byte < value.size(); ++byte) encoded[byte] = static_cast<char8_t>(static_cast<unsigned char>(value[byte]));
+            auto p = std::filesystem::path(encoded);
             if (key == "--capture") options.capture = p;
             if (key == "--report") options.report = p;
             if (key == "--plan") options.plan = p;
@@ -63,6 +69,7 @@ std::string usage_text() {
         "  --capture image.png   --report report.json   --plan plan.json\n"
         "  --aliasing on|off   --rgba pixels.rgba   --width N --height N\n"
         "  --timeout-ms N   --watchdog-ms N   --capture-timeout-ms N\n"
-        "  --resize-stress   --adapter-index N   --shader-dir path\n";
+        "  --resize-stress   --adapter-index N   --shader-dir path\n"
+        "  --barrier-trace   --lifetime-trace\n";
 }
 }

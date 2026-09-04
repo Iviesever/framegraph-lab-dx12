@@ -10,7 +10,7 @@ namespace fgl {
 enum class AdapterMode { Automatic, Hardware, Warp };
 struct Options {
     AdapterMode adapter{AdapterMode::Automatic};
-    bool headless{}, aliasing{true}, resize_stress{}, help{};
+    bool headless{}, aliasing{true}, resize_stress{}, barrier_trace{}, lifetime_trace{}, validation_undeclared{}, validation_invalid_graph{}, help{};
     std::uint32_t width{1280}, height{720}, frames{}, scene_seed{24301};
     std::uint32_t timeout_ms{10000}, watchdog_ms{300000}, capture_timeout_ms{10000};
     std::uint32_t adapter_index{UINT32_MAX};

@@ -1,0 +1,11 @@
+# Capture and reports
+
+The executor declares final texture→readback copies in the graph. Each frame owns a readback buffer sized from `GetCopyableFootprints`; no staging buffer crosses a frame fence. Capture waits the selected frame with its own nonzero deadline, maps only after completion, strips row pitch into tightly packed RGBA and hashes those exact bytes. A zero capture deadline is a deterministic typed negative and writes no PNG.
+
+WIC writes a lossless PNG through Windows system components. The PNG encoder on this machine negotiates 32-bit BGRA, so the writer explicitly swaps raw R/B channels before presenting BGRA input; the artifact decodes visually to the original RGBA. The raw `.rgba` remains unmodified and is the alias parity authority. Validation checks PNG signature/dimensions and raw length/content, then visually inspects representative artifacts. Final scene validation also requires nonblack ratio, multiple color buckets and luminance range.
+
+Runtime report schema 1 separates logical texture/buffer bytes, sum of committed-style requirements, planned heap bytes, actual `ID3D12Heap::GetDesc` bytes per frame, all-frame arena total, savings, heap count and actual placed-resource calls. It reports reuse events separately from all activation barriers. Per-pass CPU record and GPU timestamp means include sample counts and queue frequency; these are local observations, never part of plan identity or a cross-machine SLA.
+
+Canonical plan schema 1 contains semantic resources/passes/order/culling/dependencies/lifetimes/heaps/allocations/alias chains and barriers. Runtime plan files append Git SHA and clean provenance after the semantic identity field; timestamps never enter identity. FNV-1a identifies deterministic plan/pixel bytes for diagnostics. Delivery manifests and packages use SHA-256 for integrity.
+
+Debug messages are captured before submission and after GPU completion. Any error/corruption/unclassified warning fails the run. Device failures preserve HRESULT, removed reason, graph/pass and available DRED breadcrumbs/page fault data. Development captures can truthfully say `source_clean=false`; final artifacts are rebuilt after a clean commit and must embed/report that exact SHA.

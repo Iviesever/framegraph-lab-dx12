@@ -1,6 +1,6 @@
 # Persistent progress
 
-Started 2026-09-04 18:45 UTC+8. Current PACT: 30 completed locally; next PACT: 40.
+Started 2026-09-04 18:45 UTC+8. Current PACT: 40 completed locally; next PACT: 50.
 
 - Goal file read in full; original copied into task directory.
 - Target directory was absent and created without overwriting files. No ancestor `.agents` folder was present at D:/ or D:/program; repository rules now exist.
@@ -56,3 +56,17 @@ RED/GREEN: 12 typed CLI cases and 4 shader cases failed before implementation, t
 Hardware: NVIDIA GeForce RTX 4070 Laptop GPU, DXGI driver 31.0.15.5161, feature level 12.2. WARP: Microsoft Basic Render Driver, 10.0.22621.2506, feature level 12.1. Both final Debug runs rendered/presented 24 frames at 640x360 with 3 frames in flight, Debug Layer Error/Warning/Corruption 0/0/0 and DRED enabled. Visible hardware 60-frame run at 1280x720 completed 3 resizes, 1 minimize and 1 restore, also 0/0/0. Typed unsupported-adapter, watchdog and invalid CLI negatives passed. No owned GPU process remained.
 
 Evidence: tasks/.../evidence/pact30-*.log and ignored artifacts/reports/runtime-*.json. Development reports truthfully indicate source_clean=false and the prior HEAD; after commit a clean rebuild/smoke receipt is written under artifacts/checkpoints/pact30.json. No PNG, real transient heap reuse, pixel parity, HDR/Bloom, GPU timestamps or final artifact is claimed by this clear/present checkpoint. PACT-40 directly follows.
+
+PACT-30 pushed/checkpoint SHA: `e5e7b36eed9023c90b0d60a9119b22db9c07a529`; its clean WARP receipt is artifacts/checkpoints/pact30.json.
+
+## PACT-40
+
+The temporary clear path is removed. `Dx12GraphExecutor` consumes one `CompiledPlan`, maps its enums, and records stored transition/UAV/alias/final lists without a runtime planner. Callback access is guarded against undeclared resources/usages. Device requirements come from GetResourceAllocationInfo; every frame arena creates real class-specific ID3D12Heap and CreatePlacedResource objects at Core offsets, with descriptor bounds. RT/DS activation gets required full initialization. Imports borrow current backbuffer and owned frame readback buffers.
+
+Each of 3 arenas created 4 placed resources. The executor probe contains 8 executed passes, including texture UAV clears, actual UAV ordering, A→B same-offset reuse, texture copies, readback and Present. Alias-on uses 589,824 bytes/resource arena versus 851,968 reference bytes (262,144 saved, 30.77% of reference); all-frame totals are 1,769,472 versus 2,555,904. Actual ID3D12Heap descriptions equal Core plan. On uses 1 reuse event; off uses 0. Both use placed resources and first-use activation barriers.
+
+WARP and NVIDIA hardware each passed serial 8-frame alias-on/off validation with byte-identical 320x180 RGBA (`8d98f55d5c518d25` on this machine/adapter pair), valid WIC PNG, parsed plan/report, plan identity agreement, 8 timestamped pass samples and Debug 0/0/0. No cross-adapter hash guarantee is made, despite the observed match. Release WARP repeated successfully. Hardware/WARP evidence directories are printed in evidence/pact40-*-final.log; generated binaries/captures remain ignored.
+
+RED acceptance first failed because no placed-resource result existed. First native attempt revealed WIC format negotiation and exact performance warnings. After resolving those, a pre-submit gate exposed message ID 340: imported backbuffer was incorrectly described as UAV, followed by ID 232 device removal. The root-cause packet records the evidence and ownership fix. Final setup/pre-submit diagnostics prevent invalid commands reaching GPU.
+
+Typed invalid graph, undeclared access and zero capture deadline all failed closed with Debug counts 0/0/0. Barrier/lifetime trace switches are available. Windows CTest 10/10 and 87 internal cases pass; build output has no code warning. MQB Debug/Release are green. No process remains. PACT-50 now replaces the solid probe with the required depth/HDR/bloom/tone-map procedural scene; the probe is evidence, not the visual delivery.

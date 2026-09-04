@@ -1,0 +1,4 @@
+[1/4] Building CXX object CMakeFiles\FrameGraphLab.dir\Debug\src\app\options.cpp.obj
+[2/4] Building CXX object CMakeFiles\framegraph_options_tests.dir\Debug\src\app\options.cpp.obj
+[3/4] Linking CXX executable Debug\framegraph_options_tests.exe
+[4/4] Linking CXX executable Debug\FrameGraphLab.exe

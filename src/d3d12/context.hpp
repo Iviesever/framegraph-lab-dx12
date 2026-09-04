@@ -22,7 +22,7 @@ public:
     FrameContext& begin_frame();
     void submit_frame();
     void wait_idle();
-    void wait(std::uint64_t value);
+    void wait(std::uint64_t value, std::uint32_t timeout_ms = 0);
     bool sync_size();
     void collect_debug();
     ID3D12Device* device() const { return device_.Get(); }
@@ -31,6 +31,8 @@ public:
     D3D12_CPU_DESCRIPTOR_HANDLE backbuffer_rtv() const;
     Win32Window& window() { return *window_; }
     std::uint32_t frame_index() const { return current_frame_; }
+    ID3D12GraphicsCommandList* current_list() const { return frames_[current_frame_].list.Get(); }
+    std::uint64_t frame_fence(std::uint32_t index) const { return frames_.at(index).fence_value; }
     std::uint32_t width() const { return width_; }
     std::uint32_t height() const { return height_; }
     std::string current_pass{"Clear"};
