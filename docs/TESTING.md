@@ -8,8 +8,9 @@ MQB primary commands:
 ./scripts/build.ps1 compiler_tests -Configuration debug -Run
 ./scripts/build.ps1 planner_tests -Configuration debug -Run
 ./scripts/build.ps1 boundary_tests -Configuration debug -Run
-./scripts/build.ps1 property -Configuration release -Run --cases 10000
-./scripts/build.ps1 fuzz -Configuration debug -Run --iterations 10000
+./scripts/build.ps1 benchmark -Configuration release
+./scripts/build.ps1 property -Configuration release -Run --cases 100000
+./scripts/build.ps1 fuzz -Configuration release -Run --iterations 100000
 ./scripts/build.ps1 app -Configuration release
 ```
 
@@ -25,6 +26,8 @@ cmake --preset core-sanitized && cmake --build --preset core-sanitized && ctest 
 ```
 
 Structured randomized verification executes 10,000 valid and 10,000 invalid graphs per `--cases 10000`. Its pairwise hazard and brute-force topo/lifetime checks do not call production helpers. The allocation oracle checks byte intersections at every active pass position and mutates plans to prove it rejects live overlap and transition-before-activation. State simulation checks transition continuity, UAV rules and final import states. Exact-bound tests cover 65,536 usages and 262,144 edges plus rejection beyond.
+
+Tier 2 raises the final bounded run to `--cases 100000`, meaning 100,000 valid plus 100,000 invalid graphs, and raises bounded mutation to 100,000 iterations. `validate_benchmark.py` checks the fixed Core benchmark schema, stable identity, alias savings and unchanged barrier invariants. `benchmark_runtime.py` serializes same-adapter alias-on/off pairs, retains every report and computes medians without an SLA threshold.
 
 `fuzz_compile.cpp` exports `LLVMFuzzerTestOneInput`; local bounded mutation uses a fixed seed and limit. LLVM-MinGW rejects coverage-guided `-fsanitize=fuzzer`, so no local coverage-guided claim is made. ASan+UBSan runs full structured sweep, where successful planner paths receive more coverage than random invalid bytes.
 

@@ -10,6 +10,7 @@ std::vector<PassId> find_cycle(const std::vector<std::vector<std::uint32_t>>& ne
     struct Frame { std::uint32_t node; std::size_t child; };
     std::vector<unsigned char> color(next.size());
     std::vector<Frame> stack;
+    stack.reserve(next.size());
     for (std::uint32_t start = 0; start < next.size(); ++start) {
         if (color[start]) continue;
         stack.push_back({start, 0}); color[start] = 1;
@@ -44,6 +45,9 @@ Result<CompiledGraph> GraphCompiler::compile(const GraphDescription& description
     std::vector<PassId> writer(source.resources.size());
     std::vector<std::vector<PassId>> readers(source.resources.size());
     std::vector<DependencyEdge> edges;
+    std::size_t usage_count{};
+    for (const auto& pass : source.passes) usage_count += pass.usages.size();
+    edges.reserve(std::min<std::size_t>(max_edges + 1ull, source.ordering.size() + usage_count * 2));
     auto edge = [&](PassId a, PassId b, ResourceId r, Hazard reason) {
         if (a.value != invalid_index && edges.size() <= max_edges) edges.push_back({a, b, r, reason});
     };
@@ -76,9 +80,12 @@ Result<CompiledGraph> GraphCompiler::compile(const GraphDescription& description
         previous[e.after.value].push_back(e.before.value);
         ++indegree[e.after.value];
     }
-    std::priority_queue<std::uint32_t, std::vector<std::uint32_t>, std::greater<>> ready;
+    std::vector<std::uint32_t> ready_storage;
+    ready_storage.reserve(source.passes.size());
+    std::priority_queue<std::uint32_t, std::vector<std::uint32_t>, std::greater<>> ready(std::greater<>{}, std::move(ready_storage));
     for (std::uint32_t i = 0; i < indegree.size(); ++i) if (!indegree[i]) ready.push(i);
     std::vector<std::uint32_t> order;
+    order.reserve(source.passes.size());
     while (!ready.empty()) {
         const auto id = ready.top(); ready.pop(); order.push_back(id);
         for (const auto child : next[id]) if (--indegree[child] == 0) ready.push(child);
@@ -91,6 +98,7 @@ Result<CompiledGraph> GraphCompiler::compile(const GraphDescription& description
     }
     std::vector<bool> alive(source.passes.size());
     std::vector<std::uint32_t> pending;
+    pending.reserve(source.passes.size());
     auto retain = [&](std::uint32_t p) {
         if (p != invalid_index && !alive[p]) { alive[p] = true; pending.push_back(p); }
     };
@@ -103,7 +111,9 @@ Result<CompiledGraph> GraphCompiler::compile(const GraphDescription& description
         const auto p = pending.back(); pending.pop_back();
         for (const auto before : previous[p]) retain(before);
     }
+    const auto retained_count = static_cast<std::size_t>(std::count(alive.begin(), alive.end(), true));
     graph.lifetimes.resize(source.resources.size());
+    graph.passes.reserve(retained_count);
     for (const auto id : order) {
         if (!alive[id]) continue;
         const auto position = static_cast<std::uint32_t>(graph.passes.size());
@@ -118,7 +128,12 @@ Result<CompiledGraph> GraphCompiler::compile(const GraphDescription& description
     for (std::size_t i = 0; i < source.resources.size(); ++i)
         if (source.resources[i].exported && graph.lifetimes[i])
             graph.lifetimes[i]->last = static_cast<std::uint32_t>(graph.passes.size() - 1);
+    graph.culled.reserve(source.passes.size() - retained_count);
     for (std::uint32_t i = 0; i < alive.size(); ++i) if (!alive[i]) graph.culled.push_back(PassId{i});
+    const auto retained_dependencies = std::count_if(edges.begin(), edges.end(), [&](const auto& e) {
+        return alive[e.before.value] && alive[e.after.value];
+    });
+    graph.dependencies.reserve(static_cast<std::size_t>(retained_dependencies));
     for (const auto& e : edges) if (alive[e.before.value] && alive[e.after.value]) graph.dependencies.push_back(e);
     return graph;
 }

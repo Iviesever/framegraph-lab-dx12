@@ -13,8 +13,9 @@ function Step([string]$Name,[scriptblock]$Body){
 try{
   Step docs {python tools/check_docs.py;if($LASTEXITCODE){throw 'docs'}}
   Step mqb-unit {foreach($target in @('compiler_tests','planner_tests','boundary_tests','options_tests','shader_tests')){./scripts/build.ps1 $target -Configuration debug -Run;if($LASTEXITCODE){throw $target}}}
-  Step mqb-property {./scripts/build.ps1 property -Configuration release -Run --cases 10000;if($LASTEXITCODE){throw 'property'}}
-  Step mqb-fuzz {./scripts/build.ps1 fuzz -Configuration release -Run --iterations 10000;if($LASTEXITCODE){throw 'fuzz'}}
+  Step mqb-benchmark {./scripts/build.ps1 benchmark -Configuration release;if($LASTEXITCODE){throw 'benchmark build'};& './.mqb/bin/framegraph_benchmark-release.exe' --samples 31 --iterations 1000 | Set-Content (Join-Path $out 'core-benchmark.json') -Encoding utf8;if($LASTEXITCODE){throw 'benchmark run'};python tests/property/validate_benchmark.py .mqb/bin/framegraph_benchmark-release.exe;if($LASTEXITCODE){throw 'benchmark schema'}}
+  Step mqb-property {./scripts/build.ps1 property -Configuration release -Run --cases 100000;if($LASTEXITCODE){throw 'property'}}
+  Step mqb-fuzz {./scripts/build.ps1 fuzz -Configuration release -Run --iterations 100000;if($LASTEXITCODE){throw 'fuzz'}}
   Step mqb-app {./scripts/build.ps1 app -Configuration release;if($LASTEXITCODE){throw 'app'}}
   Step msvc-debug {./scripts/with-msvc.ps1 cmake --preset msvc-debug --fresh;if($LASTEXITCODE){throw 'configure'};./scripts/with-msvc.ps1 cmake --build --preset msvc-debug;if($LASTEXITCODE){throw 'build'};ctest --preset msvc-debug;if($LASTEXITCODE){throw 'ctest'}}
   Step msvc-release {./scripts/with-msvc.ps1 cmake --build --preset msvc-release;if($LASTEXITCODE){throw 'build'};ctest --preset msvc-release;if($LASTEXITCODE){throw 'ctest'}}
@@ -38,6 +39,7 @@ try{
   if(-not $SkipHardware){
     Step culling-hardware {python tests/d3d12/validate_culling.py .mqb/bin/FrameGraphLab-release.exe hardware;if($LASTEXITCODE){throw 'culling hardware'}}
     Step scene-hardware {python tests/d3d12/validate_scene.py .mqb/bin/FrameGraphLab-release.exe hardware;if($LASTEXITCODE){throw 'scene hardware'}}
+    Step runtime-benchmark {python tools/benchmark_runtime.py .mqb/bin/FrameGraphLab-release.exe --backend hardware --samples 7 --frames 240 --expected-sha $head --output artifacts/benchmarks/runtime-hardware-final.json;if($LASTEXITCODE){throw 'runtime benchmark'}}
     Step hardware-interactive {& './.mqb/bin/FrameGraphLab-release.exe' --hardware --frames 240 --report artifacts/reports/hardware-interactive.json;if($LASTEXITCODE){throw 'interactive'}}
     Step hardware-stress {& './.mqb/bin/FrameGraphLab-release.exe' --hardware --headless --frames 1000 --report artifacts/reports/hardware-stress.json;if($LASTEXITCODE){throw 'hardware stress'}}
     Step resize {& './.mqb/bin/FrameGraphLab-release.exe' --hardware --headless --frames 100 --resize-stress --report artifacts/reports/resize-stress.json;if($LASTEXITCODE){throw 'resize'}}

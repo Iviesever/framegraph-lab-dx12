@@ -11,6 +11,7 @@ MQB is the primary local Windows C++/D3D12 build, incremental and run entry. CMa
 ./scripts/build.ps1 property -Configuration release -Run --cases 10000
 ./scripts/build.ps1 fuzz -Configuration debug -Run --iterations 2000
 ./scripts/build.ps1 plan -Configuration release -Run
+./scripts/build.ps1 benchmark -Configuration release -Run --samples 31 --iterations 1000
 ```
 
 The small PowerShell boundary chooses a named target from the manifest and passes exact sources plus a real MQB profile to the installed tool. MQB owns C++ compilation/linking/archiving/cache and every `.mqb` output. MQB v5.4 supports one profile at a time; the generator expands configuration overlays rather than pretending profiles inherit. Default `mqb run --profile plan-debug` builds the compiler-plan tool. No generic MQB test verb or target-DAG feature is claimed. `scripts/build.ps1 app -Configuration debug -Run --warp --headless --frames 24` builds/runs the native executable. A project-local Python step generates truthful Git provenance; runtime shader compilation uses D3DCompiler.

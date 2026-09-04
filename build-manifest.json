@@ -142,6 +142,16 @@
       ],
       "libraries": []
     },
+    "benchmark": {
+      "type": "exe",
+      "groups": [
+        "core"
+      ],
+      "sources": [
+        "tools/core_benchmark.cpp"
+      ],
+      "libraries": []
+    },
     "smoke": {
       "type": "exe",
       "groups": [],

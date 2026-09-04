@@ -1,0 +1,15 @@
+build contract passed: 13 targets; shared sources and MSVC policies
+[compile] tests/property/graph_sweep.cpp [dependency changed]
+graph_sweep.cpp
+cl: 命令行 warning D9025 :正在重写“/W3”(用“/W4”)
+cl: 命令行 warning D9025 :正在重写“/MD”(用“/MT”)
+[up-to-date] src/core/compiler.cpp
+[up-to-date] src/core/validation.cpp
+[up-to-date] src/core/serialization.cpp
+[up-to-date] src/core/allocation.cpp
+[up-to-date] src/core/barriers.cpp
+[up-to-date] src/core/plan.cpp
+[link] framegraph_property-release.exe [explicit rebuild, link inputs changed]
+output: D:/program/FrameGraphLab/.mqb/bin/framegraph_property-release.exe
+[run] framegraph_property-release.exe
+seed=0xF6A123 valid=100000 invalid=100000 dependency/lifetime/allocation/transition/UAV/alias/identity invariants passed

@@ -29,6 +29,7 @@ Result<ResourceStatePlan> ResourceStatePlanner::plan(const CompiledGraph& g, con
     ResourceStatePlan result;
     result.passes.resize(g.passes.size());
     std::vector<ResourceState> states;
+    states.reserve(g.description.resources.size());
     std::vector<std::optional<ResourceAccess>> last_access(g.description.resources.size());
     for (const auto& r : g.description.resources) states.push_back(r.initial_state);
     auto transition = [&](std::vector<Barrier>& list, ResourceId resource, ResourceState desired) {
@@ -38,6 +39,7 @@ Result<ResourceStatePlan> ResourceStatePlanner::plan(const CompiledGraph& g, con
     };
     for (std::uint32_t position = 0; position < g.passes.size(); ++position) {
         auto& lists = result.passes[position];
+        lists.before.reserve(g.passes[position].usages.size() * 2);
         for (const auto& usage : g.passes[position].usages) {
             const auto id = usage.resource;
             if (id.value >= states.size() || !g.lifetimes[id.value])
