@@ -48,7 +48,7 @@ struct ResourceDescription {
     std::variant<TextureDesc, BufferDesc> descriptor{TextureDesc{}};
     bool imported{}, initialized{}, exported{};
     ResourceState initial_state{ResourceState::Common};
-    std::optional<ResourceState> final_state;
+    std::optional<ResourceState> final_state{};
 };
 struct ResourceUsage {
     ResourceId resource;

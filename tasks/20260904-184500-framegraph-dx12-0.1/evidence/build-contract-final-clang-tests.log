@@ -1,0 +1,21 @@
+Test project D:/program/FrameGraphLab/build/core-clang
+    Start 1: baseline_smoke
+1/8 Test #1: baseline_smoke ...................   Passed    0.01 sec
+    Start 2: compiler_unit
+2/8 Test #2: compiler_unit ....................   Passed    0.01 sec
+    Start 3: property_smoke
+3/8 Test #3: property_smoke ...................   Passed    0.24 sec
+    Start 4: planner_unit
+4/8 Test #4: planner_unit .....................   Passed    0.10 sec
+    Start 5: fuzz_smoke
+5/8 Test #5: fuzz_smoke .......................   Passed    0.08 sec
+    Start 6: canonical_json
+6/8 Test #6: canonical_json ...................   Passed    0.07 sec
+    Start 7: build_contract
+7/8 Test #7: build_contract ...................   Passed    0.05 sec
+    Start 8: build_contract_negative
+8/8 Test #8: build_contract_negative ..........   Passed    0.06 sec
+
+100% tests passed, 0 tests failed out of 8
+
+Total Test time (real) =   0.63 sec

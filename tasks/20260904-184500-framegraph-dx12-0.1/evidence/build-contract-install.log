@@ -1,0 +1,9 @@
+-- Install configuration: "Debug"
+-- Installing: D:/program/FrameGraphLab/artifacts/install/core/lib/libframegraph_core.a
+-- Installing: D:/program/FrameGraphLab/artifacts/install/core/include/framegraph
+-- Installing: D:/program/FrameGraphLab/artifacts/install/core/include/framegraph/graph.hpp
+-- Installing: D:/program/FrameGraphLab/artifacts/install/core/include/framegraph/plan.hpp
+-- Installing: D:/program/FrameGraphLab/artifacts/install/core/lib/cmake/FrameGraphLab/FrameGraphLabTargets.cmake
+-- Installing: D:/program/FrameGraphLab/artifacts/install/core/lib/cmake/FrameGraphLab/FrameGraphLabTargets-debug.cmake
+-- Installing: D:/program/FrameGraphLab/artifacts/install/core/lib/cmake/FrameGraphLab/FrameGraphLabConfig.cmake
+-- Installing: D:/program/FrameGraphLab/artifacts/install/core/lib/cmake/FrameGraphLab/FrameGraphLabConfigVersion.cmake

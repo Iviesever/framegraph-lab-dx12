@@ -1,0 +1,19 @@
+[1/19] Building CXX object CMakeFiles\framegraph_core.dir\Debug\src\core\barriers.cpp.obj
+[2/19] Building CXX object CMakeFiles\framegraph_core.dir\Debug\src\core\validation.cpp.obj
+[3/19] Building CXX object CMakeFiles\framegraph_smoke.dir\Debug\tests\unit\smoke.cpp.obj
+[4/19] Building CXX object CMakeFiles\framegraph_core.dir\Debug\src\core\serialization.cpp.obj
+[5/19] Building CXX object CMakeFiles\framegraph_core.dir\Debug\src\core\allocation.cpp.obj
+[6/19] Building CXX object CMakeFiles\framegraph_core.dir\Debug\src\core\plan.cpp.obj
+[7/19] Building CXX object CMakeFiles\framegraph_plan.dir\Debug\tools\core_plan.cpp.obj
+[8/19] Linking CXX executable Debug\framegraph_smoke.exe
+[9/19] Building CXX object CMakeFiles\framegraph_core.dir\Debug\src\core\compiler.cpp.obj
+[10/19] Building CXX object CMakeFiles\framegraph_fuzz.dir\Debug\tests\property\fuzz_compile.cpp.obj
+[11/19] Linking CXX static library Debug\framegraph_core.lib
+[12/19] Building CXX object CMakeFiles\framegraph_compiler_tests.dir\Debug\tests\unit\compiler_tests.cpp.obj
+[13/19] Building CXX object CMakeFiles\framegraph_planner_tests.dir\Debug\tests\unit\planner_tests.cpp.obj
+[14/19] Linking CXX executable Debug\framegraph_compiler_tests.exe
+[15/19] Linking CXX executable Debug\framegraph_fuzz.exe
+[16/19] Building CXX object CMakeFiles\framegraph_property.dir\Debug\tests\property\graph_sweep.cpp.obj
+[17/19] Linking CXX executable Debug\framegraph_plan.exe
+[18/19] Linking CXX executable Debug\framegraph_planner_tests.exe
+[19/19] Linking CXX executable Debug\framegraph_property.exe

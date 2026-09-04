@@ -4,10 +4,15 @@
 - C++23; CMake 3.28+; pure Core must not include Windows, Direct3D or COM.
 - Backend consumes the Core plan; no second dependency/barrier planner.
 - Whole-resource, one direct queue, deterministic plans; no subresource or async-compute claims.
-- Prefer the installed MQB for local MSVC commands. Preserve required CMake/CTest portability.
+- MQB is the primary local Windows C++/D3D12 build, incremental and run entry. Maintain real mqb.json. CMake/CTest remain authoritative for portable Core, install/export and CI. Clang/GCC are compatibility/sanitizer evidence. Share a verified source/policy inventory; never leave undetected MQB/CMake drift.
 - All scratch, shaders, binaries, reports and captures remain inside this repository.
 - At most two non-overlapping review subagents. Prefer read-only review. One GPU validation process at a time.
 - Never stop unknown processes. Defer long GPU validation while another UE/GPU task is active.
 - Commit/push and Draft PR are authorized. Merge, tags, official releases and global configuration changes are not.
 - Generated artifacts must report a clean exact source HEAD. Do not claim a later documentation commit generated earlier artifacts.
 - This is AI-assisted engineering; do not claim the user hand-wrote the implementation.
+- This is the final new repository in this goal. No other project/repository may be created.
+- Keep large binaries and bundles in ignored artifacts only. Draft PR lists local relative paths, sizes, SHA-256, generation and verification commands; do not upload binaries. A future separately authorized release is source-only (annotated tag, notes, automatic GitHub source archives; no manual source ZIP upload).
+- Updated freeze: 2026-09-05 12:00 JST; internal stop 16:00 JST; deadline 16:30 JST. Reset preparation starts on user's request, never on a guessed usage percentage.
+- PACT-70 may start only after all P0/package/debug/parity/Draft PR baseline gates are green, before 2026-09-05 10:30 JST and before user freeze. Then measured performance/memory and reliability work; no unrelated features.
+- MQB is not a complete UE build entry without evidence for .uproject/.Build.cs/.Target.cs/UHT/UBT. UE targets remain UBT/UHT; external C++ SDKs may use MQB. Do not implement UE work here.

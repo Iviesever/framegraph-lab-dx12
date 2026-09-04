@@ -1,0 +1,33 @@
+build contract passed: 7 targets; shared sources and MSVC policies
+[compile] tests/property/graph_sweep.cpp [compiler options changed, source changed, dependency changed]
+graph_sweep.cpp
+[compile] src/core/compiler.cpp [compiler options changed]
+compiler.cpp
+[compile] src/core/validation.cpp [compiler options changed]
+validation.cpp
+cl: 命令行 warning D9025 :正在重写“/W3”(用“/W4”)
+cl: 命令行 warning D9025 :正在重写“/MD”(用“/MT”)
+cl: 命令行 warning D9025 :正在重写“/W3”(用“/W4”)
+cl: 命令行 warning D9025 :正在重写“/MD”(用“/MT”)
+[compile] src/core/serialization.cpp [compiler options changed]
+serialization.cpp
+cl: 命令行 warning D9025 :正在重写“/W3”(用“/W4”)
+cl: 命令行 warning D9025 :正在重写“/MD”(用“/MT”)
+cl: 命令行 warning D9025 :正在重写“/W3”(用“/W4”)
+cl: 命令行 warning D9025 :正在重写“/MD”(用“/MT”)
+[compile] src/core/allocation.cpp [compiler options changed]
+allocation.cpp
+cl: 命令行 warning D9025 :正在重写“/W3”(用“/W4”)
+cl: 命令行 warning D9025 :正在重写“/MD”(用“/MT”)
+[compile] src/core/barriers.cpp [compiler options changed]
+barriers.cpp
+cl: 命令行 warning D9025 :正在重写“/W3”(用“/W4”)
+cl: 命令行 warning D9025 :正在重写“/MD”(用“/MT”)
+[compile] src/core/plan.cpp [compiler options changed]
+plan.cpp
+cl: 命令行 warning D9025 :正在重写“/W3”(用“/W4”)
+cl: 命令行 warning D9025 :正在重写“/MD”(用“/MT”)
+[link] framegraph_property-release.exe [explicit rebuild, missing cache entry, missing output]
+output: D:/program/FrameGraphLab/.mqb/bin/framegraph_property-release.exe
+[run] framegraph_property-release.exe
+seed=0xF6A123 valid=256 invalid=256 dependency/lifetime/allocation/transition/UAV/alias/identity invariants passed

@@ -12,12 +12,15 @@ Version 0.1 is under development. See the [product contract](tasks/20260904-1845
 
 ## Baseline build
 
-Requires CMake 3.28+, C++23, and MSVC x64 or Clang/GCC. Windows runtime additionally requires the Windows SDK.
+Requires Python 3 for build-contract checks, C++23, and MSVC x64. MQB is the primary local Windows build/run entry. CMake 3.28+/CTest provide cross-platform Core, install/export and CI. Windows runtime additionally requires the Windows SDK.
 
 ```powershell
-./scripts/with-msvc.ps1 cmake --preset msvc-debug
-./scripts/with-msvc.ps1 cmake --build --preset msvc-debug
-./scripts/with-msvc.ps1 ctest --preset msvc-debug
+./scripts/build.ps1 core -Configuration debug
+./scripts/build.ps1 compiler_tests -Configuration debug -Run
+./scripts/build.ps1 planner_tests -Configuration debug -Run
+./scripts/build.ps1 property -Configuration release -Run --cases 10000
 ```
 
 This is AI-assisted engineering. The user defined the product, scope and acceptance requirements; Codex is implementing and verifying the delivery. See the task contract for authorship boundaries.
+
+See [build policy](docs/BUILDING.md) for shared MQB/CMake configuration and portable commands. Local binary packaging and clean-extraction validation remain required delivery gates. A future authorized GitHub release will be source-only; it will not attach a precompiled demo, avoiding large binary transfers. Current graphics/package status remains pending in the progress record.

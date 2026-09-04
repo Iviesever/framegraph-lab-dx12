@@ -1,0 +1,68 @@
+[0/1] Re-running CMake...
+-- Found Python3: C:/Users/Iviesever/AppData/Local/Programs/Python/Python313/python.exe (found version "3.13.0") found components: Interpreter
+build contract passed: 7 targets; shared sources and MSVC policies
+-- Configuring done (0.5s)
+-- Generating done (0.0s)
+-- Build files have been written to: D:/program/FrameGraphLab/build/core-clang
+[1/20] Building CXX object CMakeFiles/framegraph_core.dir/src/core/validation.cpp.obj
+[2/20] Building CXX object CMakeFiles/framegraph_core.dir/src/core/barriers.cpp.obj
+[3/20] Building CXX object CMakeFiles/framegraph_core.dir/src/core/serialization.cpp.obj
+[4/20] Building CXX object CMakeFiles/framegraph_smoke.dir/tests/unit/smoke.cpp.obj
+[5/20] Linking CXX executable framegraph_smoke.exe
+[6/20] Building CXX object CMakeFiles/framegraph_core.dir/src/core/plan.cpp.obj
+[7/20] Building CXX object CMakeFiles/framegraph_core.dir/src/core/allocation.cpp.obj
+[8/20] Building CXX object CMakeFiles/framegraph_plan.dir/tools/core_plan.cpp.obj
+D:/program/FrameGraphLab/tools/core_plan.cpp:7:84: warning: missing field 'final_state' initializer [-Wmissing-field-initializers]
+    7 |     g.resources = {{"source\"\n中", TextureDesc{64, 32, Format::Rgba16Float, true}},
+      |                                                                                   ^
+D:/program/FrameGraphLab/tools/core_plan.cpp:8:77: warning: missing field 'final_state' initializer [-Wmissing-field-initializers]
+    8 |                    {"result", TextureDesc{64, 32, Format::Rgba16Float, true}}};
+      |                                                                             ^
+2 warnings generated.
+[9/20] Building CXX object CMakeFiles/framegraph_fuzz.dir/tests/property/fuzz_compile.cpp.obj
+[10/20] Building CXX object CMakeFiles/framegraph_core.dir/src/core/compiler.cpp.obj
+[11/20] Linking CXX static library libframegraph_core.a
+[12/20] Building CXX object CMakeFiles/framegraph_compiler_tests.dir/tests/unit/compiler_tests.cpp.obj
+In file included from D:/program/FrameGraphLab/tests/unit/compiler_tests.cpp:1:
+D:/program/FrameGraphLab/tests/unit/test_support.hpp:27:113: warning: missing field 'final_state' initializer [-Wmissing-field-initializers]
+   27 |     return {std::move(name), framegraph::TextureDesc{64, 32, framegraph::Format::Rgba16Float, true, false, true}};
+      |                                                                                                                 ^
+D:/program/FrameGraphLab/tests/unit/compiler_tests.cpp:28:71: warning: missing field 'final_state' initializer [-Wmissing-field-initializers]
+   28 |     GraphDescription g; g.resources.push_back({"buffer", BufferDesc{0}}); test::error(g, ErrorCode::InvalidDescriptor);
+      |                                                                       ^
+D:/program/FrameGraphLab/tests/unit/compiler_tests.cpp:31:80: warning: missing field 'final_state' initializer [-Wmissing-field-initializers]
+   31 |     GraphDescription g; g.resources.push_back({"buffer", BufferDesc{UINT64_MAX}}); test::error(g, ErrorCode::Overflow);
+      |                                                                                ^
+D:/program/FrameGraphLab/tests/unit/compiler_tests.cpp:63:72: warning: missing field 'final_state' initializer [-Wmissing-field-initializers]
+   63 |     GraphDescription g; g.resources.push_back({"buffer", BufferDesc{64}}); g.passes.push_back({"bad", {test::write(0)}, true});
+      |                                                                        ^
+D:/program/FrameGraphLab/tests/unit/compiler_tests.cpp:67:72: warning: missing field 'final_state' initializer [-Wmissing-field-initializers]
+   67 |     GraphDescription g; g.resources.push_back({"buffer", BufferDesc{64}});
+      |                                                                        ^
+D:/program/FrameGraphLab/tests/unit/compiler_tests.cpp:151:72: warning: missing field 'final_state' initializer [-Wmissing-field-initializers]
+  151 |     GraphDescription g; g.resources = {{"buffer", BufferDesc{256, true}}};
+      |                                                                        ^
+6 warnings generated.
+[13/20] Linking CXX executable framegraph_plan.exe
+[14/20] Linking CXX executable framegraph_fuzz.exe
+[15/20] Linking CXX executable framegraph_compiler_tests.exe
+[16/20] Building CXX object CMakeFiles/framegraph_planner_tests.dir/tests/unit/planner_tests.cpp.obj
+In file included from D:/program/FrameGraphLab/tests/unit/planner_tests.cpp:1:
+D:/program/FrameGraphLab/tests/unit/test_support.hpp:27:113: warning: missing field 'final_state' initializer [-Wmissing-field-initializers]
+   27 |     return {std::move(name), framegraph::TextureDesc{64, 32, framegraph::Format::Rgba16Float, true, false, true}};
+      |                                                                                                                 ^
+D:/program/FrameGraphLab/tests/unit/planner_tests.cpp:95:71: warning: missing field 'final_state' initializer [-Wmissing-field-initializers]
+   95 |     GraphDescription g; g.resources = {{"uav", BufferDesc{65536, true}}};
+      |                                                                       ^
+D:/program/FrameGraphLab/tests/unit/planner_tests.cpp:102:77: warning: missing field 'final_state' initializer [-Wmissing-field-initializers]
+  102 |     GraphDescription g; ResourceDescription r{"uav", BufferDesc{65536, true}};
+      |                                                                             ^
+3 warnings generated.
+[17/20] Building CXX object CMakeFiles/framegraph_property.dir/tests/property/graph_sweep.cpp.obj
+In file included from D:/program/FrameGraphLab/tests/property/graph_sweep.cpp:1:
+D:/program/FrameGraphLab/tests/property/../unit/test_support.hpp:27:113: warning: missing field 'final_state' initializer [-Wmissing-field-initializers]
+   27 |     return {std::move(name), framegraph::TextureDesc{64, 32, framegraph::Format::Rgba16Float, true, false, true}};
+      |                                                                                                                 ^
+1 warning generated.
+[18/20] Linking CXX executable framegraph_planner_tests.exe
+[19/20] Linking CXX executable framegraph_property.exe

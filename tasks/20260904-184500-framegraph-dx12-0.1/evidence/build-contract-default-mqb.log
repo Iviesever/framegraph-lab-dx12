@@ -1,0 +1,33 @@
+[discover] 7 translation units
+[compile] tools/core_plan.cpp [dependency changed]
+core_plan.cpp
+[compile] src/core/allocation.cpp [dependency changed]
+allocation.cpp
+[compile] src/core/barriers.cpp [dependency changed]
+barriers.cpp
+[compile] src/core/compiler.cpp [dependency changed]
+compiler.cpp
+[compile] src/core/plan.cpp [dependency changed]
+plan.cpp
+[compile] src/core/serialization.cpp [dependency changed]
+serialization.cpp
+[compile] src/core/validation.cpp [dependency changed]
+validation.cpp
+cl: 命令行 warning D9025 :正在重写“/W3”(用“/W4”)
+cl: 命令行 warning D9025 :正在重写“/MDd”(用“/MTd”)
+cl: 命令行 warning D9025 :正在重写“/W3”(用“/W4”)
+cl: 命令行 warning D9025 :正在重写“/MDd”(用“/MTd”)
+cl: 命令行 warning D9025 :正在重写“/W3”(用“/W4”)
+cl: 命令行 warning D9025 :正在重写“/MDd”(用“/MTd”)
+cl: 命令行 warning D9025 :正在重写“/W3”(用“/W4”)
+cl: 命令行 warning D9025 :正在重写“/MDd”(用“/MTd”)
+cl: 命令行 warning D9025 :正在重写“/W3”(用“/W4”)
+cl: 命令行 warning D9025 :正在重写“/MDd”(用“/MTd”)
+cl: 命令行 warning D9025 :正在重写“/W3”(用“/W4”)
+cl: 命令行 warning D9025 :正在重写“/MDd”(用“/MTd”)
+cl: 命令行 warning D9025 :正在重写“/W3”(用“/W4”)
+cl: 命令行 warning D9025 :正在重写“/MDd”(用“/MTd”)
+[link] core_plan.exe [explicit rebuild, missing cache entry, missing output]
+output: D:/program/FrameGraphLab/.mqb/bin/core_plan.exe
+[run] core_plan.exe
+{"schema_version":1,"scene_seed":24301,"resources":[{"id":0,"name":"source\"\n中","kind":"texture","width":64,"height":32,"format":1,"render_target":1,"depth_stencil":0,"unordered_access":0,"imported":0,"initialized":0,"exported":0,"initial_state":0,"final_state":null,"lifetime":{"first":0,"last":1}},{"id":1,"name":"result","kind":"texture","width":64,"height":32,"format":1,"render_target":1,"depth_stencil":0,"unordered_access":0,"imported":0,"initialized":0,"exported":0,"initial_state":0,"final_state":null,"lifetime":{"first":2,"last":2}}],"passes":[{"id":0,"name":"write-source","side_effect":0,"usages":[{"resource":0,"access":1,"usage":1}]},{"id":1,"name":"observe-source","side_effect":1,"usages":[{"resource":0,"access":0,"usage":0}]},{"id":2,"name":"write-result","side_effect":1,"usages":[{"resource":1,"access":1,"usage":1}]},{"id":3,"name":"unused","side_effect":0,"usages":[]}],"order":[0,1,2],"culled":[3],"dependencies":[{"before":0,"after":1,"resource":0,"hazard":0}],"declared_ordering":[],"allocation":{"aliasing_enabled":1,"committed_bytes":131072,"physical_bytes":65536,"saved_bytes":65536,"padding_overhead_bytes":0,"heaps":[{"id":0,"class":1,"compatibility":0,"bytes":65536,"alignment":65536,"dedicated":0}],"resources":[{"resource":0,"heap":0,"slot":0,"offset":0,"size":65536,"alignment":65536,"reused_region":1,"predecessor":null},{"resource":1,"heap":0,"slot":0,"offset":0,"size":65536,"alignment":65536,"reused_region":1,"predecessor":0}],"aliases":[{"position":2,"heap":0,"offset":0,"size":65536,"before":0,"after":1}]},"barriers":{"transition_count":5,"uav_count":0,"aliasing_count":2,"passes":[{"before":[{"kind":2,"resource":0,"before":0,"after":0,"alias_before":null},{"kind":0,"resource":0,"before":0,"after":2,"alias_before":null}],"after":[]},{"before":[{"kind":0,"resource":0,"before":2,"after":1,"alias_before":null}],"after":[{"kind":0,"resource":0,"before":1,"after":0,"alias_before":null}]},{"before":[{"kind":2,"resource":1,"before":0,"after":0,"alias_before":0},{"kind":0,"resource":1,"before":0,"after":2,"alias_before":null}],"after":[{"kind":0,"resource":1,"before":2,"after":0,"alias_before":null}]}],"final":[]},"plan_identity":"4b6a2cf15d85a354"}

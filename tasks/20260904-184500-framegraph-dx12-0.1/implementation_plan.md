@@ -2,6 +2,8 @@
 
 Use inline PACT execution with at most two read-only review agents. The goal explicitly authorizes this design and continuous implementation.
 
+Incremental constraint accepted after PACT-20: before the next graphics step, add real mqb.json and a single source/build-policy inventory consumed or checked by both MQB and CMake. Local C++ build/run uses MQB; CMake handles portable/CI/install/export evidence. Then continue PACT-30/40/50/60/80 in order. Never repeat completed 00/10/20. Source-only future release policy and updated freeze/reset/Tier gates are in product_contract.md and repository rules.
+
 | PACT | Files / responsibility | Acceptance gate |
 |---|---|---|
 | 00 | Root CMake/presets/license/rules/task contract; tests/unit/smoke.cpp | MQB MSVC and portable compiler smoke, CTest; baseline main pushed, fresh feature branch |

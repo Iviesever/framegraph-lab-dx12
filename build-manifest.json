@@ -1,0 +1,24 @@
+{
+  "version": 1,
+  "standard": 23,
+  "architecture": "x64",
+  "include_dirs": ["include", "src"],
+  "compiler_args": ["/EHsc", "/W4", "/permissive-", "/utf-8"],
+  "msvc_system_libraries": ["kernel32"],
+  "configurations": {
+    "debug": {"runtime": "MTd", "defines": [], "compiler_args": ["/Od", "/Z7", "/Ob0", "/RTC1"], "linker_args": ["/DEBUG:FULL", "/INCREMENTAL:NO"]},
+    "release": {"runtime": "MT", "defines": ["NDEBUG"], "compiler_args": ["/O2", "/Ob2"], "linker_args": ["/OPT:REF", "/OPT:ICF", "/INCREMENTAL:NO"]}
+  },
+  "groups": {
+    "core": ["src/core/compiler.cpp", "src/core/validation.cpp", "src/core/serialization.cpp", "src/core/allocation.cpp", "src/core/barriers.cpp", "src/core/plan.cpp"]
+  },
+  "targets": {
+    "core": {"type": "static", "groups": ["core"], "sources": [], "libraries": []},
+    "compiler_tests": {"type": "exe", "groups": ["core"], "sources": ["tests/unit/compiler_tests.cpp"], "libraries": []},
+    "planner_tests": {"type": "exe", "groups": ["core"], "sources": ["tests/unit/planner_tests.cpp"], "libraries": []},
+    "property": {"type": "exe", "groups": ["core"], "sources": ["tests/property/graph_sweep.cpp"], "libraries": []},
+    "fuzz": {"type": "exe", "groups": ["core"], "sources": ["tests/property/fuzz_compile.cpp"], "libraries": []},
+    "plan": {"type": "exe", "groups": ["core"], "sources": ["tools/core_plan.cpp"], "libraries": []},
+    "smoke": {"type": "exe", "groups": [], "sources": ["tests/unit/smoke.cpp"], "libraries": []}
+  }
+}

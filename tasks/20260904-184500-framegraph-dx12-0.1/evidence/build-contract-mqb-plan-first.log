@@ -1,0 +1,15 @@
+build contract passed: 7 targets; shared sources and MSVC policies
+[compile] tools/core_plan.cpp [missing cache entry, missing output]
+core_plan.cpp
+[compile] src/core/compiler.cpp [compiler options changed]
+compiler.cpp
+cl: 命令行 warning D9025 :正在重写“/W3”(用“/W4”)
+cl: 命令行 warning D9025 :正在重写“/MDd”(用“/MTd”)
+[compile] src/core/validation.cpp [compiler options changed]
+validation.cpp
+cl: 命令行 warning D9025 :正在重写“/W3”(用“/W4”)
+cl: 命令行 warning D9025 :正在重写“/MDd”(用“/MTd”)
+cl: 命令行 warning D9025 :正在重写“/W3”(用“/W4”)
+cl: 命令行 warning D9025 :正在重写“/MDd”(用“/MTd”)
+[compile] src/core/serialization.cpp [compiler options changed]
+serialization.cpp
