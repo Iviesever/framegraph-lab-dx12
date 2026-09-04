@@ -4,7 +4,7 @@ The Core planner emits pass-before, pass-after and graph-final barrier lists. Th
 
 - Transition: changes one whole resource from its tracked state to the state required by the declared usage. Consecutive equal native states emit no transition. Common and Present are explicitly equivalent under legacy D3D12's zero state.
 - UAV: orders two uses remaining in UAV state whenever either prior or current access writes. Read/read has no UAV barrier. A state transition supplies ordering when leaving UAV state.
-- Aliasing: activates each placed resource before its first transition and callback, following the simple activation model. Reused slots additionally name the previous resource. Full RT/DS initialization follows before drawing. Activation-barrier count and actual memory-reuse event count are distinct, including in reference mode.
+- Aliasing: activates each placed resource before its first transition and callback, following the simple activation model. The plan keeps the exact predecessor/successor event but explicitly requests native null-before scope for conservative cross-format activation. Full RT/DS initialization follows before drawing. Activation-barrier count and actual memory-reuse event count are distinct, including in reference mode.
 
 Imports begin in their declared initial states and finish in their required final states, including imports with no retained usage. Backbuffers must request Present. All transient resources return to Common at their last lifetime position before a different occupant activates. A reused slot begins each replay with a null-before activation; per-frame fences protect the arena from simultaneous reuse.
 

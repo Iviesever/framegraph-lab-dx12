@@ -31,6 +31,12 @@ if(WIN32 AND FRAMEGRAPH_BUILD_D3D12)
     message(FATAL_ERROR "Revision generation failed")
   endif()
   fgl_add_target(FrameGraphLab app)
+  fgl_array(runtime_shaders assets shaders)
+  foreach(shader IN LISTS runtime_shaders)
+    add_custom_command(TARGET FrameGraphLab POST_BUILD
+      COMMAND ${CMAKE_COMMAND} -E make_directory "$<TARGET_FILE_DIR:FrameGraphLab>/shaders"
+      COMMAND ${CMAKE_COMMAND} -E copy_if_different "${CMAKE_CURRENT_SOURCE_DIR}/${shader}" "$<TARGET_FILE_DIR:FrameGraphLab>/shaders/")
+  endforeach()
   if(BUILD_TESTING)
     fgl_add_target(framegraph_shader_tests shader_tests)
     add_test(NAME shader_unit COMMAND framegraph_shader_tests ${CMAKE_CURRENT_SOURCE_DIR})

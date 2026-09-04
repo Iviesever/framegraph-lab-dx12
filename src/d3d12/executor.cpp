@@ -103,7 +103,7 @@ void Dx12GraphExecutor::emit(ID3D12GraphicsCommandList* list, Dx12PlacedResource
             barrier.Type = D3D12_RESOURCE_BARRIER_TYPE_UAV; barrier.UAV.pResource = arena.resource(source.resource); ++report_.executed_uav_barriers; break;
         case BarrierKind::Aliasing:
             barrier.Type = D3D12_RESOURCE_BARRIER_TYPE_ALIASING;
-            barrier.Aliasing.pResourceBefore = source.alias_before.value == invalid_index ? nullptr : arena.resource(source.alias_before);
+            barrier.Aliasing.pResourceBefore = source.native_alias_before_null || source.alias_before.value == invalid_index ? nullptr : arena.resource(source.alias_before);
             barrier.Aliasing.pResourceAfter = arena.resource(source.resource); ++report_.executed_alias_barriers; break;
         }
         list->ResourceBarrier(1, &barrier);

@@ -18,7 +18,7 @@ pixels = []
 for policy in ("on", "off"):
     prefix = directory / policy
     command = [str(exe), f"--{backend}", "--headless", "--frames", "8", "--width", "320", "--height", "180",
-        "--scene-seed", "24301", "--aliasing", policy, "--capture", str(prefix.with_suffix(".png")),
+        "--scene-seed", "24301", "--scene", "probe", "--aliasing", policy, "--capture", str(prefix.with_suffix(".png")),
         "--rgba", str(prefix.with_suffix(".rgba")), "--plan", str(directory / f"{policy}-plan.json"),
         "--report", str(prefix.with_suffix(".json"))]
     result = subprocess.run(command, capture_output=True, encoding="utf-8", timeout=120)

@@ -9,7 +9,7 @@ backend = sys.argv[2] if len(sys.argv) > 2 else "warp"
 root = Path(__file__).resolve().parents[2]
 report = root / "artifacts/reports" / f"runtime-{backend}.json"
 report.parent.mkdir(parents=True, exist_ok=True)
-command = [str(exe), f"--{backend}", "--headless", "--frames", "24", "--width", "640", "--height", "360", "--report", str(report)]
+command = [str(exe), f"--{backend}", "--headless", "--frames", "24", "--scene", "probe", "--width", "640", "--height", "360", "--report", str(report)]
 result = subprocess.run(command, capture_output=True, text=True, encoding="utf-8", timeout=90)
 print(result.stdout)
 print(result.stderr, file=sys.stderr)

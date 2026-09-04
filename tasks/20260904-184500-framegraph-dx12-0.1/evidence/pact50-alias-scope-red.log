@@ -1,0 +1,53 @@
+build contract passed: 10 targets; shared sources and MSVC policies
+[compile] tests/unit/planner_tests.cpp [compiler options changed, source changed, dependency changed]
+planner_tests.cpp
+[up-to-date] src/core/compiler.cpp
+[up-to-date] src/core/validation.cpp
+[up-to-date] src/core/serialization.cpp
+[compile] src/core/allocation.cpp [dependency changed]
+allocation.cpp
+[compile] src/core/barriers.cpp [dependency changed]
+barriers.cpp
+[compile] src/core/plan.cpp [dependency changed]
+plan.cpp
+cl: 命令行 warning D9025 :正在重写“/W3”(用“/W4”)
+cl: 命令行 warning D9025 :正在重写“/MDd”(用“/MTd”)
+cl: 命令行 warning D9025 :正在重写“/W3”(用“/W4”)
+cl: 命令行 warning D9025 :正在重写“/MDd”(用“/MTd”)
+cl: 命令行 warning D9025 :正在重写“/W3”(用“/W4”)
+cl: 命令行 warning D9025 :正在重写“/MDd”(用“/MTd”)
+cl: 命令行 warning D9025 :正在重写“/W3”(用“/W4”)
+cl: 命令行 warning D9025 :正在重写“/MDd”(用“/MTd”)
+[link] framegraph_planner_tests-debug.exe [explicit rebuild, link inputs changed]
+output: D:/program/FrameGraphLab/.mqb/bin/framegraph_planner_tests-debug.exe
+[run] framegraph_planner_tests-debug.exe
+PASS disjoint_lifetimes_share_slot
+PASS reference_mode_disjoint_bytes
+PASS overlap_cannot_alias
+PASS export_cannot_be_clobbered
+PASS offset_alignment
+PASS compatibility_separates_heaps
+PASS dedicated_never_reused
+PASS size_growth_uses_new_slot
+PASS heap_classes_are_separate
+PASS imports_are_not_allocated
+PASS unused_transients_are_not_allocated
+PASS requirement_count_checked
+PASS zero_size_checked
+PASS zero_alignment_checked
+PASS non_power_two_alignment_checked
+PASS class_descriptor_mismatch_checked
+PASS size_rounding_overflow_checked
+PASS sum_overflow_checked
+PASS equal_state_has_no_redundant_transition
+PASS uav_write_then_read_orders
+PASS uav_read_read_needs_no_ordering
+PASS imported_required_final_transition
+PASS unused_import_final_transition
+PASS common_present_are_native_equivalent
+PASS execution_identity_covers_policy_and_barriers
+PASS oracle_rejects_activation_after_transition
+PASS standalone_placed_resources_activate
+PASS oracle_rejects_live_byte_overlap
+cases=29 passed=28 failed=1
+FAIL alias_activation_precedes_transition: p.barriers.passes[1].before[0].native_alias_before_null at line 86

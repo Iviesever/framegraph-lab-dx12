@@ -95,6 +95,7 @@ inline void verify_plan(const framegraph::CompiledPlan& p, const std::vector<fra
             } else {
                 ++alias_count;
                 CHECK(a.resources[b.resource.value]);
+                CHECK(b.native_alias_before_null);
                 if (b.alias_before.value != invalid_index) {
                     CHECK(active[b.alias_before.value]); CHECK(state[b.alias_before.value] == ResourceState::Common);
                 }

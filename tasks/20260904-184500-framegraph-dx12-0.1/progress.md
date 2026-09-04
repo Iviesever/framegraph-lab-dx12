@@ -1,6 +1,6 @@
 # Persistent progress
 
-Started 2026-09-04 18:45 UTC+8. Current PACT: 40 completed locally; next PACT: 50.
+Started 2026-09-04 18:45 UTC+8. Current PACT: 50 completed locally; next PACT: 60.
 
 - Goal file read in full; original copied into task directory.
 - Target directory was absent and created without overwriting files. No ancestor `.agents` folder was present at D:/ or D:/program; repository rules now exist.
@@ -70,3 +70,19 @@ WARP and NVIDIA hardware each passed serial 8-frame alias-on/off validation with
 RED acceptance first failed because no placed-resource result existed. First native attempt revealed WIC format negotiation and exact performance warnings. After resolving those, a pre-submit gate exposed message ID 340: imported backbuffer was incorrectly described as UAV, followed by ID 232 device removal. The root-cause packet records the evidence and ownership fix. Final setup/pre-submit diagnostics prevent invalid commands reaching GPU.
 
 Typed invalid graph, undeclared access and zero capture deadline all failed closed with Debug counts 0/0/0. Barrier/lifetime trace switches are available. Windows CTest 10/10 and 87 internal cases pass; build output has no code warning. MQB Debug/Release are green. No process remains. PACT-50 now replaces the solid probe with the required depth/HDR/bloom/tone-map procedural scene; the probe is evidence, not the visual delivery.
+
+PACT-40 pushed/checkpoint SHA: `d32878ed2cf306dee67a3cd887d8389dd9f2c1fd`; clean parity receipt: artifacts/checkpoints/pact40.json.
+
+## PACT-50
+
+Neon Ruins is the default 1280x720 program. Eight real passes run through the shared executor: DepthPrepass, SceneHDR, BloomExtract, BloomBlurHorizontal, BloomBlurVertical, ToneMap, Capture and Present. HLSL generates a procedural grid/floor and 160 instanced pillars with moving light, emissive cyan/magenta HDR, separable bloom and fullscreen tone mapping. No art assets/frameworks are used. Depth is D32, HDR/bloom are R16G16B16A16_FLOAT and the swapchain is RGBA8.
+
+Validation first failed against the solid executor probe. It next exposed a precise HLSL reserved-token compile diagnostic, fixed by renaming the variable. WARP scene parity then passed. Hardware found a reproducible cross-format named-alias parity failure; the root-cause packet records its 63,435 differing bytes. Core now explicitly plans conservative native null-before activation while preserving A→B diagnostic chains. Planner RED/GREEN passed and the scope enters schema identity.
+
+Final 640x360: WARP alias-on/off parity passed with hash `db90d293f9ed4b49`, 440 color buckets, actual 3,407,872 versus 4,456,448 bytes (1,048,576 saved). Hardware parity passed twice with hash `11588379d8a28a6a`, 439 buckets, actual 3,473,408 versus 4,521,984 (1,048,576 saved). Cross-adapter hashes are explicitly not compared. All four final policy runs had Debug 0/0/0, 8/8 pass timestamps with 12 samples each, nonblack ratio >20%, luminance range >=50, valid PNG/plan/report and exact raw parity.
+
+Visible 1280x720 hardware ran 120 frames: logical bytes 16,588,800; committed requirements 17,694,720; actual heap 13,762,560; saved 3,932,160 (22.22%); 2 reuse events; 18 transitions and 5 activation barriers per graph; Debug 0/0/0; color buckets 450. Local GPU timing means: Depth 0.0165 ms, SceneHDR 0.0211, Extract 0.0075, H blur 0.0090, V blur 0.0090, ToneMap 0.0218, Capture 0.3079, Present 0.0015. These are observations, not SLA.
+
+Graph-aware visible/hidden hardware 60-frame resize test passed 3 sizes, minimize/restore, and exactly 4 plan compilations (initial + each dimension change). Controls implemented: arrows/mouse orbit; pause, single step, reset, alias toggle with fence drain/recompile; final/HDR/bloom views. Default executable-relative shader lookup and manifest-owned asset copying work under the MQB run boundary.
+
+Clang ASan+UBSan CTest 9/9 plus updated 10,000 valid/10,000 invalid full-plan sweep passed. Windows CMake/MSVC 10/10 and MQB scene/option/planner builds passed. After commit, clean-head WARP primary artifacts and parity receipt are generated before PACT-60. Inspector/report packaging, long stress and final clean package remain pending.

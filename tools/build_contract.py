@@ -56,6 +56,16 @@ def validate(root, write=False):
         p = Path(source)
         if p.is_absolute() or ".." in p.parts or not (root / p).is_file():
             raise ValueError(f"missing or out-of-project source: {source}")
+    assets = [path for values in manifest.get("assets", {}).values() for path in values]
+    if len(assets) != len(set(assets)):
+        raise ValueError("duplicate asset declaration")
+    for asset in assets:
+        p = Path(asset)
+        if p.is_absolute() or ".." in p.parts or not (root / p).is_file():
+            raise ValueError(f"missing or out-of-project asset: {asset}")
+    actual_assets = {p.relative_to(root).as_posix() for p in (root / "shaders").rglob("*") if p.is_file()}
+    if actual_assets != set(assets):
+        raise ValueError(f"asset inventory drift: unlisted={sorted(actual_assets-set(assets))}, stale={sorted(set(assets)-actual_assets)}")
     actual = {p.relative_to(root).as_posix() for directory in ("src", "tests", "tools") for p in (root / directory).rglob("*.cpp")}
     if actual != set(declared):
         raise ValueError(f"source inventory drift: unlisted={sorted(actual-set(declared))}, stale={sorted(set(declared)-actual)}")

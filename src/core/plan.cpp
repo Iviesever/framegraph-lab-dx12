@@ -21,7 +21,7 @@ void barriers_json(std::ostream& out, const std::vector<Barrier>& barriers) {
         out << "{\"kind\":" << static_cast<unsigned>(b.kind) << ",\"resource\":" << b.resource.value
             << ",\"before\":" << static_cast<unsigned>(b.before) << ",\"after\":" << static_cast<unsigned>(b.after) << ",\"alias_before\":";
         if (b.alias_before.value == invalid_index) out << "null"; else out << b.alias_before.value;
-        out << '}';
+        out << ",\"native_before_null\":" << b.native_alias_before_null << '}';
     }
     out << ']';
 }

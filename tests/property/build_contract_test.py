@@ -24,6 +24,10 @@ with tempfile.TemporaryDirectory(dir=scratch) as directory:
         target = fixture / path
         target.parent.mkdir(parents=True, exist_ok=True)
         target.write_text("// inventory fixture\n", encoding="utf-8")
+    for path in [p for values in manifest.get("assets", {}).values() for p in values]:
+        target = fixture / path
+        target.parent.mkdir(parents=True, exist_ok=True)
+        target.write_text("// asset fixture\n", encoding="utf-8")
     module.validate(fixture, write=True)
     config = module.read(fixture / "mqb.json")
     config["profiles"]["release"]["build"]["runtime"] = "MD"
@@ -45,4 +49,11 @@ with tempfile.TemporaryDirectory(dir=scratch) as directory:
         raise AssertionError("duplicate key was accepted")
     except ValueError:
         pass
+    (fixture / "src/unlisted.cpp").unlink()
+    (fixture / manifest["assets"]["shaders"][0]).unlink()
+    try:
+        module.validate(fixture)
+        raise AssertionError("missing shader asset was accepted")
+    except ValueError as error:
+        assert "asset" in str(error)
 print("build contract negative tests passed: option drift, source drift, duplicate keys")

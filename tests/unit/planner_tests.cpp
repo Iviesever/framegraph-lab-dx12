@@ -83,6 +83,7 @@ CASE(alias_activation_precedes_transition) {
     CHECK(p.barriers.passes[0].before[0].kind == BarrierKind::Aliasing);
     CHECK(p.barriers.passes[0].before[0].alias_before == ResourceId{});
     CHECK(p.barriers.passes[1].before[0].alias_before == ResourceId{0});
+    CHECK(p.barriers.passes[1].before[0].native_alias_before_null);
     CHECK(p.barriers.passes[1].before[1].kind == BarrierKind::Transition);
     CHECK(p.barriers.passes[0].after.back().after == ResourceState::Common);
     CHECK(p.barriers.transition_count == 4); CHECK(p.barriers.aliasing_count == 2);

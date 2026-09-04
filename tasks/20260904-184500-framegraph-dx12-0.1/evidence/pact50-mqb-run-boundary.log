@@ -1,0 +1,23 @@
+build contract passed: 10 targets; shared sources and MSVC policies
+[up-to-date] src/app/main.cpp
+[up-to-date] src/core/compiler.cpp
+[up-to-date] src/core/validation.cpp
+[up-to-date] src/core/serialization.cpp
+[up-to-date] src/core/allocation.cpp
+[up-to-date] src/core/barriers.cpp
+[up-to-date] src/core/plan.cpp
+[up-to-date] src/app/options.cpp
+[up-to-date] src/app/report.cpp
+[up-to-date] src/d3d12/diagnostics.cpp
+[up-to-date] src/d3d12/shader.cpp
+[up-to-date] src/d3d12/runtime.cpp
+[up-to-date] src/d3d12/window.cpp
+[up-to-date] src/d3d12/context.cpp
+[up-to-date] src/d3d12/capture.cpp
+[up-to-date] src/d3d12/arena.cpp
+[up-to-date] src/d3d12/executor.cpp
+[up-to-date] src/app/probe_graph.cpp
+[up-to-date] src/app/scene.cpp
+[up-to-date] FrameGraphLab-debug.exe
+output: D:/program/FrameGraphLab/.mqb/bin/FrameGraphLab-debug.exe
+{"schema_version":1,"success":true,"git_sha":"d32878ed2cf306dee67a3cd887d8389dd9f2c1fd","source_clean":false,"backend":"warp","adapter":"Microsoft Basic Render Driver","driver":"10.0.22621.2506","vendor_id":5140,"device_id":140,"software":true,"feature_level":"12.1","width":1280,"height":720,"frames":1,"frames_in_flight":3,"debug_enabled":true,"dred_enabled":true,"debug_errors":0,"debug_warnings":0,"debug_corruptions":0,"resize_count":0,"minimize_count":0,"restore_count":0,"hresult":0,"device_removed_reason":0,"failure_code":"","error":"","current_graph":"f4e8b41f2e005c48","current_pass":"Present","device_diagnostics":"","debug_messages":[],"plan_identity":"f4e8b41f2e005c48","pixel_hash":"89ce99680218c325","logical_bytes":11060224,"committed_bytes":11272192,"planned_heap_bytes":7536640,"actual_heap_bytes":7536640,"all_frame_heap_bytes":22609920,"saved_bytes":3735552,"heap_count":2,"placed_resource_count":12,"alias_reuse_events":1,"plan_compile_count":1,"compile_ms":0.1961,"transition_count":13,"uav_count":1,"aliasing_count":4,"executed_transitions":13,"executed_uav_barriers":1,"executed_alias_barriers":4,"gpu_timestamp_frequency":10000000,"non_black_fraction":1,"luminance_min":75,"luminance_max":75,"color_buckets":1,"pass_timings":[{"name":"ClearProbeA","cpu_record_ms":0.4836,"gpu_ms":0.8952,"cpu_samples":1,"gpu_samples":1},{"name":"ObserveProbeA","cpu_record_ms":0.0253,"gpu_ms":1.1435,"cpu_samples":1,"gpu_samples":1},{"name":"InitStatsUav","cpu_record_ms":0.0094,"gpu_ms":0.0079,"cpu_samples":1,"gpu_samples":1},{"name":"UpdateStatsUav","cpu_record_ms":0.0054,"gpu_ms":0.0017,"cpu_samples":1,"gpu_samples":1},{"name":"ClearProbeB","cpu_record_ms":0.009,"gpu_ms":0.1308,"cpu_samples":1,"gpu_samples":1},{"name":"BlitProbeB","cpu_record_ms":0.0134,"gpu_ms":1.1627,"cpu_samples":1,"gpu_samples":1},{"name":"Capture","cpu_record_ms":0.0235,"gpu_ms":1.7529,"cpu_samples":1,"gpu_samples":1},{"name":"Present","cpu_record_ms":0.0039,"gpu_ms":0.0004,"cpu_samples":1,"gpu_samples":1}]}

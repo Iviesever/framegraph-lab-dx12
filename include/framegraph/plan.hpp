@@ -39,6 +39,7 @@ struct Barrier {
     ResourceId resource;
     ResourceState before{ResourceState::Common}, after{ResourceState::Common};
     ResourceId alias_before;
+    bool native_alias_before_null{};
     auto operator<=>(const Barrier&) const = default;
 };
 struct PassBarriers { std::vector<Barrier> before, after; };

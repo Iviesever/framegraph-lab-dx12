@@ -1,0 +1,10 @@
+build contract passed: 10 targets; shared sources and MSVC policies
+scene.cpp
+D:/program/FrameGraphLab/src/app/scene.cpp(67,54): error C2065: “XM_PIDIV3”: 未声明的标识符
+D:/program/FrameGraphLab/src/app/scene.cpp(68,81): warning C4244: “参数”: 从“const <error type>”转换到“float”，可能丢失数据
+error: translation unit compilation failed: D:/program/FrameGraphLab/src/app/scene.cpp
+error: planned MSVC compile action failed
+  MSVC compile invocation failed
+  MSVC compiler returned a non-zero exit code
+cl: 命令行 warning D9025 :正在重写“/W3”(用“/W4”)
+cl: 命令行 warning D9025 :正在重写“/MDd”(用“/MTd”)

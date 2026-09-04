@@ -47,7 +47,7 @@ Result<ResourceStatePlan> ResourceStatePlanner::plan(const CompiledGraph& g, con
             // Use the simple placed-resource activation model even for nonaliased
             // resources. Reference mode has activation barriers but no reuse events.
             if (physical && g.lifetimes[id.value]->first == position) {
-                lists.before.push_back({BarrierKind::Aliasing, id, ResourceState::Common, ResourceState::Common, physical->predecessor});
+                lists.before.push_back({BarrierKind::Aliasing, id, ResourceState::Common, ResourceState::Common, physical->predecessor, true});
                 ++result.aliasing_count;
             }
             auto desired = state_for(usage.usage);

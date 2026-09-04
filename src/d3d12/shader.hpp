@@ -4,4 +4,5 @@
 #include <filesystem>
 namespace fgl {
 ComPtr<ID3DBlob> compile_shader(const std::filesystem::path& file, const char* entry, const char* target);
+std::filesystem::path executable_directory();
 }

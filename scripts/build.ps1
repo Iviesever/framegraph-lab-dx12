@@ -26,12 +26,27 @@ if (-not $sources.Count) { throw 'Target has no source files' }
 if ($Run -and $definition.type -ne 'exe') { throw 'Only executable targets can run' }
 $profile = if ($definition.type -eq 'exe') { "$Target-$Configuration" } else { $Configuration }
 $outputName = if ($Target -eq 'app') { "FrameGraphLab-$Configuration" } else { "framegraph_$Target-$Configuration" }
-$mqbArguments = @($(if ($Run) { 'run' } else { 'build' })) + $sources + @('--profile', $profile, '--type', $definition.type, '--output', $outputName, '--jobs', '4')
+$runThroughMqb = $Run -and $Target -ne 'app'
+$mqbArguments = @($(if ($runThroughMqb) { 'run' } else { 'build' })) + $sources + @('--profile', $profile, '--type', $definition.type, '--output', $outputName, '--jobs', '4')
 if ($sources.Count -eq 1) { $mqbArguments += '--no-discover' }
 if ($ProgramArguments.Count) {
     if (-not $Run) { throw 'Program arguments require -Run' }
-    $mqbArguments += '--'
-    $mqbArguments += $ProgramArguments
+    if ($runThroughMqb) {
+        $mqbArguments += '--'
+        $mqbArguments += $ProgramArguments
+    }
 }
 & mqb @mqbArguments
-exit $LASTEXITCODE
+if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
+if ($Target -eq 'app') {
+    $shaderOutput = Join-Path $projectRoot '.mqb/bin/shaders'
+    New-Item -ItemType Directory -Path $shaderOutput -Force | Out-Null
+    foreach ($asset in $manifest.assets.shaders) {
+        Copy-Item -LiteralPath (Join-Path $projectRoot $asset) -Destination $shaderOutput -Force
+    }
+    if ($Run) {
+        & (Join-Path $projectRoot ".mqb/bin/$outputName.exe") @ProgramArguments
+        exit $LASTEXITCODE
+    }
+}
+exit 0

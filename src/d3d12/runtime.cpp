@@ -4,6 +4,8 @@
 #include "executor.hpp"
 #include "capture.hpp"
 #include "app/probe_graph.hpp"
+#include "app/scene.hpp"
+#include "shader.hpp"
 #include "framegraph/graph.hpp"
 #include <algorithm>
 #include <array>
@@ -17,17 +19,27 @@ RuntimeReport run_clear_demo(const Options& options) {
     report.git_sha = build_revision::sha; report.source_clean = build_revision::clean;
     std::unique_ptr<Dx12Context> context;
     std::unique_ptr<Dx12GraphExecutor> executor;
+    std::unique_ptr<SceneRenderer> renderer;
+    SceneState scene_state; scene_state.seed = options.scene_seed;
+    bool aliasing = options.aliasing;
     try {
         context = std::make_unique<Dx12Context>(options, report);
+        if (options.scene == SceneMode::NeonRuins) {
+            const auto shader_directory = options.shader_directory.empty() ? executable_directory() / "shaders" : options.shader_directory;
+            renderer = std::make_unique<SceneRenderer>(context->device(), shader_directory);
+        }
         auto create_executor = [&] {
             const auto layout = readback_layout(context->device(), context->width(), context->height());
-            auto program = make_probe_program(context->width(), context->height(), layout.bytes, options.scene_seed);
-            if (options.validation_invalid_graph) program.graph.passes[0].usages[0].resource = framegraph::ResourceId{99999};
-            if (options.validation_undeclared) {
-                const auto forbidden = program.readback;
-                program.callbacks[0] = [forbidden](Dx12PassContext& pass) { (void)pass.resource(forbidden); };
-            }
-            executor = std::make_unique<Dx12GraphExecutor>(*context, std::move(program.graph), std::move(program.callbacks), program.backbuffer, program.readback, report, options.aliasing);
+            auto install = [&](auto program) {
+                if (options.validation_invalid_graph) program.graph.passes[0].usages[0].resource = framegraph::ResourceId{99999};
+                if (options.validation_undeclared) {
+                    const auto forbidden = program.readback;
+                    program.callbacks[0] = [forbidden](Dx12PassContext& pass) { (void)pass.resource(forbidden); };
+                }
+                executor = std::make_unique<Dx12GraphExecutor>(*context, std::move(program.graph), std::move(program.callbacks), program.backbuffer, program.readback, report, aliasing);
+            };
+            if (options.scene == SceneMode::ExecutorProbe) install(make_probe_program(context->width(), context->height(), layout.bytes, options.scene_seed));
+            else install(make_scene_program(*renderer, scene_state, context->width(), context->height(), layout.bytes, options.scene_seed));
             context->collect_debug();
             if (report.debug_errors || report.debug_warnings || report.debug_corruptions)
                 throw GpuFailure("DebugLayer", "D3D12 diagnostics rejected during executor setup");
@@ -55,6 +67,13 @@ RuntimeReport run_clear_demo(const Options& options) {
         while (!context->window().closed() && (!options.frames || report.frames < options.frames)) {
             context->window().pump();
             if (context->window().closed()) break;
+            const auto input = context->window().take_input();
+            scene_state.yaw += input.yaw_delta;
+            if (input.pause) scene_state.paused = !scene_state.paused;
+            if (input.step) scene_state.single_step = true;
+            if (input.reset) { scene_state.logical_frame = 0; scene_state.yaw = .7f; }
+            if (input.debug_next) scene_state.debug_view = (scene_state.debug_view + 1) % 3;
+            if (input.alias_toggle) { context->wait_idle(); executor.reset(); aliasing = !aliasing; create_executor(); }
             if (options.frames && GetTickCount64() - start > options.watchdog_ms) throw GpuFailure("WatchdogTimeout", "automatic run exceeded watchdog");
             if (options.resize_stress) {
                 if (report.frames == 3) context->window().set_size(960, 540);
@@ -66,11 +85,14 @@ RuntimeReport run_clear_demo(const Options& options) {
             if (context->window().resized() && (context->width() != context->window().width() || context->height() != context->window().height())) {
                 context->wait_idle(); executor.reset(); context->sync_size(); create_executor();
             } else context->sync_size();
-            context->begin_frame(); executor->record(report.frames);
+            context->begin_frame(); executor->record(scene_state.logical_frame);
             context->collect_debug();
             if (report.debug_errors || report.debug_warnings || report.debug_corruptions)
                 throw GpuFailure("DebugLayer", "D3D12 diagnostics rejected before submission");
             context->submit_frame(); executor->submitted();
+            if (!scene_state.paused || scene_state.single_step) { ++scene_state.logical_frame; scene_state.single_step = false; }
+            const wchar_t* debug_names[]{L"Final", L"HDR", L"Bloom"};
+            context->window().title(L"FrameGraphLab | Frame " + std::to_wstring(scene_state.logical_frame) + L" | Alias " + (aliasing ? L"ON" : L"OFF") + L" | View " + debug_names[scene_state.debug_view] + L" | Space Pause · N Step · R Reset · A Alias · V View");
         }
         if (options.frames && report.frames != options.frames) throw GpuFailure("Interrupted", "automatic run closed before requested frame count");
         auto rgba = executor->finish(options.capture_timeout_ms);

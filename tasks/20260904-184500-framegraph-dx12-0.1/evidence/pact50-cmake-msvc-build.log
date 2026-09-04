@@ -1,0 +1,34 @@
+[0/1] Re-running CMake...
+build contract passed: 10 targets; shared sources and MSVC policies
+-- Configuring done (0.7s)
+-- Generating done (0.1s)
+-- Build files have been written to: D:/program/FrameGraphLab/build/msvc
+[1/30] Building CXX object CMakeFiles\framegraph_core.dir\Debug\src\core\barriers.cpp.obj
+[2/30] Building CXX object CMakeFiles\framegraph_core.dir\Debug\src\core\allocation.cpp.obj
+[3/30] Building CXX object CMakeFiles\framegraph_core.dir\Debug\src\core\plan.cpp.obj
+[4/30] Linking CXX static library Debug\framegraph_core.lib
+[5/30] Building CXX object CMakeFiles\framegraph_plan.dir\Debug\tools\core_plan.cpp.obj
+[6/30] Building CXX object CMakeFiles\FrameGraphLab.dir\Debug\src\d3d12\arena.cpp.obj
+[7/30] Building CXX object CMakeFiles\framegraph_fuzz.dir\Debug\tests\property\fuzz_compile.cpp.obj
+[8/30] Linking CXX executable Debug\framegraph_compiler_tests.exe
+[9/30] Linking CXX executable Debug\framegraph_plan.exe
+[10/30] Linking CXX executable Debug\framegraph_fuzz.exe
+[11/30] Building CXX object CMakeFiles\framegraph_property.dir\Debug\tests\property\graph_sweep.cpp.obj
+[12/30] Building CXX object CMakeFiles\FrameGraphLab.dir\Debug\src\app\options.cpp.obj
+[13/30] Building CXX object CMakeFiles\framegraph_planner_tests.dir\Debug\tests\unit\planner_tests.cpp.obj
+[14/30] Building CXX object CMakeFiles\framegraph_options_tests.dir\Debug\src\app\options.cpp.obj
+[15/30] Building CXX object CMakeFiles\FrameGraphLab.dir\Debug\src\app\main.cpp.obj
+[16/30] Building CXX object CMakeFiles\framegraph_options_tests.dir\Debug\tests\unit\options_tests.cpp.obj
+[17/30] Linking CXX executable Debug\framegraph_property.exe
+[18/30] Building CXX object CMakeFiles\FrameGraphLab.dir\Debug\src\d3d12\shader.cpp.obj
+[19/30] Building CXX object CMakeFiles\framegraph_shader_tests.dir\Debug\src\d3d12\shader.cpp.obj
+[20/30] Linking CXX executable Debug\framegraph_planner_tests.exe
+[21/30] Building CXX object CMakeFiles\FrameGraphLab.dir\Debug\src\d3d12\context.cpp.obj
+[22/30] Linking CXX executable Debug\framegraph_options_tests.exe
+[23/30] Building CXX object CMakeFiles\framegraph_shader_tests.dir\Debug\tests\d3d12\shader_tests.cpp.obj
+[24/30] Building CXX object CMakeFiles\FrameGraphLab.dir\Debug\src\d3d12\executor.cpp.obj
+[25/30] Building CXX object CMakeFiles\FrameGraphLab.dir\Debug\src\app\probe_graph.cpp.obj
+[26/30] Building CXX object CMakeFiles\FrameGraphLab.dir\Debug\src\d3d12\runtime.cpp.obj
+[27/30] Building CXX object CMakeFiles\FrameGraphLab.dir\Debug\src\app\scene.cpp.obj
+[28/30] Linking CXX executable Debug\framegraph_shader_tests.exe
+[29/30] Linking CXX executable Debug\FrameGraphLab.exe

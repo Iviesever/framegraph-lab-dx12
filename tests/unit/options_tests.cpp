@@ -35,4 +35,9 @@ CASE(debug_and_negative_switches) {
     const auto o = parse({"--barrier-trace", "--lifetime-trace", "--validation-undeclared", "--validation-invalid-graph"});
     CHECK(o && o->barrier_trace && o->lifetime_trace && o->validation_undeclared && o->validation_invalid_graph);
 }
+CASE(scene_mode_is_strict) {
+    const auto probe = parse({"--scene", "probe"}); CHECK(probe && probe->scene == fgl::SceneMode::ExecutorProbe);
+    const auto neon = parse({"--scene", "neon"}); CHECK(neon && neon->scene == fgl::SceneMode::NeonRuins);
+    error({"--scene", "city"}, fgl::OptionCode::InvalidValue);
+}
 int main() { return test::run(); }

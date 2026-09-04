@@ -1,0 +1,27 @@
+build contract passed: 10 targets; shared sources and MSVC policies
+[compile] tests/unit/options_tests.cpp [dependency changed]
+options_tests.cpp
+[compile] src/app/options.cpp [source changed, dependency changed]
+options.cpp
+cl: 命令行 warning D9025 :正在重写“/W3”(用“/W4”)
+cl: 命令行 warning D9025 :正在重写“/MDd”(用“/MTd”)
+cl: 命令行 warning D9025 :正在重写“/W3”(用“/W4”)
+cl: 命令行 warning D9025 :正在重写“/MDd”(用“/MTd”)
+[link] framegraph_options_tests-debug.exe [explicit rebuild, link inputs changed]
+output: D:/program/FrameGraphLab/.mqb/bin/framegraph_options_tests-debug.exe
+[run] framegraph_options_tests-debug.exe
+PASS default_options
+PASS required_cli
+PASS headless_is_bounded_by_default
+PASS capture_is_bounded_by_default
+PASS adapter_conflict_rejected
+PASS unknown_option_rejected
+PASS missing_value_rejected
+PASS negative_or_junk_number_rejected
+PASS unbounded_or_huge_frames_rejected
+PASS invalid_alias_policy_rejected
+PASS timeout_and_size_bounds
+PASS max_seed_and_explicit_hardware
+PASS debug_and_negative_switches
+PASS scene_mode_is_strict
+cases=14 passed=14 failed=0
