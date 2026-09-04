@@ -12,7 +12,7 @@ function Step([string]$Name,[scriptblock]$Body){
 }
 try{
   Step docs {python tools/check_docs.py;if($LASTEXITCODE){throw 'docs'}}
-  Step mqb-unit {foreach($target in @('compiler_tests','planner_tests','boundary_tests','options_tests','shader_tests')){./scripts/build.ps1 $target -Configuration debug -Run;if($LASTEXITCODE){throw $target}}}
+  Step mqb-unit {foreach($target in @('compiler_tests','planner_tests','boundary_tests','options_tests','shader_tests','arena_tests')){./scripts/build.ps1 $target -Configuration debug -Run;if($LASTEXITCODE){throw $target}}}
   Step mqb-benchmark {./scripts/build.ps1 benchmark -Configuration release;if($LASTEXITCODE){throw 'benchmark build'};& './.mqb/bin/framegraph_benchmark-release.exe' --samples 31 --iterations 1000 | Set-Content (Join-Path $out 'core-benchmark.json') -Encoding utf8;if($LASTEXITCODE){throw 'benchmark run'};python tests/property/validate_benchmark.py .mqb/bin/framegraph_benchmark-release.exe;if($LASTEXITCODE){throw 'benchmark schema'}}
   Step mqb-property {./scripts/build.ps1 property -Configuration release -Run --cases 100000;if($LASTEXITCODE){throw 'property'}}
   Step mqb-fuzz {./scripts/build.ps1 fuzz -Configuration release -Run --iterations 100000;if($LASTEXITCODE){throw 'fuzz'}}
@@ -36,13 +36,14 @@ try{
   Step culling-warp {python tests/d3d12/validate_culling.py .mqb/bin/FrameGraphLab-release.exe warp;if($LASTEXITCODE){throw 'culling warp'}}
   Step scene-warp {python tests/d3d12/validate_scene.py .mqb/bin/FrameGraphLab-release.exe warp;if($LASTEXITCODE){throw 'scene warp'}}
   Step negatives {python tests/d3d12/runtime_negative.py .mqb/bin/FrameGraphLab-release.exe;if($LASTEXITCODE){throw 'runtime negative'};python tests/d3d12/executor_negative.py .mqb/bin/FrameGraphLab-release.exe;if($LASTEXITCODE){throw 'executor negative'}}
+  Step reliability-warp {python tests/d3d12/validate_reliability.py .mqb/bin/FrameGraphLab-release.exe warp;if($LASTEXITCODE){throw 'WARP reliability'}}
   if(-not $SkipHardware){
     Step culling-hardware {python tests/d3d12/validate_culling.py .mqb/bin/FrameGraphLab-release.exe hardware;if($LASTEXITCODE){throw 'culling hardware'}}
     Step scene-hardware {python tests/d3d12/validate_scene.py .mqb/bin/FrameGraphLab-release.exe hardware;if($LASTEXITCODE){throw 'scene hardware'}}
     Step runtime-benchmark {python tools/benchmark_runtime.py .mqb/bin/FrameGraphLab-release.exe --backend hardware --samples 7 --frames 240 --expected-sha $head --output artifacts/benchmarks/runtime-hardware-final.json;if($LASTEXITCODE){throw 'runtime benchmark'}}
+    Step reliability-hardware {python tests/d3d12/validate_reliability.py .mqb/bin/FrameGraphLab-release.exe hardware;if($LASTEXITCODE){throw 'hardware reliability'}}
     Step hardware-interactive {& './.mqb/bin/FrameGraphLab-release.exe' --hardware --frames 240 --report artifacts/reports/hardware-interactive.json;if($LASTEXITCODE){throw 'interactive'}}
     Step hardware-stress {& './.mqb/bin/FrameGraphLab-release.exe' --hardware --headless --frames 1000 --report artifacts/reports/hardware-stress.json;if($LASTEXITCODE){throw 'hardware stress'}}
-    Step resize {& './.mqb/bin/FrameGraphLab-release.exe' --hardware --headless --frames 100 --resize-stress --report artifacts/reports/resize-stress.json;if($LASTEXITCODE){throw 'resize'}}
   }
   Step warp-stress {& './.mqb/bin/FrameGraphLab-release.exe' --warp --headless --frames 1000 --report artifacts/reports/warp-stress.json;if($LASTEXITCODE){throw 'warp stress'}}
   Step primary-artifacts {& './.mqb/bin/FrameGraphLab-release.exe' --warp --headless --frames 240 --scene-seed 24301 --capture artifacts/captures/neon-ruins.png --rgba artifacts/captures/neon-ruins.rgba --report artifacts/reports/frame-report.json --plan artifacts/reports/framegraph-plan.json;if($LASTEXITCODE){throw 'primary'};python tools/build_inspector.py --plan artifacts/reports/framegraph-plan.json --report artifacts/reports/frame-report.json --image artifacts/captures/neon-ruins.png --output artifacts/viewer/framegraph-inspector.html;if($LASTEXITCODE){throw 'inspector'};python tests/viewer/validate_inspector.py --plan artifacts/reports/framegraph-plan.json --report artifacts/reports/frame-report.json --image artifacts/captures/neon-ruins.png --html artifacts/viewer/framegraph-inspector.html;if($LASTEXITCODE){throw 'viewer'}}

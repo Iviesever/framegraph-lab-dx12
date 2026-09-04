@@ -79,10 +79,11 @@ RuntimeReport run_clear_demo(const Options& options) {
             if (input.alias_toggle) { context->wait_idle(); executor.reset(); aliasing = !aliasing; create_executor(); }
             if (options.frames && GetTickCount64() - start > options.watchdog_ms) throw GpuFailure("WatchdogTimeout", "automatic run exceeded watchdog");
             if (options.resize_stress) {
-                if (report.frames == 3) context->window().set_size(960, 540);
-                if (report.frames == 6) context->window().set_size(640, 360);
-                if (report.frames == 9) context->window().set_size(options.width, options.height);
-                if (report.frames == 12) context->window().minimize_restore();
+                const auto phase = report.frames % 20;
+                if (phase == 3) context->window().set_size(960, 540);
+                if (phase == 6) context->window().set_size(640, 360);
+                if (phase == 9) context->window().set_size(options.width, options.height);
+                if (phase == 12) context->window().minimize_restore();
             }
             if (!context->window().width() || !context->window().height()) { MsgWaitForMultipleObjects(0, nullptr, FALSE, 10, QS_ALLINPUT); continue; }
             if (context->window().resized() && (context->width() != context->window().width() || context->height() != context->window().height())) {

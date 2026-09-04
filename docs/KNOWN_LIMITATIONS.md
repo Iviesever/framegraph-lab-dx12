@@ -11,7 +11,7 @@
 - Debug view exposes Final/HDR/Bloom; no arbitrary texture inspector or depth visualization.
 - Pixel equality is only asserted between alias modes on the same adapter/settings/logical frame.
 - GPU timings are local observations. Capture copy is included and can dominate small workloads.
-- DRED is enabled and reported if device removal occurs; validation does not intentionally hang/remove a GPU.
+- DRED is enabled and reported if device removal occurs; PACT-40 captured a real invalid-command removal during development, while final validation does not intentionally hang/remove a healthy GPU.
 - LLVM-MinGW's driver does not support local coverage-guided libFuzzer mode; bounded fuzz and ASan+UBSan structured sweeps are used.
 - Static HTML uses modern browser APIs including Map.groupBy; browser QA targets current Edge/in-app Chromium.
 - GitHub CI builds/tests Core and Windows code but does not claim hosted GPU validation.

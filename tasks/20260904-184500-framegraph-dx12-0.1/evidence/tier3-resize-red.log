@@ -1,0 +1,5 @@
+Traceback (most recent call last):
+  File "D:\program\FrameGraphLab\tests\d3d12\validate_reliability.py", line 43, in <module>
+    assert report["resize_count"] >= 15, report["resize_count"]
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: 3

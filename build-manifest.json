@@ -73,8 +73,10 @@
       "src/d3d12/window.cpp",
       "src/d3d12/context.cpp",
       "src/d3d12/capture.cpp",
-      "src/d3d12/arena.cpp",
       "src/d3d12/executor.cpp"
+    ],
+    "arena": [
+      "src/d3d12/arena.cpp"
     ],
     "probe": [
       "src/app/probe_graph.cpp"
@@ -197,6 +199,7 @@
         "platform",
         "shader",
         "runtime",
+        "arena",
         "probe",
         "scene"
       ],
@@ -223,6 +226,21 @@
       ],
       "libraries": [
         "d3dcompiler",
+        "user32"
+      ]
+    },
+    "arena_tests": {
+      "type": "exe",
+      "groups": [
+        "platform",
+        "arena"
+      ],
+      "sources": [
+        "tests/d3d12/arena_tests.cpp"
+      ],
+      "libraries": [
+        "d3d12",
+        "dxgi",
         "user32"
       ]
     }

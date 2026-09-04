@@ -39,6 +39,9 @@ Native validators:
 - `executor_negative.py`: invalid graph, undeclared access, capture deadline.
 - `validate_culling.py`: CPU-direct/GPU-indirect count, plan, Debug, timestamp and exact same-adapter RGBA parity.
 - `validate_scene.py`: required passes/formats/pixels/timing and scene parity.
+- `validate_reliability.py`: five repeated resize/minimize/restore cycles, exact recompile count, culling/capture/Debug checks on WARP and hardware.
 - `validate_inspector.py`: embedded-byte/provenance/offline contract; browser QA is separately recorded.
+
+`arena_tests.cpp` creates a real WARP device and proves CPU/GPU descriptor handle bounds fail with `DescriptorExhausted`. Shader tests preserve missing file, missing entry and compiler diagnostics. Runtime/executor negatives cover impossible adapter, watchdog, invalid CLI, invalid graph, undeclared access and zero capture deadline.
 
 The final `scripts/verify.ps1` binds logs to a clean SHA, runs all local gates/stress, generates the primary artifacts and calls package/clean-extraction validation. `artifacts/checkpoints/` is the machine-readable source of exact post-commit results. Checked `tasks/.../evidence` contains RED/GREEN development logs; development reports explicitly say dirty/older SHA when appropriate.

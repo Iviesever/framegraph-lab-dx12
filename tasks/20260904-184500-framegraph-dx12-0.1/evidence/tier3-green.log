@@ -1,0 +1,39 @@
+COMMAND: MQB arena descriptor tests
+build contract passed: 14 targets; shared sources and MSVC policies
+[up-to-date] tests/d3d12/arena_tests.cpp
+[up-to-date] src/d3d12/diagnostics.cpp
+[compile] src/d3d12/arena.cpp [compiler options changed]
+arena.cpp
+cl: 命令行 warning D9025 :正在重写“/W3”(用“/W4”)
+cl: 命令行 warning D9025 :正在重写“/MDd”(用“/MTd”)
+[link] framegraph_arena_tests-debug.exe [explicit rebuild, link inputs changed]
+output: D:/program/FrameGraphLab/.mqb/bin/framegraph_arena_tests-debug.exe
+[run] framegraph_arena_tests-debug.exe
+PASS cpu_heap_bounds_are_typed
+PASS visible_heap_bounds_are_typed
+cases=2 passed=2 failed=0
+COMMAND: MQB shader diagnostics tests
+build contract passed: 14 targets; shared sources and MSVC policies
+[up-to-date] tests/d3d12/shader_tests.cpp
+[up-to-date] src/d3d12/diagnostics.cpp
+[up-to-date] src/d3d12/shader.cpp
+[up-to-date] framegraph_shader_tests-debug.exe
+output: D:/program/FrameGraphLab/.mqb/bin/framegraph_shader_tests-debug.exe
+[run] framegraph_shader_tests-debug.exe
+PASS valid_shader_compiles
+PASS shader_error_preserves_context
+PASS missing_shader_is_typed
+PASS missing_entry_is_typed
+cases=4 passed=4 failed=0
+COMMAND: runtime negatives
+PASS adapter: UnsupportedAdapter; HRESULT=-2005270524; frames=0
+PASS watchdog: WatchdogTimeout; HRESULT=-2147467259; frames=4
+PASS CLI invalid frame count: typed configuration failure
+COMMAND: executor negatives
+PASS invalid-graph: InvalidGraph
+PASS undeclared: UndeclaredAccess
+PASS capture-timeout: CaptureTimeout
+COMMAND: repeated resize WARP
+{"success": true, "backend": "warp", "directory": "artifacts\\reliability\\warp-ka8fi8zz", "resizes": 15, "minimizes": 5, "restores": 5, "plan_compiles": 16, "visible": 151, "pixel_hash": "95229e52f6ab2791"}
+COMMAND: repeated resize hardware
+{"success": true, "backend": "hardware", "directory": "artifacts\\reliability\\hardware-cuiy09fs", "resizes": 15, "minimizes": 5, "restores": 5, "plan_compiles": 16, "visible": 151, "pixel_hash": "71e3e4885125b2a0"}
