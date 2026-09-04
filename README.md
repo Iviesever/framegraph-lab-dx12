@@ -9,7 +9,7 @@ Declarative Passes → Dependency + Lifetime Compile → Transient Heap Aliasing
                   → GPU Timing + Inspector + Packaged Evidence
 ```
 
-Version 0.1 is a release candidate under final verification. The pure compiler/planner, native hardware/WARP executor, actual placed-resource aliasing and procedural HDR demo are implemented. See the [product contract](tasks/20260904-184500-framegraph-dx12-0.1/product_contract.md) and [progress](tasks/20260904-184500-framegraph-dx12-0.1/progress.md) for exact gate status.
+Version 0.1 is a verified release candidate. The pure compiler/planner, native hardware/WARP executor, actual placed-resource aliasing, GPU-driven culling and procedural HDR demo are implemented. See the [product contract](tasks/20260904-184500-framegraph-dx12-0.1/product_contract.md) and [progress](tasks/20260904-184500-framegraph-dx12-0.1/progress.md) for exact gate status.
 
 ![Neon Ruins: procedural pillars, HDR grid and bloom](docs/images/neon-ruins.png)
 
@@ -50,4 +50,4 @@ Current known boundaries are whole-resource state tracking, one direct queue, no
 
 This is AI-assisted engineering. The user defined the product, scope and acceptance requirements; Codex is implementing and verifying the delivery. See the task contract for authorship boundaries.
 
-See [build policy](docs/BUILDING.md) for shared MQB/CMake configuration and portable commands. Local binary packaging and clean-extraction validation remain required delivery gates. A future authorized GitHub release will be source-only; it will not attach a precompiled demo, avoiding large binary transfers. Current graphics/package status remains pending in the progress record.
+See [build policy](docs/BUILDING.md) for shared MQB/CMake configuration and portable commands. Local binary packaging and repeated clean-extraction validation are completed delivery gates. A future authorized GitHub release will be source-only; it will not attach a precompiled demo, avoiding large binary transfers. Exact local paths, sizes, SHA-256 and verification receipts are recorded in the progress/PR evidence.
