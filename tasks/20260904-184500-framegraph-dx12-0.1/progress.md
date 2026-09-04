@@ -91,8 +91,14 @@ PACT-50 pushed/checkpoint SHA: `007e8bf609b09e2f0e456a81e58bf1237e7f64b1`; clean
 
 ## PACT-60
 
-`tools/build_inspector.py` now generates a 715,480-byte self-contained HTML from the exact clean primary plan/report/PNG. Static validation decodes each base64 payload and compares semantic JSON/image bytes, checks provenance/identity, sections/interactions/responsive CSS and no external URLs. Embedded PNG SHA-256: `fd2c80f9ef13d5e7ec4be85d2f390ddfb80eca03ff8b7b728da725b67a2157d2`.
+`tools/build_inspector.py` now generates a 715,508-byte UTF-8 self-contained sample HTML from the exact clean primary plan/report/PNG. Static validation decodes each base64 payload and compares semantic JSON/image bytes, checks provenance/identity, sections/interactions/responsive CSS and no external URLs. Embedded PNG SHA-256: `fd2c80f9ef13d5e7ec4be85d2f390ddfb80eca03ff8b7b728da725b67a2157d2`.
 
 Actual browser desktop/narrow QA and interaction passed after one responsive RED/GREEN fix. Console Error/Warning 0. At 375px client/scroll width is 360/360 and horizontal scroll is 0; internal data tracks scroll independently. SceneHDR and BloomC selections updated pass/resource/barrier detail correctly. Browser viewport reset, tab closed and owned server stopped. A 1440x1100 actual browser screenshot was visually checked.
 
 Checked-in viewer sample data and two documentation PNGs are real PACT-50 outputs with explicit SHA/identity provenance. Large full artifacts remain ignored. Final artifacts must still be regenerated from final PACT-80 HEAD. Remaining: complete docs/CI, full clean rebuild, 1000-frame WARP/hardware stress, final negative/resize, packages/manifest/SHA, clean extraction smoke, independent audit and Draft PR. PACT-70 remains gated until every P0 and base PR/package gate is green.
+
+## PACT-80 preparation
+
+Added 6 focused boundary cases: invalid format/state, imported WAR and ReadWrite chains, overwrite retention, concrete cycle edge membership, exact 65,536 usage limit and exact 262,144 edge limit plus derived overflow. MQB passed all; total focused unit cases are now 94 (41 compiler + 29 planner + 14 options + 4 shader + 6 boundary).
+
+All required portfolio documents, source-only release policy, documentation/link checker and Windows/Ubuntu CI are present. Added fail-closed scripts for the clean full matrix, local package/manifest/SHA and fresh extraction. Build/document contracts pass and PowerShell scripts parse. These are preparation results; packages, 1000-frame stress, clean extraction, CI, independent audit and Draft PR remain pending until after the preparation commit and clean-head run.

@@ -160,6 +160,12 @@
       ],
       "libraries": []
     },
+    "boundary_tests": {
+      "type": "exe",
+      "groups": ["core"],
+      "sources": ["tests/unit/boundary_tests.cpp"],
+      "libraries": []
+    },
     "app": {
       "type": "exe",
       "groups": [
