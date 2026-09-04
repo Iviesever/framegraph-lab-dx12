@@ -63,6 +63,7 @@ LRESULT CALLBACK Win32Window::procedure(HWND hwnd, UINT message, WPARAM wparam, 
                 if (wparam == 'N') self->input_.step = true;
                 if (wparam == 'R') self->input_.reset = true;
                 if (wparam == 'A') self->input_.alias_toggle = true;
+                if (wparam == 'G') self->input_.gpu_toggle = true;
                 if (wparam == 'V') self->input_.debug_next = true;
             }
             return 0;

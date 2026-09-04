@@ -8,6 +8,6 @@ Native startup flows `main.cpp` → option/report → `runtime.cpp` → `Dx12Con
 
 `arena.cpp` maps descriptors/heap classes, asks allocation requirements, creates real heaps/placed resources and views. `executor.cpp` binds imports, maps Core barriers, initializes RT/DS, guards callbacks, records timestamp pairs and reads per-frame results. `capture.cpp` owns footprint/readback/WIC.
 
-`scene.cpp` builds immutable pipelines and the eight-pass graph. Procedural geometry is in `scene.hlsl`; post effects in `post.hlsl`. The executor probe remains a focused UAV/alias regression. `tools/build_inspector.py` converts final JSON/PNG into one offline HTML.
+`scene.cpp` builds immutable graphics/compute pipelines, the draw command signature and the eleven-pass graph. Frustum culling and indirect arguments are in `cull.hlsl`; procedural geometry is in `scene.hlsl`; post effects are in `post.hlsl`. The executor probe remains a focused UAV/alias regression. `tools/build_inspector.py` converts final JSON/PNG into one offline HTML.
 
-For a live demonstration: set a breakpoint in `GraphCompiler::compile`, inspect edges/order/lifetimes; continue to `TransientAllocator::plan` and compare Depth/Bloom offsets; inspect `Dx12GraphExecutor::emit`; then toggle A and show identity/memory changing while raw frame bytes remain equal.
+For a live demonstration: set a breakpoint in `GraphCompiler::compile`, inspect edges/order/lifetimes; continue to `TransientAllocator::plan` and compare Depth/Bloom offsets; inspect `Dx12GraphExecutor::emit`; then toggle G to compare GPU-indirect and CPU-direct rendering, and A to show identity/memory changing while raw frame bytes remain equal.

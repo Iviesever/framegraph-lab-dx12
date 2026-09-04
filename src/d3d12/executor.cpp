@@ -33,9 +33,25 @@ void Dx12PassContext::readback(ResourceId source, ResourceId destination) {
     require(source, Usage::CopySource); require(destination, Usage::CopyDest);
     copy_to_readback(list_, resource(source), resource(destination), layout_);
 }
+void Dx12PassContext::copy_buffer(ResourceId source, ResourceId destination, std::uint64_t bytes) {
+    require(source, Usage::CopySource);
+    require(destination, Usage::CopyDest);
+    const auto source_desc = resource(source)->GetDesc();
+    const auto destination_desc = resource(destination)->GetDesc();
+    if (!bytes || source_desc.Dimension != D3D12_RESOURCE_DIMENSION_BUFFER || destination_desc.Dimension != D3D12_RESOURCE_DIMENSION_BUFFER
+        || bytes > source_desc.Width || bytes > destination_desc.Width)
+        throw GpuFailure("InvalidBufferCopy", "buffer copy is empty, out of bounds, or targets a texture");
+    list_->CopyBufferRegion(resource(destination), 0, resource(source), 0, bytes);
+}
+D3D12_GPU_DESCRIPTOR_HANDLE Dx12PassContext::uav(ResourceId id) const { require(id, Usage::UnorderedAccess); return arena_.uav_gpu(id); }
+void Dx12PassContext::indirect(ID3D12CommandSignature* signature, ResourceId arguments) {
+    require(arguments, Usage::IndirectArgument);
+    if (!signature) throw GpuFailure("InvalidIndirect", "command signature is null");
+    list_->ExecuteIndirect(signature, 1, resource(arguments), 0, nullptr, 0);
+}
 struct Dx12GraphExecutor::FrameData {
     Dx12PlacedResourceArena arena;
-    ComPtr<ID3D12Resource> pixels, timestamps;
+    ComPtr<ID3D12Resource> pixels, timestamps, cull_readback;
     ComPtr<ID3D12QueryHeap> query_heap;
     bool pending{};
     FrameData(ID3D12Device* device, const CompiledPlan& plan, const ReadbackLayout& layout)
@@ -46,7 +62,10 @@ struct Dx12GraphExecutor::FrameData {
 };
 Dx12GraphExecutor::Dx12GraphExecutor(Dx12Context& context, GraphDescription graph, std::vector<PassCallback> callbacks,
     ResourceId backbuffer, ResourceId readback, RuntimeReport& report, bool aliasing)
-    : context_(context), report_(report), callbacks_(std::move(callbacks)), backbuffer_(backbuffer), readback_(readback), layout_(readback_layout(context.device(), context.width(), context.height())) {
+    : Dx12GraphExecutor(context, std::move(graph), std::move(callbacks), backbuffer, readback, ResourceId{}, report, aliasing) {}
+Dx12GraphExecutor::Dx12GraphExecutor(Dx12Context& context, GraphDescription graph, std::vector<PassCallback> callbacks,
+    ResourceId backbuffer, ResourceId readback, ResourceId cull_readback, RuntimeReport& report, bool aliasing)
+    : context_(context), report_(report), callbacks_(std::move(callbacks)), backbuffer_(backbuffer), readback_(readback), cull_readback_(cull_readback), layout_(readback_layout(context.device(), context.width(), context.height())) {
     const auto start = std::chrono::steady_clock::now();
     // Validate before any native descriptor query. All decisions below come from
     // the exact same Core compiler/planners used by PlanCompiler and its tests.
@@ -68,6 +87,8 @@ Dx12GraphExecutor::Dx12GraphExecutor(Dx12Context& context, GraphDescription grap
     report_.placed_resource_count = 0;
     for (auto& frame : frames_) {
         frame = std::make_unique<FrameData>(context.device(), plan_, layout_);
+        if (cull_readback_.value != invalid_index)
+            frame->cull_readback = readback_buffer(context.device(), sizeof(D3D12_DRAW_ARGUMENTS));
         report_.placed_resource_count += frame->arena.placed_count();
     }
     report_.planned_heap_bytes = plan_.allocation.physical_bytes;
@@ -114,6 +135,7 @@ void Dx12GraphExecutor::record(std::uint32_t logical_frame) {
     collect(index); // begin_frame already waited the owning frame fence.
     auto& frame = *frames_[index];
     frame.arena.bind_import(backbuffer_, context_.backbuffer()); frame.arena.bind_import(readback_, frame.pixels.Get());
+    if (cull_readback_.value != invalid_index) frame.arena.bind_import(cull_readback_, frame.cull_readback.Get());
     auto* list = context_.current_list();
     ID3D12DescriptorHeap* heaps[]{frame.arena.shader_heap()}; list->SetDescriptorHeaps(1, heaps);
     for (std::uint32_t i = 0; i < plan_.graph.passes.size(); ++i) {
@@ -163,6 +185,18 @@ std::vector<std::uint8_t> Dx12GraphExecutor::finish(std::uint32_t timeout_ms) {
     context_.wait(context_.frame_fence(last_frame_), timeout_ms);
     context_.wait_idle();
     for (std::uint32_t i = 0; i < frame_count; ++i) collect(i);
+    if (cull_readback_.value != invalid_index) {
+        const D3D12_RANGE range{0, sizeof(D3D12_DRAW_ARGUMENTS)};
+        void* mapped{};
+        check_hr(frames_[last_frame_]->cull_readback->Map(0, &range, &mapped), "Map culling readback", context_.device());
+        D3D12_DRAW_ARGUMENTS args{};
+        std::memcpy(&args, mapped, sizeof(args));
+        const D3D12_RANGE written{0, 0};
+        frames_[last_frame_]->cull_readback->Unmap(0, &written);
+        report_.gpu_visible_count = args.InstanceCount;
+        if (report_.gpu_visible_count != report_.cpu_visible_count)
+            throw GpuFailure("CullingParity", "GPU/CPU visible instance counts differ");
+    }
     return read_rgba(frames_[last_frame_]->pixels.Get(), layout_);
 }
 }

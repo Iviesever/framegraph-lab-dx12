@@ -32,9 +32,11 @@ try{
   $env:ASAN_OPTIONS='halt_on_error=1';$env:UBSAN_OPTIONS='halt_on_error=1:print_stacktrace=1'
   Step sanitizers {cmake --preset core-sanitized --fresh;if($LASTEXITCODE){throw 'configure'};cmake --build --preset core-sanitized;if($LASTEXITCODE){throw 'build'};ctest --preset core-sanitized;if($LASTEXITCODE){throw 'ctest'};& './build/core-sanitized/framegraph_property.exe' --cases 10000;if($LASTEXITCODE){throw 'sanitized property'}}
   Step executor-probe {python tests/d3d12/validate_executor.py .mqb/bin/FrameGraphLab-release.exe warp;if($LASTEXITCODE){throw 'probe'}}
+  Step culling-warp {python tests/d3d12/validate_culling.py .mqb/bin/FrameGraphLab-release.exe warp;if($LASTEXITCODE){throw 'culling warp'}}
   Step scene-warp {python tests/d3d12/validate_scene.py .mqb/bin/FrameGraphLab-release.exe warp;if($LASTEXITCODE){throw 'scene warp'}}
   Step negatives {python tests/d3d12/runtime_negative.py .mqb/bin/FrameGraphLab-release.exe;if($LASTEXITCODE){throw 'runtime negative'};python tests/d3d12/executor_negative.py .mqb/bin/FrameGraphLab-release.exe;if($LASTEXITCODE){throw 'executor negative'}}
   if(-not $SkipHardware){
+    Step culling-hardware {python tests/d3d12/validate_culling.py .mqb/bin/FrameGraphLab-release.exe hardware;if($LASTEXITCODE){throw 'culling hardware'}}
     Step scene-hardware {python tests/d3d12/validate_scene.py .mqb/bin/FrameGraphLab-release.exe hardware;if($LASTEXITCODE){throw 'scene hardware'}}
     Step hardware-interactive {& './.mqb/bin/FrameGraphLab-release.exe' --hardware --frames 240 --report artifacts/reports/hardware-interactive.json;if($LASTEXITCODE){throw 'interactive'}}
     Step hardware-stress {& './.mqb/bin/FrameGraphLab-release.exe' --hardware --headless --frames 1000 --report artifacts/reports/hardware-stress.json;if($LASTEXITCODE){throw 'hardware stress'}}

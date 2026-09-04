@@ -12,6 +12,7 @@ Result<ResourceState> state_for(Usage usage) {
     case Usage::CopySource: return ResourceState::CopySource;
     case Usage::CopyDest: return ResourceState::CopyDest;
     case Usage::Present: return ResourceState::Present;
+    case Usage::IndirectArgument: return ResourceState::IndirectArgument;
     }
     return unexpected(GraphError{ErrorCode::InvalidUsage, "unknown state usage", {}, {}, {}});
 }

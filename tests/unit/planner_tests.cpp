@@ -131,6 +131,16 @@ CASE(execution_identity_covers_policy_and_barriers) {
     auto changed = a; changed.barriers.passes[0].before.clear(); CHECK(plan_identity(a) != plan_identity(changed));
     CHECK(canonical_json(a).find("\"allocation\"") != std::string::npos);
 }
+CASE(uav_to_indirect_argument_is_planned) {
+    GraphDescription g; g.resources = {{"args", BufferDesc{16, true}}};
+    g.passes = {{"write", {{ResourceId{0}, ResourceAccess::Write, Usage::UnorderedAccess}}},
+        {"draw", {{ResourceId{0}, ResourceAccess::Read, Usage::IndirectArgument}}, true}};
+    const auto p = compile(g, {{65536, 65536, HeapClass::Buffer}});
+    bool found = false;
+    for (const auto& b : p.barriers.passes[1].before)
+        if (b.kind == BarrierKind::Transition && b.after == ResourceState::IndirectArgument) found = true;
+    CHECK(found);
+}
 CASE(oracle_rejects_activation_after_transition) {
     auto p = compile(disjoint(), memory());
     std::swap(p.barriers.passes[1].before[0], p.barriers.passes[1].before[1]);

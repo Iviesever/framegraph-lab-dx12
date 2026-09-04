@@ -40,4 +40,9 @@ CASE(scene_mode_is_strict) {
     const auto neon = parse({"--scene", "neon"}); CHECK(neon && neon->scene == fgl::SceneMode::NeonRuins);
     error({"--scene", "city"}, fgl::OptionCode::InvalidValue);
 }
+CASE(draw_mode_is_strict) {
+    const auto cpu = parse({"--draw-mode", "cpu"}); CHECK(cpu && cpu->draw_mode == fgl::DrawMode::CpuDirect);
+    const auto gpu = parse({"--draw-mode", "gpu"}); CHECK(gpu && gpu->draw_mode == fgl::DrawMode::GpuIndirect);
+    error({"--draw-mode", "auto"}, fgl::OptionCode::InvalidValue);
+}
 int main() { return test::run(); }

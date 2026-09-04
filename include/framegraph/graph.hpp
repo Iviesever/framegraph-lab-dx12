@@ -27,10 +27,10 @@ struct PassId {
 enum class Format : std::uint8_t { Rgba8, Rgba16Float, D32Float };
 enum class ResourceAccess : std::uint8_t { Read, Write, ReadWrite };
 enum class Usage : std::uint8_t {
-    ShaderRead, RenderTarget, DepthWrite, DepthRead, UnorderedAccess, CopySource, CopyDest, Present
+    ShaderRead, RenderTarget, DepthWrite, DepthRead, UnorderedAccess, CopySource, CopyDest, Present, IndirectArgument
 };
 enum class ResourceState : std::uint8_t {
-    Common, ShaderRead, RenderTarget, DepthWrite, DepthRead, UnorderedAccess, CopySource, CopyDest, Present
+    Common, ShaderRead, RenderTarget, DepthWrite, DepthRead, UnorderedAccess, CopySource, CopyDest, Present, IndirectArgument
 };
 struct TextureDesc {
     std::uint32_t width{1}, height{1};

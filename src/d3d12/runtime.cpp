@@ -20,7 +20,9 @@ RuntimeReport run_clear_demo(const Options& options) {
     std::unique_ptr<Dx12Context> context;
     std::unique_ptr<Dx12GraphExecutor> executor;
     std::unique_ptr<SceneRenderer> renderer;
-    SceneState scene_state; scene_state.seed = options.scene_seed;
+    SceneState scene_state;
+    scene_state.seed = options.scene_seed;
+    scene_state.gpu_driven = options.draw_mode == DrawMode::GpuIndirect;
     bool aliasing = options.aliasing;
     try {
         context = std::make_unique<Dx12Context>(options, report);
@@ -36,7 +38,7 @@ RuntimeReport run_clear_demo(const Options& options) {
                     const auto forbidden = program.readback;
                     program.callbacks[0] = [forbidden](Dx12PassContext& pass) { (void)pass.resource(forbidden); };
                 }
-                executor = std::make_unique<Dx12GraphExecutor>(*context, std::move(program.graph), std::move(program.callbacks), program.backbuffer, program.readback, report, aliasing);
+                executor = std::make_unique<Dx12GraphExecutor>(*context, std::move(program.graph), std::move(program.callbacks), program.backbuffer, program.readback, program.cull_readback, report, aliasing);
             };
             if (options.scene == SceneMode::ExecutorProbe) install(make_probe_program(context->width(), context->height(), layout.bytes, options.scene_seed));
             else install(make_scene_program(*renderer, scene_state, context->width(), context->height(), layout.bytes, options.scene_seed));
@@ -73,6 +75,7 @@ RuntimeReport run_clear_demo(const Options& options) {
             if (input.step) scene_state.single_step = true;
             if (input.reset) { scene_state.logical_frame = 0; scene_state.yaw = .7f; }
             if (input.debug_next) scene_state.debug_view = (scene_state.debug_view + 1) % 3;
+            if (input.gpu_toggle) scene_state.gpu_driven = !scene_state.gpu_driven;
             if (input.alias_toggle) { context->wait_idle(); executor.reset(); aliasing = !aliasing; create_executor(); }
             if (options.frames && GetTickCount64() - start > options.watchdog_ms) throw GpuFailure("WatchdogTimeout", "automatic run exceeded watchdog");
             if (options.resize_stress) {
@@ -85,6 +88,11 @@ RuntimeReport run_clear_demo(const Options& options) {
             if (context->window().resized() && (context->width() != context->window().width() || context->height() != context->window().height())) {
                 context->wait_idle(); executor.reset(); context->sync_size(); create_executor();
             } else context->sync_size();
+            if (renderer) {
+                report.input_instance_count = SceneRenderer::pillar_count;
+                report.cpu_visible_count = static_cast<std::uint32_t>(renderer->visible_instances(scene_state, context->width(), context->height()).size());
+                report.draw_mode = scene_state.gpu_driven ? "gpu" : "cpu";
+            }
             context->begin_frame(); executor->record(scene_state.logical_frame);
             context->collect_debug();
             if (report.debug_errors || report.debug_warnings || report.debug_corruptions)
@@ -92,7 +100,9 @@ RuntimeReport run_clear_demo(const Options& options) {
             context->submit_frame(); executor->submitted();
             if (!scene_state.paused || scene_state.single_step) { ++scene_state.logical_frame; scene_state.single_step = false; }
             const wchar_t* debug_names[]{L"Final", L"HDR", L"Bloom"};
-            context->window().title(L"FrameGraphLab | Frame " + std::to_wstring(scene_state.logical_frame) + L" | Alias " + (aliasing ? L"ON" : L"OFF") + L" | View " + debug_names[scene_state.debug_view] + L" | Space Pause · N Step · R Reset · A Alias · V View");
+            context->window().title(L"FrameGraphLab | Frame " + std::to_wstring(scene_state.logical_frame) + L" | Alias " + (aliasing ? L"ON" : L"OFF")
+                + L" | Draw " + (scene_state.gpu_driven ? L"GPU" : L"CPU") + L" | View " + debug_names[scene_state.debug_view]
+                + L" | Space Pause · N Step · R Reset · A Alias · G Draw · V View");
         }
         if (options.frames && report.frames != options.frames) throw GpuFailure("Interrupted", "automatic run closed before requested frame count");
         auto rgba = executor->finish(options.capture_timeout_ms);

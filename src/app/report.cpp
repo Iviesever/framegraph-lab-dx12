@@ -18,7 +18,8 @@ std::string RuntimeReport::json() const {
         << ",\"error\":" << json_quote(error) << ",\"current_graph\":" << json_quote(current_graph)
         << ",\"current_pass\":" << json_quote(current_pass) << ",\"device_diagnostics\":" << json_quote(device_diagnostics) << ",\"debug_messages\":[";
     for (std::size_t i = 0; i < debug_messages.size(); ++i) { if (i) out << ','; out << json_quote(debug_messages[i]); }
-    out << "],\"plan_identity\":" << json_quote(plan_identity) << ",\"pixel_hash\":" << json_quote(pixel_hash)
+    out << "],\"plan_identity\":" << json_quote(plan_identity) << ",\"pixel_hash\":" << json_quote(pixel_hash) << ",\"draw_mode\":" << json_quote(draw_mode)
+        << ",\"input_instance_count\":" << input_instance_count << ",\"cpu_visible_count\":" << cpu_visible_count << ",\"gpu_visible_count\":" << gpu_visible_count
         << ",\"logical_bytes\":" << logical_bytes << ",\"committed_bytes\":" << committed_bytes
         << ",\"planned_heap_bytes\":" << planned_heap_bytes << ",\"actual_heap_bytes\":" << actual_heap_bytes
         << ",\"all_frame_heap_bytes\":" << all_frame_heap_bytes << ",\"saved_bytes\":" << saved_bytes

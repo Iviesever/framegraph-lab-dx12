@@ -24,7 +24,7 @@ OptionResult parse_options(std::span<const std::string_view> arguments) {
         const bool numeric = key == "--frames" || key == "--scene-seed" || key == "--width" || key == "--height"
             || key == "--timeout-ms" || key == "--watchdog-ms" || key == "--capture-timeout-ms" || key == "--adapter-index";
         const bool path = key == "--capture" || key == "--report" || key == "--plan" || key == "--rgba" || key == "--shader-dir";
-        if (!numeric && !path && key != "--aliasing" && key != "--scene") return fail(OptionCode::Unknown, "unknown option: " + std::string(key));
+        if (!numeric && !path && key != "--aliasing" && key != "--scene" && key != "--draw-mode") return fail(OptionCode::Unknown, "unknown option: " + std::string(key));
         if (++i == arguments.size()) return fail(OptionCode::Missing, "missing value for " + std::string(key));
         const auto value = arguments[i];
         if (path) {
@@ -44,6 +44,10 @@ OptionResult parse_options(std::span<const std::string_view> arguments) {
             if (value == "neon") options.scene = SceneMode::NeonRuins;
             else if (value == "probe") options.scene = SceneMode::ExecutorProbe;
             else return fail(OptionCode::InvalidValue, "scene must be neon or probe");
+        } else if (key == "--draw-mode") {
+            if (value == "gpu") options.draw_mode = DrawMode::GpuIndirect;
+            else if (value == "cpu") options.draw_mode = DrawMode::CpuDirect;
+            else return fail(OptionCode::InvalidValue, "draw mode must be gpu or cpu");
         } else {
             std::uint32_t n{};
             const auto [end, code] = std::from_chars(value.data(), value.data() + value.size(), n);
@@ -74,6 +78,6 @@ std::string usage_text() {
         "  --aliasing on|off   --rgba pixels.rgba   --width N --height N\n"
         "  --timeout-ms N   --watchdog-ms N   --capture-timeout-ms N\n"
         "  --resize-stress   --adapter-index N   --shader-dir path\n"
-        "  --scene neon|probe   --barrier-trace   --lifetime-trace\n";
+        "  --scene neon|probe   --draw-mode gpu|cpu   --barrier-trace   --lifetime-trace\n";
 }
 }

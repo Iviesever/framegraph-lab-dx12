@@ -13,6 +13,7 @@ bool state_supported(const ResourceDescription& r, ResourceState state) {
     case ResourceState::DepthWrite: case ResourceState::DepthRead: return t && t->depth_stencil;
     case ResourceState::UnorderedAccess: return uav;
     case ResourceState::Present: return r.imported && t && t->format == Format::Rgba8;
+    case ResourceState::IndirectArgument: return !t;
     }
     return false;
 }
@@ -27,6 +28,7 @@ bool usage_supported(const ResourceDescription& r, const ResourceUsage& u) {
     case Usage::CopySource: return u.access == ResourceAccess::Read;
     case Usage::CopyDest: return u.access == ResourceAccess::Write;
     case Usage::Present: return u.access == ResourceAccess::Read && state_supported(r, ResourceState::Present);
+    case Usage::IndirectArgument: return u.access == ResourceAccess::Read && state_supported(r, ResourceState::IndirectArgument);
     }
     return false;
 }

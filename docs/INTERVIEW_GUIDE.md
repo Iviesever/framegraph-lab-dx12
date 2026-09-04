@@ -28,6 +28,10 @@
 
 **What does Debug Layer prove?** It detects many invalid descriptors/states/lifetimes and reports warnings. Zero messages does not mathematically prove rendering, data initialization, visual quality or cross-vendor correctness.
 
+**How is culling GPU-driven?** A compute pass writes stable visible-instance IDs and the `InstanceCount` field of a draw-argument buffer. The same graph transitions those buffers to shader-read/indirect states, and depth/HDR issue `ExecuteIndirect`. A later graph pass copies the arguments to readback for a CPU/GPU count assertion.
+
+**Why keep a CPU draw path?** It is an independent reference for frustum membership and original instance identity. Fixed-camera tests compare counts and final RGBA bytes between CPU direct draws and GPU indirect draws on each adapter, catching errors that a nonzero image or Debug Layer alone would miss.
+
 **Why aren't timestamps in identity?** They are runtime observations affected by load/adapter/power. Identity represents semantic compiler output only.
 
 **Why no cross-GPU Pixel Hash promise?** Floating-point raster/filter/shader behavior can differ within valid tolerances. On/off parity is byte-exact only on the same adapter/settings/frame.

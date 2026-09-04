@@ -13,10 +13,12 @@ struct RuntimeReport {
     std::string backend, adapter, driver, feature_level, git_sha, failure_code, error;
     std::string current_graph{"clear-smoke"}, current_pass{"Clear"}, device_diagnostics;
     std::string plan_identity, pixel_hash;
+    std::string draw_mode{"n/a"};
     std::uint64_t logical_bytes{}, committed_bytes{}, planned_heap_bytes{}, actual_heap_bytes{}, all_frame_heap_bytes{}, saved_bytes{};
     std::uint64_t executed_transitions{}, executed_uav_barriers{}, executed_alias_barriers{}, gpu_timestamp_frequency{};
     std::uint32_t placed_resource_count{}, heap_count{}, alias_reuse_events{}, plan_compile_count{};
     std::uint32_t transition_count{}, uav_count{}, aliasing_count{}, color_buckets{};
+    std::uint32_t input_instance_count{}, cpu_visible_count{}, gpu_visible_count{};
     double compile_ms{}, non_black_fraction{}, luminance_min{}, luminance_max{};
     std::vector<PassTiming> pass_timings;
     std::uint32_t vendor_id{}, device_id{}, width{}, height{}, frames{}, frames_in_flight{3};

@@ -4,7 +4,8 @@ C++23 render graph compiler and native Direct3D 12 transient-memory laboratory.
 
 ```text
 Declarative Passes → Dependency + Lifetime Compile → Transient Heap Aliasing
-                  → Automatic D3D12 Barriers → HDR / Bloom / Tone Map
+                  → Automatic D3D12 Barriers → Compute Culling / ExecuteIndirect
+                  → HDR / Bloom / Tone Map
                   → GPU Timing + Inspector + Packaged Evidence
 ```
 
@@ -12,7 +13,7 @@ Version 0.1 is a release candidate under final verification. The pure compiler/p
 
 ![Neon Ruins: procedural pillars, HDR grid and bloom](docs/images/neon-ruins.png)
 
-The scene uses D32 depth, RGBA16F HDR, threshold extraction, separable bloom and fullscreen tone mapping. It is generated from SV_VertexID/SV_InstanceID and seed 24301; no art assets are required.
+The scene uses D32 depth, RGBA16F HDR, threshold extraction, separable bloom and fullscreen tone mapping. A graph-declared compute pass frustum-culls 160 procedural pillars into a visible-instance buffer and draw arguments consumed by `ExecuteIndirect`. A CPU reference path is available for count and same-adapter pixel parity. No art assets are required.
 
 ![Offline FrameGraph Inspector](docs/images/framegraph-inspector.png)
 
@@ -37,9 +38,12 @@ Requires Python 3 for build-contract checks, C++23, and MSVC x64. MQB is the pri
 
 # WARP, hidden window, bounded capture/report/plan
 ./scripts/build.ps1 app -Configuration release -Run --warp --headless --frames 240 --scene-seed 24301 --capture smoke.png --report smoke.json --plan plan.json
+
+# CPU reference draw path for culling comparison
+./scripts/build.ps1 app -Configuration release -Run --warp --headless --frames 1 --draw-mode cpu --report cpu-reference.json
 ```
 
-Verified 1280x720 hardware observation: 16,588,800 logical bytes, 17,694,720 reference requirements and 13,762,560 actual resource-heap bytes with aliasing, saving 3,932,160 bytes (22.22%). The WARP primary sample saved 3,801,088 bytes. Hardware and WARP each passed byte-exact alias-on/off comparisons; hashes are deliberately not promised across adapters. Core evidence includes 95 focused unit cases, 10,000 valid + 10,000 invalid graph sweeps, bounded mutation fuzz, MSVC Debug/Release, Clang, ASan+UBSan and canonical cross-compiler equality. Native Debug Layer results are 0 error / 0 unclassified warning / 0 corruption.
+Verified 1280x720 PACT-70 hardware observation: 16,589,456 logical bytes, 17,825,792 reference requirements and 13,893,632 actual resource-heap bytes with aliasing, saving 3,932,160 bytes (22.06%). A 120-frame fixed-seed run kept CPU/GPU visible counts equal and reported a 0.0221 ms local mean for the culling pass. Hardware and WARP each passed byte-exact CPU-direct/GPU-indirect and alias-on/off comparisons; hashes are deliberately not promised across adapters. Core evidence includes 97 focused unit cases, 10,000 valid + 10,000 invalid graph sweeps, bounded mutation fuzz, MSVC Debug/Release, Clang, ASan+UBSan and canonical cross-compiler equality. Native Debug Layer results are 0 error / 0 unclassified warning / 0 corruption.
 
 Current known boundaries are whole-resource state tracking, one direct queue, no async compute, no subresource tracking, no MSAA/small-placement alignment, and source-only GitHub distribution. Local Win64 packaging and clean extraction remain mandatory even though large binaries will not be attached to a future release. See [known limitations](docs/KNOWN_LIMITATIONS.md), [testing](docs/TESTING.md) and [AI assistance](docs/AI_ASSISTANCE.md) as they land in final verification.
 

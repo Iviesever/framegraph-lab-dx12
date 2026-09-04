@@ -34,6 +34,7 @@ Native validators:
 - `runtime_negative.py`: adapter, watchdog and CLI failures.
 - `validate_executor.py`: probe UAV/alias/placed heaps/PNG/plan/timing/parity.
 - `executor_negative.py`: invalid graph, undeclared access, capture deadline.
+- `validate_culling.py`: CPU-direct/GPU-indirect count, plan, Debug, timestamp and exact same-adapter RGBA parity.
 - `validate_scene.py`: required passes/formats/pixels/timing and scene parity.
 - `validate_inspector.py`: embedded-byte/provenance/offline contract; browser QA is separately recorded.
 

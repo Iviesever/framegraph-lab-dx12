@@ -46,6 +46,7 @@ D3D12_RESOURCE_STATES native_state(ResourceState state) {
     case ResourceState::UnorderedAccess: return D3D12_RESOURCE_STATE_UNORDERED_ACCESS;
     case ResourceState::CopySource: return D3D12_RESOURCE_STATE_COPY_SOURCE;
     case ResourceState::CopyDest: return D3D12_RESOURCE_STATE_COPY_DEST;
+    case ResourceState::IndirectArgument: return D3D12_RESOURCE_STATE_INDIRECT_ARGUMENT;
     }
     throw GpuFailure("InvalidPlanState", "unmapped Core state");
 }

@@ -16,5 +16,5 @@
 - Static HTML uses modern browser APIs including Map.groupBy; browser QA targets current Edge/in-app Chromium.
 - GitHub CI builds/tests Core and Windows code but does not claim hosted GPU validation.
 - Local binary/source packages are required and validated, but binaries are never attached to the source-only release policy.
-- PACT-70 GPU-driven culling is conditional post-P0 work and is not part of this baseline until its separate gates pass.
+- Culling handles the fixed 160-pillar demo with one direct-queue compute group and stable prefix compaction. There is no occlusion hierarchy, async compute, GPU scene system or variable-size indirect command stream.
 - `Expected<T,E>` implements only the value/error/void operations used by this project; it is not a drop-in implementation of every `std::expected` convenience API.

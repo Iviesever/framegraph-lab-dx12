@@ -5,6 +5,7 @@ cbuffer Root : register(b0) {
     float4 pass_data;
     float4 extra;
 };
+ByteAddressBuffer visible_instances : register(t2);
 
 static const float3 floor_vertices[6] = {
     float3(-24,0,-24), float3(-24,0,24), float3(24,0,24),
@@ -23,8 +24,14 @@ static const float3 cube_normals[6] = { float3(0,0,-1),float3(0,0,1),float3(-1,0
 uint hash_u32(uint x) {
     x ^= x >> 16; x *= 0x7feb352d; x ^= x >> 15; x *= 0x846ca68b; x ^= x >> 16; return x;
 }
+uint resolved_instance_id(uint instance_id) {
+    if (pass_data.z < .5) return 0;
+    if (pass_data.w > .5) return visible_instances.Load(instance_id * 4);
+    return asuint(extra.x);
+}
 void world_vertex(uint vertex_id, uint instance_id, out float3 world, out float3 normal, out float height_fraction) {
-    if (instance_id == 0) { world = floor_vertices[vertex_id]; normal = float3(0,1,0); height_fraction = 0; return; }
+    if (pass_data.z < .5) { world = floor_vertices[vertex_id]; normal = float3(0,1,0); height_fraction = 0; return; }
+    instance_id = resolved_instance_id(instance_id);
     uint seed = asuint(camera.y);
     uint a = hash_u32(instance_id * 17 + seed);
     uint b = hash_u32(instance_id * 43 + seed * 3);
@@ -49,7 +56,8 @@ struct SceneOutput {
 };
 SceneOutput SceneVS(uint vertex_id : SV_VertexID, uint instance_id : SV_InstanceID) {
     SceneOutput output; world_vertex(vertex_id, instance_id, output.world, output.normal, output.height_fraction);
-    output.position = mul(float4(output.world, 1), view_projection); output.instance_id = instance_id; return output;
+    output.position = mul(float4(output.world, 1), view_projection);
+    output.instance_id = resolved_instance_id(instance_id); return output;
 }
 float4 ScenePS(SceneOutput input) : SV_Target {
     float time = camera.x;

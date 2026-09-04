@@ -13,7 +13,9 @@ Incremental constraint accepted after PACT-20: before the next graphics step, ad
 | 40 | src/d3d12/executor.*, arena.*; tests/d3d12/validate.ps1 | actual placed heaps, plan barriers, access guard, real alias on/off RGBA parity |
 | 50 | src/app/scene.*, shaders/scene.hlsl, post.hlsl | seven real major passes; timestamp, deterministic neon scene, controls and capture metrics |
 | 60 | tools/build_inspector.py; viewer/; report output | real data, offline interactive HTML, desktop/narrow and browser console checks |
-| 70 | conditional GPU culling | gated by all P0/time/budget; otherwise explicitly skipped |
+| 70 | `cull.hlsl`; scene compute PSOs/command signature; Core IndirectArgument state; CPU reference and D3D validators | GPU frustum culling, stable visible IDs, ExecuteIndirect, graph-managed UAV/SRV/Indirect transitions, CPU/GPU count and same-adapter pixel parity |
 | 80 | scripts/verify.ps1, package.ps1; .github/workflows; docs/* | full matrix, clean rebuild/HEAD packages, fresh unzip run, independent audit, Draft PR |
+
+PACT-70 entered only after the certified P0/Draft-PR baseline at `7f90d9f8815d5c27390fad3f7d62f05b2d273dae`. After its checkpoint, Tier 2 measures compile/allocation/barrier/memory behavior and runs 100,000 bounded graphs before selecting any optimization. Tier 3 then adds only reliability and independent audit evidence. Feature freeze forbids new algorithms after the stated cutoff.
 
 Every behavior begins with a named failing acceptance check, then a minimal implementation and focused regression. A PACT is not complete until its stated gate passes and is committed/pushed. See task.md for immediate executable steps; expand each subsequent contract before touching its production files. No GPU result exists at baseline.

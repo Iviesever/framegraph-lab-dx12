@@ -12,11 +12,11 @@ backend = sys.argv[2] if len(sys.argv) > 2 else "warp"
 base = root / "artifacts/scene-validation"
 base.mkdir(parents=True, exist_ok=True)
 directory = Path(tempfile.mkdtemp(prefix=f"{backend}-", dir=base))
-required = ["DepthPrepass", "SceneHDR", "BloomExtract", "BloomBlurHorizontal", "BloomBlurVertical", "ToneMap", "Capture", "Present"]
+required = ["InitCulling","GPUFrustumCulling","DepthPrepass", "SceneHDR", "BloomExtract", "BloomBlurHorizontal", "BloomBlurVertical", "ToneMap","ReadbackCulling", "Capture", "Present"]
 pixels, reports = [], []
 for policy in ("on", "off"):
     command = [str(exe), f"--{backend}", "--headless", "--frames", "12", "--width", "640", "--height", "360", "--scene-seed", "24301",
-        "--aliasing", policy, "--capture", str(directory / f"{policy}.png"), "--rgba", str(directory / f"{policy}.rgba"),
+        "--draw-mode","cpu","--aliasing", policy, "--capture", str(directory / f"{policy}.png"), "--rgba", str(directory / f"{policy}.rgba"),
         "--plan", str(directory / f"{policy}-plan.json"), "--report", str(directory / f"{policy}.json")]
     result = subprocess.run(command, capture_output=True, encoding="utf-8", timeout=180)
     assert result.returncode == 0, (result.returncode, result.stdout, result.stderr)

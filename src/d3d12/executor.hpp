@@ -19,6 +19,9 @@ public:
     void clear_uav_float(framegraph::ResourceId id, const std::array<float, 4>& values);
     void copy(framegraph::ResourceId source, framegraph::ResourceId destination);
     void readback(framegraph::ResourceId source, framegraph::ResourceId destination);
+    void copy_buffer(framegraph::ResourceId source, framegraph::ResourceId destination, std::uint64_t bytes);
+    D3D12_GPU_DESCRIPTOR_HANDLE uav(framegraph::ResourceId id) const;
+    void indirect(ID3D12CommandSignature* signature, framegraph::ResourceId arguments);
     ID3D12GraphicsCommandList* list() const { return list_; }
     std::uint32_t width() const { return layout_.width; }
     std::uint32_t height() const { return layout_.height; }
@@ -37,6 +40,8 @@ class Dx12GraphExecutor {
 public:
     Dx12GraphExecutor(Dx12Context& context, framegraph::GraphDescription graph, std::vector<PassCallback> callbacks,
         framegraph::ResourceId backbuffer, framegraph::ResourceId readback, RuntimeReport& report, bool aliasing);
+    Dx12GraphExecutor(Dx12Context& context, framegraph::GraphDescription graph, std::vector<PassCallback> callbacks,
+        framegraph::ResourceId backbuffer, framegraph::ResourceId readback, framegraph::ResourceId cull_readback, RuntimeReport& report, bool aliasing);
     ~Dx12GraphExecutor();
     Dx12GraphExecutor(const Dx12GraphExecutor&) = delete;
     Dx12GraphExecutor& operator=(const Dx12GraphExecutor&) = delete;
@@ -52,7 +57,7 @@ private:
     RuntimeReport& report_;
     framegraph::CompiledPlan plan_;
     std::vector<PassCallback> callbacks_;
-    framegraph::ResourceId backbuffer_, readback_;
+    framegraph::ResourceId backbuffer_, readback_, cull_readback_;
     ReadbackLayout layout_;
     std::array<std::unique_ptr<FrameData>, frame_count> frames_;
     std::uint64_t frequency_{};

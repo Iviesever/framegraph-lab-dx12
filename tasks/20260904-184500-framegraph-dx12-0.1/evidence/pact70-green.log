@@ -1,0 +1,159 @@
+PACT-70 GREEN gate
+COMMAND: scripts/build.ps1 app -Configuration release
+build contract passed: 12 targets; shared sources and MSVC policies
+[up-to-date] src/app/main.cpp
+[up-to-date] src/core/compiler.cpp
+[up-to-date] src/core/validation.cpp
+[up-to-date] src/core/serialization.cpp
+[up-to-date] src/core/allocation.cpp
+[up-to-date] src/core/barriers.cpp
+[up-to-date] src/core/plan.cpp
+[up-to-date] src/app/options.cpp
+[up-to-date] src/app/report.cpp
+[up-to-date] src/d3d12/diagnostics.cpp
+[up-to-date] src/d3d12/shader.cpp
+[up-to-date] src/d3d12/runtime.cpp
+[up-to-date] src/d3d12/window.cpp
+[up-to-date] src/d3d12/context.cpp
+[up-to-date] src/d3d12/capture.cpp
+[up-to-date] src/d3d12/arena.cpp
+[up-to-date] src/d3d12/executor.cpp
+[up-to-date] src/app/probe_graph.cpp
+[up-to-date] src/app/scene.cpp
+[up-to-date] FrameGraphLab-release.exe
+output: D:/program/FrameGraphLab/.mqb/bin/FrameGraphLab-release.exe
+COMMAND: scripts/build.ps1 planner_tests -Configuration debug -Run
+build contract passed: 12 targets; shared sources and MSVC policies
+[compile] tests/unit/planner_tests.cpp [source changed, dependency changed]
+planner_tests.cpp
+[compile] src/core/compiler.cpp [compiler options changed]
+compiler.cpp
+[compile] src/core/validation.cpp [compiler options changed]
+validation.cpp
+[compile] src/core/serialization.cpp [compiler options changed]
+serialization.cpp
+[compile] src/core/allocation.cpp [compiler options changed]
+allocation.cpp
+cl: 命令行 warning D9025 :正在重写“/W3”(用“/W4”)
+cl: 命令行 warning D9025 :正在重写“/MDd”(用“/MTd”)
+cl: 命令行 warning D9025 :正在重写“/W3”(用“/W4”)
+cl: 命令行 warning D9025 :正在重写“/MDd”(用“/MTd”)
+cl: 命令行 warning D9025 :正在重写“/W3”(用“/W4”)
+cl: 命令行 warning D9025 :正在重写“/MDd”(用“/MTd”)
+cl: 命令行 warning D9025 :正在重写“/W3”(用“/W4”)
+cl: 命令行 warning D9025 :正在重写“/MDd”(用“/MTd”)
+cl: 命令行 warning D9025 :正在重写“/W3”(用“/W4”)
+cl: 命令行 warning D9025 :正在重写“/MDd”(用“/MTd”)
+[compile] src/core/barriers.cpp [compiler options changed]
+barriers.cpp
+cl: 命令行 warning D9025 :正在重写“/W3”(用“/W4”)
+cl: 命令行 warning D9025 :正在重写“/MDd”(用“/MTd”)
+cl: 命令行 warning D9025 :正在重写“/W3”(用“/W4”)
+[compile] src/core/plan.cpp [compiler options changed]
+cl: 命令行 warning D9025 :正在重写“/MDd”(用“/MTd”)
+plan.cpp
+[link] framegraph_planner_tests-debug.exe [explicit rebuild, link inputs changed]
+output: D:/program/FrameGraphLab/.mqb/bin/framegraph_planner_tests-debug.exe
+[run] framegraph_planner_tests-debug.exe
+PASS disjoint_lifetimes_share_slot
+PASS reference_mode_disjoint_bytes
+PASS overlap_cannot_alias
+PASS export_cannot_be_clobbered
+PASS offset_alignment
+PASS compatibility_separates_heaps
+PASS dedicated_never_reused
+PASS size_growth_uses_new_slot
+PASS heap_classes_are_separate
+PASS imports_are_not_allocated
+PASS unused_transients_are_not_allocated
+PASS requirement_count_checked
+PASS zero_size_checked
+PASS zero_alignment_checked
+PASS non_power_two_alignment_checked
+PASS class_descriptor_mismatch_checked
+PASS size_rounding_overflow_checked
+PASS sum_overflow_checked
+PASS alias_activation_precedes_transition
+PASS equal_state_has_no_redundant_transition
+PASS uav_write_then_read_orders
+PASS uav_read_read_needs_no_ordering
+PASS imported_required_final_transition
+PASS unused_import_final_transition
+PASS common_present_are_native_equivalent
+PASS execution_identity_covers_policy_and_barriers
+PASS uav_to_indirect_argument_is_planned
+PASS oracle_rejects_activation_after_transition
+PASS standalone_placed_resources_activate
+PASS oracle_rejects_live_byte_overlap
+cases=30 passed=30 failed=0
+COMMAND: scripts/build.ps1 options_tests -Configuration debug -Run
+build contract passed: 12 targets; shared sources and MSVC policies
+[compile] tests/unit/options_tests.cpp [source changed]
+options_tests.cpp
+[compile] src/app/options.cpp [compiler options changed]
+options.cpp
+cl: 命令行 warning D9025 :正在重写“/W3”(用“/W4”)
+cl: 命令行 warning D9025 :正在重写“/MDd”(用“/MTd”)
+cl: 命令行 warning D9025 :正在重写“/W3”(用“/W4”)
+cl: 命令行 warning D9025 :正在重写“/MDd”(用“/MTd”)
+[link] framegraph_options_tests-debug.exe [explicit rebuild, link inputs changed]
+output: D:/program/FrameGraphLab/.mqb/bin/framegraph_options_tests-debug.exe
+[run] framegraph_options_tests-debug.exe
+PASS default_options
+PASS required_cli
+PASS headless_is_bounded_by_default
+PASS capture_is_bounded_by_default
+PASS adapter_conflict_rejected
+PASS unknown_option_rejected
+PASS missing_value_rejected
+PASS negative_or_junk_number_rejected
+PASS unbounded_or_huge_frames_rejected
+PASS invalid_alias_policy_rejected
+PASS timeout_and_size_bounds
+PASS max_seed_and_explicit_hardware
+PASS debug_and_negative_switches
+PASS scene_mode_is_strict
+PASS draw_mode_is_strict
+cases=15 passed=15 failed=0
+COMMAND: validate_culling.py WARP
+{"success": true, "backend": "warp", "directory": "artifacts\\culling-validation\\warp-serjsr68", "visible": 149, "pixel_hash": "8f3cedaa7d9b2802", "plan_identity": "b6a3b79f5eefa658"}
+COMMAND: validate_culling.py hardware
+{"success": true, "backend": "hardware", "directory": "artifacts\\culling-validation\\hardware-96ynvlhp", "visible": 149, "pixel_hash": "b156db5f9dd9f80e", "plan_identity": "f287ab541bbc1ab1"}
+COMMAND: validate_scene.py WARP
+{"success": true, "backend": "warp", "directory": "artifacts\\scene-validation\\warp-qzgrd_hx", "pixel_hash": "8ac9bab58acfc42b", "on_bytes": 3538944, "off_bytes": 4587520, "color_buckets": 439}
+COMMAND: validate_scene.py hardware
+{"success": true, "backend": "hardware", "directory": "artifacts\\scene-validation\\hardware-mdct9v8x", "pixel_hash": "5568d93cb6e84950", "on_bytes": 3604480, "off_bytes": 4653056, "color_buckets": 439}
+COMMAND: scripts/build.ps1 property -Configuration release -Run --cases 10000
+build contract passed: 12 targets; shared sources and MSVC policies
+[compile] tests/property/graph_sweep.cpp [compiler options changed, dependency changed]
+graph_sweep.cpp
+[compile] src/core/compiler.cpp [compiler options changed]
+compiler.cpp
+[compile] src/core/validation.cpp [compiler options changed]
+validation.cpp
+[compile] src/core/serialization.cpp [compiler options changed]
+serialization.cpp
+[compile] src/core/allocation.cpp [compiler options changed]
+allocation.cpp
+cl: 命令行 warning D9025 :正在重写“/W3”(用“/W4”)
+cl: 命令行 warning D9025 :正在重写“/MD”(用“/MT”)
+cl: 命令行 warning D9025 :正在重写“/W3”(用“/W4”)
+cl: 命令行 warning D9025 :正在重写“/MD”(用“/MT”)
+cl: 命令行 warning D9025 :正在重写“/W3”(用“/W4”)
+cl: 命令行 warning D9025 :正在重写“/MD”(用“/MT”)
+cl: 命令行 warning D9025 :正在重写“/W3”(用“/W4”)
+cl: 命令行 warning D9025 :正在重写“/MD”(用“/MT”)
+cl: 命令行 warning D9025 :正在重写“/W3”(用“/W4”)
+[compile] src/core/barriers.cpp [compiler options changed]
+barriers.cpp
+cl: 命令行 warning D9025 :正在重写“/MD”(用“/MT”)
+cl: 命令行 warning D9025 :正在重写“/W3”(用“/W4”)
+cl: 命令行 warning D9025 :正在重写“/MD”(用“/MT”)
+[compile] src/core/plan.cpp [compiler options changed]
+plan.cpp
+cl: 命令行 warning D9025 :正在重写“/W3”(用“/W4”)
+cl: 命令行 warning D9025 :正在重写“/MD”(用“/MT”)
+[link] framegraph_property-release.exe [explicit rebuild, link inputs changed]
+output: D:/program/FrameGraphLab/.mqb/bin/framegraph_property-release.exe
+[run] framegraph_property-release.exe
+seed=0xF6A123 valid=10000 invalid=10000 dependency/lifetime/allocation/transition/UAV/alias/identity invariants passed

@@ -2,7 +2,7 @@
 #include "platform.hpp"
 #include <cstdint>
 namespace fgl {
-struct InputState { float yaw_delta{}; bool pause{}, step{}, reset{}, alias_toggle{}, debug_next{}; };
+struct InputState { float yaw_delta{}; bool pause{}, step{}, reset{}, alias_toggle{}, gpu_toggle{}, debug_next{}; };
 class Win32Window {
 public:
     Win32Window(std::uint32_t width, std::uint32_t height, bool visible);

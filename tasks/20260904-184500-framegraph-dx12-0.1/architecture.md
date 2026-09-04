@@ -20,11 +20,11 @@ Backend obtains device-specific size/alignment via GetResourceAllocationInfo and
 
 ## Execution
 
-Three frame contexts each own allocator, fence value, descriptors, timestamp/readback buffers and transient arena. Wait only before reusing that context; resize/destruction wait outstanding fences. Executor maps plan enums to D3D12 barriers, invokes pass callbacks through a declared-resource guard, and records timestamps. RT/DS resources clear fully upon activation. Imported backbuffers stay outside heaps and finish Present. Graph compilation happens only for size/config/policy changes.
+Three frame contexts each own allocator, fence value, descriptors, timestamp/readback buffers and transient arena. Wait only before reusing that context; resize/destruction wait outstanding fences. Executor maps plan enums to D3D12 barriers, invokes pass callbacks through a declared-resource guard, and records timestamps. `IndirectArgument` remains a Core state and is only mapped to the native D3D12 state at this boundary. RT/DS resources clear fully upon activation. Imported backbuffers stay outside heaps and finish Present. Graph compilation happens only for size/config/policy changes.
 
 ## Scene and observability
 
-Instanced procedural pillars and emissive geometry, depth prepass, HDR scene, bloom extraction and separable blur, tone mapping and imported present. Fixed seed/camera/frame makes capture comparable on one adapter. WIC receives completed RGBA readback. Reports hold hardware/timing/debug metadata; canonical identity excludes wall clock and Git provenance. Static HTML embeds plan/report/PNG and needs no CDN/server.
+Compute frustum culling writes stable visible IDs and one indirect draw argument before instanced procedural pillars and emissive geometry, depth prepass, HDR scene, bloom extraction and separable blur, tone mapping and imported present. A CPU reference computes the same fixed frustum independently and supports direct-draw pixel parity. Fixed seed/camera/frame makes capture comparable on one adapter. WIC receives completed RGBA readback. Reports hold culling count/mode plus hardware/timing/debug metadata; canonical identity excludes wall clock and Git provenance. Static HTML embeds plan/report/PNG and needs no CDN/server.
 
 ## Failure and evidence
 
