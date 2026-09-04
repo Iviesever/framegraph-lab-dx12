@@ -1,0 +1,5 @@
+Traceback (most recent call last):
+  File "D:\program\FrameGraphLab\tests\d3d12\validate_executor.py", line 27, in <module>
+    assert report.get("placed_resource_count", 0) >= 2, "no actual placed-resource execution reported"
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: no actual placed-resource execution reported

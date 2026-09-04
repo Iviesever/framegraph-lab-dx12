@@ -1,0 +1,21 @@
+build contract passed: 10 targets; shared sources and MSVC policies
+[compile] tests/d3d12/shader_tests.cpp [missing cache entry, missing output]
+shader_tests.cpp
+[compile] src/d3d12/diagnostics.cpp [dependency changed]
+diagnostics.cpp
+[compile] src/d3d12/shader.cpp [missing cache entry, missing output]
+shader.cpp
+cl: 命令行 warning D9025 :正在重写“/W3”(用“/W4”)
+cl: 命令行 warning D9025 :正在重写“/MDd”(用“/MTd”)
+cl: 命令行 warning D9025 :正在重写“/W3”(用“/W4”)
+cl: 命令行 warning D9025 :正在重写“/MDd”(用“/MTd”)
+cl: 命令行 warning D9025 :正在重写“/W3”(用“/W4”)
+cl: 命令行 warning D9025 :正在重写“/MDd”(用“/MTd”)
+[link] framegraph_shader_tests-debug.exe [explicit rebuild, missing cache entry, missing output]
+output: D:/program/FrameGraphLab/.mqb/bin/framegraph_shader_tests-debug.exe
+[run] framegraph_shader_tests-debug.exe
+cases=4 passed=0 failed=4
+FAIL valid_shader_compiles: shader compiler not implemented
+FAIL shader_error_preserves_context: error.category == "ShaderCompile" at line 11
+FAIL missing_shader_is_typed: error.category == "ShaderCompile" at line 18
+FAIL missing_entry_is_typed: error.category == "ShaderCompile" at line 22

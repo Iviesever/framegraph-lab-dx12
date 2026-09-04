@@ -1,0 +1,51 @@
+[compile] tests/unit/compiler_tests.cpp [source changed]
+compiler_tests.cpp
+[compile] src/core/compiler.cpp [dependency changed]
+compiler.cpp
+[compile] src/core/validation.cpp [dependency changed]
+validation.cpp
+[compile] src/core/serialization.cpp [missing cache entry, missing output]
+serialization.cpp
+[link] compiler_tests.exe [explicit rebuild, link inputs changed]
+output: D:/program/FrameGraphLab/.mqb/bin/compiler_tests.exe
+[run] compiler_tests.exe
+PASS empty_graph
+PASS invalid_resource_handle
+PASS invalid_pass_handle
+PASS zero_texture_dimension
+PASS oversized_texture
+PASS invalid_texture_flags
+PASS zero_buffer
+PASS extreme_buffer
+PASS resource_limit
+PASS pass_limit
+PASS name_limit
+PASS duplicate_usage
+PASS conflicting_usage
+PASS illegal_access
+PASS unknown_usage
+PASS unknown_access
+PASS buffer_cannot_be_render_target
+PASS missing_uav_capability
+PASS transient_read_without_producer
+PASS invalid_dead_pass_still_rejected
+PASS imported_read
+PASS uninitialized_import_read
+PASS transient_initial_state_must_be_common
+PASS unwritten_export
+PASS builder_handles_and_bounds
+cases=39 passed=25 failed=14
+FAIL raw_war_waw_edges: c.dependencies == expected at line 107
+FAIL stable_ready_order: c.passes[0].id == PassId{1} at line 112
+FAIL cycle_diagnostic: !c at line 117
+FAIL self_cycle: expected rejection at line 42
+FAIL dead_cycle_rejected: expected rejection at line 42
+FAIL cull_and_lifetime: c.passes.size() == 2 at line 132
+FAIL export_root: c.passes.size() == 1 at line 138
+FAIL present_root_and_import_final: c.passes.size() == 2 at line 144
+FAIL no_roots_culls_all: c.passes.empty() at line 148
+FAIL readwrite_uav_hazards: c.dependencies.size() == 2 at line 154
+FAIL canonical_identity_repeat_and_change: plan_identity(a).size() == 16 at line 160
+FAIL canonical_edge_order: a.dependencies.size() == 2 at line 168
+FAIL canonical_usage_order: a.passes[0].usages.front().resource == ResourceId{0} at line 174
+FAIL hash_and_json_escaping: stable_hash("") == "cbf29ce484222325" at line 177

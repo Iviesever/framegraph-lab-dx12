@@ -1,0 +1,40 @@
+[up-to-date] tests/unit/planner_tests.cpp
+[up-to-date] src/core/compiler.cpp
+[up-to-date] src/core/validation.cpp
+[up-to-date] src/core/serialization.cpp
+[compile] src/core/allocation.cpp [source changed]
+allocation.cpp
+[compile] src/core/barriers.cpp [source changed]
+barriers.cpp
+[compile] src/core/plan.cpp [source changed]
+plan.cpp
+[link] planner_tests.exe [explicit rebuild, link inputs changed]
+output: D:/program/FrameGraphLab/.mqb/bin/planner_tests.exe
+[run] planner_tests.exe
+PASS disjoint_lifetimes_share_slot
+PASS reference_mode_disjoint_bytes
+PASS overlap_cannot_alias
+PASS export_cannot_be_clobbered
+PASS offset_alignment
+PASS compatibility_separates_heaps
+PASS dedicated_never_reused
+PASS size_growth_uses_new_slot
+PASS heap_classes_are_separate
+PASS imports_are_not_allocated
+PASS unused_transients_are_not_allocated
+PASS requirement_count_checked
+PASS zero_size_checked
+PASS zero_alignment_checked
+PASS non_power_two_alignment_checked
+PASS class_descriptor_mismatch_checked
+PASS size_rounding_overflow_checked
+PASS sum_overflow_checked
+PASS alias_activation_precedes_transition
+PASS equal_state_has_no_redundant_transition
+PASS uav_write_then_read_orders
+PASS uav_read_read_needs_no_ordering
+PASS imported_required_final_transition
+PASS unused_import_final_transition
+PASS common_present_are_native_equivalent
+PASS execution_identity_covers_policy_and_barriers
+cases=26 passed=26 failed=0

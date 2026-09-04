@@ -1,0 +1,27 @@
+build contract passed: 7 targets; shared sources and MSVC policies
+[compile] compiler.cpp [compiler options changed, dependency changed]
+compiler.cpp
+[compile] validation.cpp [compiler options changed, dependency changed]
+validation.cpp
+[compile] serialization.cpp [compiler options changed, dependency changed]
+serialization.cpp
+[compile] allocation.cpp [compiler options changed, dependency changed]
+allocation.cpp
+cl: 命令行 warning D9025 :正在重写“/W3”(用“/W4”)
+cl: 命令行 warning D9025 :正在重写“/MDd”(用“/MTd”)
+cl: 命令行 warning D9025 :正在重写“/W3”(用“/W4”)
+cl: 命令行 warning D9025 :正在重写“/MDd”(用“/MTd”)
+cl: 命令行 warning D9025 :正在重写“/W3”(用“/W4”)
+cl: 命令行 warning D9025 :正在重写“/MDd”(用“/MTd”)
+cl: 命令行 warning D9025 :正在重写“/W3”(用“/W4”)
+[compile] barriers.cpp [compiler options changed, dependency changed]
+barriers.cpp
+cl: 命令行 warning D9025 :正在重写“/MDd”(用“/MTd”)
+cl: 命令行 warning D9025 :正在重写“/W3”(用“/W4”)
+cl: 命令行 warning D9025 :正在重写“/MDd”(用“/MTd”)
+cl: 命令行 warning D9025 :正在重写“/W3”(用“/W4”)
+cl: 命令行 warning D9025 :正在重写“/MDd”(用“/MTd”)
+[compile] plan.cpp [compiler options changed, dependency changed]
+plan.cpp
+[archive] framegraph_core-debug.lib [explicit rebuild, missing cache entry, missing output]
+output: D:/program/FrameGraphLab/.mqb/bin/framegraph_core-debug.lib

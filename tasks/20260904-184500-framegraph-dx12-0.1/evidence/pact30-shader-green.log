@@ -1,0 +1,15 @@
+build contract passed: 10 targets; shared sources and MSVC policies
+[up-to-date] tests/d3d12/shader_tests.cpp
+[up-to-date] src/d3d12/diagnostics.cpp
+[compile] src/d3d12/shader.cpp [source changed]
+shader.cpp
+cl: 命令行 warning D9025 :正在重写“/W3”(用“/W4”)
+cl: 命令行 warning D9025 :正在重写“/MDd”(用“/MTd”)
+[link] framegraph_shader_tests-debug.exe [explicit rebuild, link inputs changed]
+output: D:/program/FrameGraphLab/.mqb/bin/framegraph_shader_tests-debug.exe
+[run] framegraph_shader_tests-debug.exe
+PASS valid_shader_compiles
+PASS shader_error_preserves_context
+PASS missing_shader_is_typed
+PASS missing_entry_is_typed
+cases=4 passed=4 failed=0

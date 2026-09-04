@@ -1,0 +1,13 @@
+-- The CXX compiler identification is Clang 23.1.0
+-- Detecting CXX compiler ABI info
+-- Detecting CXX compiler ABI info - done
+-- Check for working CXX compiler: D:/program/FrameGraphLab/.tools/llvm-mingw-20260826-ucrt-x86_64/bin/clang++.exe - skipped
+-- Detecting CXX compile features
+-- Detecting CXX compile features - done
+-- Configuring done (0.8s)
+-- Generating done (0.0s)
+-- Build files have been written to: D:/program/FrameGraphLab/artifacts/install/consumer-build
+[1/4] Scanning D:/program/FrameGraphLab/artifacts/install/consumer/main.cpp for CXX dependencies
+[2/4] Generating CXX dyndep file CMakeFiles/consumer.dir/CXX.dd
+[3/4] Building CXX object CMakeFiles/consumer.dir/main.cpp.obj
+[4/4] Linking CXX executable consumer.exe

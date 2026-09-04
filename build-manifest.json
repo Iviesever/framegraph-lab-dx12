@@ -1,0 +1,255 @@
+{
+  "version": 1,
+  "standard": 23,
+  "architecture": "x64",
+  "include_dirs": [
+    "include",
+    "src",
+    "artifacts/generated"
+  ],
+  "compiler_args": [
+    "/EHsc",
+    "/W4",
+    "/permissive-",
+    "/utf-8"
+  ],
+  "msvc_system_libraries": [
+    "kernel32"
+  ],
+  "configurations": {
+    "debug": {
+      "runtime": "MTd",
+      "defines": [],
+      "compiler_args": [
+        "/Od",
+        "/Z7",
+        "/Ob0",
+        "/RTC1"
+      ],
+      "linker_args": [
+        "/DEBUG:FULL",
+        "/INCREMENTAL:NO"
+      ]
+    },
+    "release": {
+      "runtime": "MT",
+      "defines": [
+        "NDEBUG"
+      ],
+      "compiler_args": [
+        "/O2",
+        "/Ob2"
+      ],
+      "linker_args": [
+        "/OPT:REF",
+        "/OPT:ICF",
+        "/INCREMENTAL:NO"
+      ]
+    }
+  },
+  "groups": {
+    "core": [
+      "src/core/compiler.cpp",
+      "src/core/validation.cpp",
+      "src/core/serialization.cpp",
+      "src/core/allocation.cpp",
+      "src/core/barriers.cpp",
+      "src/core/plan.cpp"
+    ],
+    "options": [
+      "src/app/options.cpp"
+    ],
+    "reporting": [
+      "src/app/report.cpp"
+    ],
+    "platform": [
+      "src/d3d12/diagnostics.cpp"
+    ],
+    "shader": [
+      "src/d3d12/shader.cpp"
+    ],
+    "runtime": [
+      "src/d3d12/runtime.cpp",
+      "src/d3d12/window.cpp",
+      "src/d3d12/context.cpp",
+      "src/d3d12/capture.cpp",
+      "src/d3d12/executor.cpp"
+    ],
+    "arena": [
+      "src/d3d12/arena.cpp"
+    ],
+    "probe": [
+      "src/app/probe_graph.cpp"
+    ],
+    "scene": [
+      "src/app/scene.cpp"
+    ]
+  },
+  "targets": {
+    "core": {
+      "type": "static",
+      "groups": [
+        "core"
+      ],
+      "sources": [],
+      "libraries": []
+    },
+    "compiler_tests": {
+      "type": "exe",
+      "groups": [
+        "core"
+      ],
+      "sources": [
+        "tests/unit/compiler_tests.cpp"
+      ],
+      "libraries": []
+    },
+    "planner_tests": {
+      "type": "exe",
+      "groups": [
+        "core"
+      ],
+      "sources": [
+        "tests/unit/planner_tests.cpp"
+      ],
+      "libraries": []
+    },
+    "property": {
+      "type": "exe",
+      "groups": [
+        "core"
+      ],
+      "sources": [
+        "tests/property/graph_sweep.cpp"
+      ],
+      "libraries": []
+    },
+    "fuzz": {
+      "type": "exe",
+      "groups": [
+        "core"
+      ],
+      "sources": [
+        "tests/property/fuzz_compile.cpp"
+      ],
+      "libraries": []
+    },
+    "plan": {
+      "type": "exe",
+      "groups": [
+        "core"
+      ],
+      "sources": [
+        "tools/core_plan.cpp"
+      ],
+      "libraries": []
+    },
+    "benchmark": {
+      "type": "exe",
+      "groups": [
+        "core"
+      ],
+      "sources": [
+        "tools/core_benchmark.cpp"
+      ],
+      "libraries": []
+    },
+    "smoke": {
+      "type": "exe",
+      "groups": [],
+      "sources": [
+        "tests/unit/smoke.cpp"
+      ],
+      "libraries": []
+    },
+    "options_tests": {
+      "type": "exe",
+      "groups": [
+        "options"
+      ],
+      "sources": [
+        "tests/unit/options_tests.cpp"
+      ],
+      "libraries": []
+    },
+    "boundary_tests": {
+      "type": "exe",
+      "groups": [
+        "core"
+      ],
+      "sources": [
+        "tests/unit/boundary_tests.cpp"
+      ],
+      "libraries": []
+    },
+    "expected_fallback_tests": {
+      "type": "exe",
+      "groups": [],
+      "sources": [
+        "tests/unit/expected_fallback_tests.cpp"
+      ],
+      "libraries": []
+    },
+    "app": {
+      "type": "exe",
+      "groups": [
+        "core",
+        "options",
+        "reporting",
+        "platform",
+        "shader",
+        "runtime",
+        "arena",
+        "probe",
+        "scene"
+      ],
+      "sources": [
+        "src/app/main.cpp"
+      ],
+      "libraries": [
+        "d3d12",
+        "dxgi",
+        "d3dcompiler",
+        "windowscodecs",
+        "ole32",
+        "user32"
+      ]
+    },
+    "shader_tests": {
+      "type": "exe",
+      "groups": [
+        "platform",
+        "shader"
+      ],
+      "sources": [
+        "tests/d3d12/shader_tests.cpp"
+      ],
+      "libraries": [
+        "d3dcompiler",
+        "user32"
+      ]
+    },
+    "arena_tests": {
+      "type": "exe",
+      "groups": [
+        "platform",
+        "arena"
+      ],
+      "sources": [
+        "tests/d3d12/arena_tests.cpp"
+      ],
+      "libraries": [
+        "d3d12",
+        "dxgi",
+        "user32"
+      ]
+    }
+  },
+  "assets": {
+    "shaders": [
+      "shaders/scene.hlsl",
+      "shaders/post.hlsl",
+      "shaders/cull.hlsl"
+    ]
+  }
+}

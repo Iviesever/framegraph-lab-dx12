@@ -1,0 +1,25 @@
+build contract passed: 8 targets; shared sources and MSVC policies
+[compile] tests/unit/options_tests.cpp [source changed, dependency changed]
+options_tests.cpp
+[compile] src/app/options.cpp [source changed, dependency changed]
+options.cpp
+cl: 命令行 warning D9025 :正在重写“/W3”(用“/W4”)
+cl: 命令行 warning D9025 :正在重写“/MDd”(用“/MTd”)
+cl: 命令行 warning D9025 :正在重写“/W3”(用“/W4”)
+cl: 命令行 warning D9025 :正在重写“/MDd”(用“/MTd”)
+[link] framegraph_options_tests-debug.exe [explicit rebuild, link inputs changed]
+output: D:/program/FrameGraphLab/.mqb/bin/framegraph_options_tests-debug.exe
+[run] framegraph_options_tests-debug.exe
+cases=12 passed=0 failed=12
+FAIL default_options: o at line 13
+FAIL required_cli: o at line 18
+FAIL headless_is_bounded_by_default: o && o->frames == 240 at line 21
+FAIL capture_is_bounded_by_default: o && o->frames == 240 at line 22
+FAIL adapter_conflict_rejected: value.error().code == expected at line 9
+FAIL unknown_option_rejected: value.error().code == expected at line 9
+FAIL missing_value_rejected: value.error().code == expected at line 9
+FAIL negative_or_junk_number_rejected: value.error().code == expected at line 9
+FAIL unbounded_or_huge_frames_rejected: value.error().code == expected at line 9
+FAIL invalid_alias_policy_rejected: value.error().code == expected at line 9
+FAIL timeout_and_size_bounds: value.error().code == expected at line 9
+FAIL max_seed_and_explicit_hardware: o && o->scene_seed == UINT32_MAX && o->adapter == fgl::AdapterMode::Hardware at line 32

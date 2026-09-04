@@ -1,0 +1,7 @@
+[1/7] Building CXX object CMakeFiles/framegraph_core.dir/src/core/serialization.cpp.obj
+[2/7] Building CXX object CMakeFiles/framegraph_core.dir/src/core/compiler.cpp.obj
+[3/7] Building CXX object CMakeFiles/framegraph_compiler_tests.dir/tests/unit/compiler_tests.cpp.obj
+[4/7] Linking CXX static library libframegraph_core.a
+[5/7] Building CXX object CMakeFiles/framegraph_property.dir/tests/property/graph_sweep.cpp.obj
+[6/7] Linking CXX executable framegraph_compiler_tests.exe
+[7/7] Linking CXX executable framegraph_property.exe

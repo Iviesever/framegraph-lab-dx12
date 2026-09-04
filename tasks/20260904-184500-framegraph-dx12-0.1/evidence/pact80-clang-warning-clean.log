@@ -1,0 +1,29 @@
+[0/1] Re-running CMake...
+build contract passed: 12 targets; shared sources and MSVC policies
+-- Configuring done (0.6s)
+-- Generating done (0.0s)
+-- Build files have been written to: D:/program/FrameGraphLab/build/core-clang
+[1/25] Building CXX object CMakeFiles/framegraph_expected_fallback_tests.dir/tests/unit/expected_fallback_tests.cpp.obj
+[2/25] Linking CXX executable framegraph_expected_fallback_tests.exe
+[3/25] Building CXX object CMakeFiles/framegraph_options_tests.dir/src/app/options.cpp.obj
+[4/25] Building CXX object CMakeFiles/framegraph_core.dir/src/core/validation.cpp.obj
+[5/25] Building CXX object CMakeFiles/framegraph_core.dir/src/core/barriers.cpp.obj
+[6/25] Building CXX object CMakeFiles/framegraph_core.dir/src/core/serialization.cpp.obj
+[7/25] Building CXX object CMakeFiles/framegraph_core.dir/src/core/plan.cpp.obj
+[8/25] Building CXX object CMakeFiles/framegraph_core.dir/src/core/allocation.cpp.obj
+[9/25] Building CXX object CMakeFiles/framegraph_plan.dir/tools/core_plan.cpp.obj
+[10/25] Building CXX object CMakeFiles/framegraph_options_tests.dir/tests/unit/options_tests.cpp.obj
+[11/25] Linking CXX executable framegraph_options_tests.exe
+[12/25] Building CXX object CMakeFiles/framegraph_fuzz.dir/tests/property/fuzz_compile.cpp.obj
+[13/25] Building CXX object CMakeFiles/framegraph_compiler_tests.dir/tests/unit/compiler_tests.cpp.obj
+[14/25] Building CXX object CMakeFiles/framegraph_core.dir/src/core/compiler.cpp.obj
+[15/25] Building CXX object CMakeFiles/framegraph_boundary_tests.dir/tests/unit/boundary_tests.cpp.obj
+[16/25] Linking CXX static library libframegraph_core.a
+[17/25] Linking CXX executable framegraph_plan.exe
+[18/25] Linking CXX executable framegraph_compiler_tests.exe
+[19/25] Linking CXX executable framegraph_fuzz.exe
+[20/25] Linking CXX executable framegraph_boundary_tests.exe
+[21/25] Building CXX object CMakeFiles/framegraph_property.dir/tests/property/graph_sweep.cpp.obj
+[22/25] Linking CXX executable framegraph_property.exe
+[23/25] Building CXX object CMakeFiles/framegraph_planner_tests.dir/tests/unit/planner_tests.cpp.obj
+[24/25] Linking CXX executable framegraph_planner_tests.exe

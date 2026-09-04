@@ -1,0 +1,14 @@
+[0/1] Re-running CMake...
+-- Configuring done (0.3s)
+-- Generating done (0.0s)
+-- Build files have been written to: D:/program/FrameGraphLab/build/msvc
+[1/11] Building CXX object CMakeFiles\framegraph_core.dir\Debug\src\core\barriers.cpp.obj
+[2/11] Linking CXX static library Debug\framegraph_core.lib
+[3/11] Linking CXX executable Debug\framegraph_compiler_tests.exe
+[4/11] Linking CXX executable Debug\framegraph_fuzz.exe
+[5/11] Building CXX object CMakeFiles\framegraph_plan.dir\Debug\tools\core_plan.cpp.obj
+[6/11] Linking CXX executable Debug\framegraph_plan.exe
+[7/11] Building CXX object CMakeFiles\framegraph_planner_tests.dir\Debug\tests\unit\planner_tests.cpp.obj
+[8/11] Building CXX object CMakeFiles\framegraph_property.dir\Debug\tests\property\graph_sweep.cpp.obj
+[9/11] Linking CXX executable Debug\framegraph_planner_tests.exe
+[10/11] Linking CXX executable Debug\framegraph_property.exe

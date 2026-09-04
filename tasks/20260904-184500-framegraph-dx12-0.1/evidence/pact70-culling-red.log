@@ -1,0 +1,5 @@
+Traceback (most recent call last):
+  File "D:\program\FrameGraphLab\tests\d3d12\validate_culling.py", line 14, in <module>
+    assert result.returncode==0,(result.returncode,result.stdout,result.stderr)
+           ^^^^^^^^^^^^^^^^^^^^
+AssertionError: (2, '', 'unknown option: --draw-mode\n')

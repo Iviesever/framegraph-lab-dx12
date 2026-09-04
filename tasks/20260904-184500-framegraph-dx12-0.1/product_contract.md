@@ -17,7 +17,7 @@ Every requirement in goal-objective.md sections PACT-00/10/20/30/40/50/60/80 and
 
 ## P1 / P2
 
-P1 is PACT-70 GPU culling ONLY after all P0 and package gates are green, before 2026-09-05 09:30 JST, with >25% reset budget. P2 is explanatory polish and drills within P0 scope. No optional feature may weaken P0 or run after feature freeze.
+Updated user constraint: P1 is PACT-70 GPU culling ONLY after all P0, package/debug/parity and Draft PR baseline gates are green, before 2026-09-05 10:30 JST and before user-declared freeze. Do not guess remaining usage percentages. After PACT-70 is green, use remaining time first for measured compile/allocation/barrier/memory performance and 100,000 bounded stress, then reliability and independent audit. P2 is explanatory polish and drills within scope. No optional feature may weaken P0 or run after feature freeze.
 
 ## Boundaries
 
@@ -27,7 +27,11 @@ Whole resources, single direct queue, no subresource ranges, async compute, exte
 
 Debug builds enable the Debug Layer before device creation and reject unavailable diagnostics explicitly. Errors/corruptions/unclassified warnings must be zero. No blanket filters. RT/DS alias activations are initialized by full clear. Capture only after a bounded fence wait and report write completion. Actual device heap bytes and predicted bytes are separate fields and are checked.
 
-All work and artifacts remain inside this repository. Never kill unrelated processes. At most one owned GPU process. Local MSVC uses MQB where supported; required CMake presets remain independent portable entry points. No evidence currently establishes MQB as a UE build orchestrator, and UE is outside scope.
+All work and artifacts remain inside this repository. Never kill unrelated processes. At most one owned GPU process. MQB is the local Windows C++/D3D12 build/incremental/run authority, with a real mqb.json and shared source/policy inventory or fail-closed drift check. Every key PACT needs fresh MQB MSVC evidence. CMake/CTest remain required for cross-platform Core, install/export and CI; Clang/GCC are supplementary compatibility/sanitizer evidence and their failures must be fixed. Project-local scripts may handle shaders/resources unsupported by MQB; do not modify MQB or overstate its capabilities.
+
+This is the last new repository. Do not start any second project. UE targets remain UBT/UHT unless installed MQB has complete evidence of .uproject/.Build.cs/.Target.cs/UHT/UBT handling; external SDKs or an outer invocation are not proof of replacement. This policy adds no UE work here.
+
+Local Win64 ZIP, source snapshot, captures, plans, reports, inspector, manifests/SHA and clean-extraction smoke remain mandatory. Large binaries stay in ignored artifacts. PR records relative paths, sizes, SHA-256 and reproduction/verification commands without binary attachments. A future explicitly authorized GitHub release contains only an annotated tag, notes, and GitHub-generated source ZIP/tar.gz; no uploaded prebuilt demo or manually uploaded source ZIP. Current merge/tag/release authorization remains absent.
 
 ## Authorship
 
@@ -35,4 +39,4 @@ The user defined career goals, direction, scope, deadline, budget strategy and a
 
 ## Time
 
-Freeze: 2026-09-05 11:30 UTC+8. Internal stop: 15:00 UTC+8. External deadline: 15:30 UTC+8. At a pause/reset write a recoverable handoff; never mislabel incomplete P0 as delivered.
+Updated freeze: 2026-09-05 12:00 JST (11:00 UTC+8). Internal stop: 16:00 JST. External deadline: 16:30 JST. Reset trigger guidance is remaining 3–5% or 00:30 JST, but the agent must not guess usage percentages. On the user's reset-preparation request, finish the atomic command, stop owned long processes, write exact local/remote HEAD handoff, clean/push checkpoint, and report reset readiness. Resume this same thread/repository after fresh fetch; do not replay completed PACTs.

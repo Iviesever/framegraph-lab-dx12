@@ -1,0 +1,37 @@
+[0/1] Re-running CMake...
+-- Found Python3: C:/Users/Iviesever/AppData/Local/Programs/Python/Python313/python.exe (found version "3.13.0") found components: Interpreter
+build contract passed: 7 targets; shared sources and MSVC policies
+-- Configuring done (0.3s)
+-- Generating done (0.0s)
+-- Build files have been written to: D:/program/FrameGraphLab/build/msvc
+[1/20] Building CXX object CMakeFiles\framegraph_core.dir\Debug\src\core\barriers.cpp.obj
+cl: 命令行 warning D9025 :正在重写“/Zi”(用“/Z7”)
+[2/20] Building CXX object CMakeFiles\framegraph_core.dir\Debug\src\core\validation.cpp.obj
+cl: 命令行 warning D9025 :正在重写“/Zi”(用“/Z7”)
+[3/20] Building CXX object CMakeFiles\framegraph_smoke.dir\Debug\tests\unit\smoke.cpp.obj
+cl: 命令行 warning D9025 :正在重写“/Zi”(用“/Z7”)
+[4/20] Building CXX object CMakeFiles\framegraph_core.dir\Debug\src\core\serialization.cpp.obj
+cl: 命令行 warning D9025 :正在重写“/Zi”(用“/Z7”)
+[5/20] Building CXX object CMakeFiles\framegraph_core.dir\Debug\src\core\allocation.cpp.obj
+cl: 命令行 warning D9025 :正在重写“/Zi”(用“/Z7”)
+[6/20] Building CXX object CMakeFiles\framegraph_core.dir\Debug\src\core\plan.cpp.obj
+cl: 命令行 warning D9025 :正在重写“/Zi”(用“/Z7”)
+[7/20] Building CXX object CMakeFiles\framegraph_plan.dir\Debug\tools\core_plan.cpp.obj
+cl: 命令行 warning D9025 :正在重写“/Zi”(用“/Z7”)
+[8/20] Linking CXX executable Debug\framegraph_smoke.exe
+[9/20] Building CXX object CMakeFiles\framegraph_core.dir\Debug\src\core\compiler.cpp.obj
+cl: 命令行 warning D9025 :正在重写“/Zi”(用“/Z7”)
+[10/20] Linking CXX static library Debug\framegraph_core.lib
+[11/20] Building CXX object CMakeFiles\framegraph_fuzz.dir\Debug\tests\property\fuzz_compile.cpp.obj
+cl: 命令行 warning D9025 :正在重写“/Zi”(用“/Z7”)
+[12/20] Building CXX object CMakeFiles\framegraph_compiler_tests.dir\Debug\tests\unit\compiler_tests.cpp.obj
+cl: 命令行 warning D9025 :正在重写“/Zi”(用“/Z7”)
+[13/20] Building CXX object CMakeFiles\framegraph_property.dir\Debug\tests\property\graph_sweep.cpp.obj
+cl: 命令行 warning D9025 :正在重写“/Zi”(用“/Z7”)
+[14/20] Building CXX object CMakeFiles\framegraph_planner_tests.dir\Debug\tests\unit\planner_tests.cpp.obj
+cl: 命令行 warning D9025 :正在重写“/Zi”(用“/Z7”)
+[15/20] Linking CXX executable Debug\framegraph_plan.exe
+[16/20] Linking CXX executable Debug\framegraph_fuzz.exe
+[17/20] Linking CXX executable Debug\framegraph_compiler_tests.exe
+[18/20] Linking CXX executable Debug\framegraph_property.exe
+[19/20] Linking CXX executable Debug\framegraph_planner_tests.exe

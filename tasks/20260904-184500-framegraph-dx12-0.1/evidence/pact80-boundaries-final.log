@@ -1,0 +1,18 @@
+build contract passed: 11 targets; shared sources and MSVC policies
+[up-to-date] tests/unit/boundary_tests.cpp
+[up-to-date] src/core/compiler.cpp
+[up-to-date] src/core/validation.cpp
+[up-to-date] src/core/serialization.cpp
+[up-to-date] src/core/allocation.cpp
+[up-to-date] src/core/barriers.cpp
+[up-to-date] src/core/plan.cpp
+[up-to-date] framegraph_boundary_tests-debug.exe
+output: D:/program/FrameGraphLab/.mqb/bin/framegraph_boundary_tests-debug.exe
+[run] framegraph_boundary_tests-debug.exe
+PASS invalid_format_and_states
+PASS imported_war_and_uav_chain
+PASS conservative_overwrite_retention
+PASS cycle_pairs_are_real_edges
+PASS exact_usage_limit_and_plus_one
+PASS exact_edge_limit_and_derived_plus_one
+cases=6 passed=6 failed=0

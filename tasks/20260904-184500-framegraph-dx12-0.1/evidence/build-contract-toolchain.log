@@ -1,0 +1,57 @@
+[entry] tools/core_plan.cpp
+[discover] 7 translation units from 10 indexed C/C++ files
+[target] core_plan
+  project: D:/program/FrameGraphLab
+  config:  D:/program/FrameGraphLab/mqb.json
+  type:    exe
+  ltcg:    off
+  jobs:    auto
+  cl:      C:/Program Files/Microsoft Visual Studio/18/Community/VC/Tools/MSVC/14.51.36231/bin/Hostx64/x64/cl.exe
+  link:    C:/Program Files/Microsoft Visual Studio/18/Community/VC/Tools/MSVC/14.51.36231/bin/Hostx64/x64/link.exe
+  source:  tools/core_plan.cpp
+    obj:   D:/program/FrameGraphLab/.mqb/obj/tools/core_plan.cpp.obj
+    deps:  D:/program/FrameGraphLab/.mqb/deps/tools/core_plan.cpp.json
+    cache: D:/program/FrameGraphLab/.mqb/cache/compile/tools/core_plan.cpp.mqbcache
+  source:  src/core/allocation.cpp
+    obj:   D:/program/FrameGraphLab/.mqb/obj/src/core/allocation.cpp.obj
+    deps:  D:/program/FrameGraphLab/.mqb/deps/src/core/allocation.cpp.json
+    cache: D:/program/FrameGraphLab/.mqb/cache/compile/src/core/allocation.cpp.mqbcache
+  source:  src/core/barriers.cpp
+    obj:   D:/program/FrameGraphLab/.mqb/obj/src/core/barriers.cpp.obj
+    deps:  D:/program/FrameGraphLab/.mqb/deps/src/core/barriers.cpp.json
+    cache: D:/program/FrameGraphLab/.mqb/cache/compile/src/core/barriers.cpp.mqbcache
+  source:  src/core/compiler.cpp
+    obj:   D:/program/FrameGraphLab/.mqb/obj/src/core/compiler.cpp.obj
+    deps:  D:/program/FrameGraphLab/.mqb/deps/src/core/compiler.cpp.json
+    cache: D:/program/FrameGraphLab/.mqb/cache/compile/src/core/compiler.cpp.mqbcache
+  source:  src/core/plan.cpp
+    obj:   D:/program/FrameGraphLab/.mqb/obj/src/core/plan.cpp.obj
+    deps:  D:/program/FrameGraphLab/.mqb/deps/src/core/plan.cpp.json
+    cache: D:/program/FrameGraphLab/.mqb/cache/compile/src/core/plan.cpp.mqbcache
+  source:  src/core/serialization.cpp
+    obj:   D:/program/FrameGraphLab/.mqb/obj/src/core/serialization.cpp.obj
+    deps:  D:/program/FrameGraphLab/.mqb/deps/src/core/serialization.cpp.json
+    cache: D:/program/FrameGraphLab/.mqb/cache/compile/src/core/serialization.cpp.mqbcache
+  source:  src/core/validation.cpp
+    obj:   D:/program/FrameGraphLab/.mqb/obj/src/core/validation.cpp.obj
+    deps:  D:/program/FrameGraphLab/.mqb/deps/src/core/validation.cpp.json
+    cache: D:/program/FrameGraphLab/.mqb/cache/compile/src/core/validation.cpp.mqbcache
+  lib:     kernel32
+  cl-arg:  /W4
+  cl-arg:  /permissive-
+  cl-arg:  /utf-8
+  cl-arg:  /Ob0
+  cl-arg:  /RTC1
+  link-arg:/DEBUG:FULL
+  link-arg:/INCREMENTAL:NO
+  output:  D:/program/FrameGraphLab/.mqb/bin/core_plan.exe
+  cache:   D:/program/FrameGraphLab/.mqb/cache/link/core_plan.linkcache
+[up-to-date] tools/core_plan.cpp
+[up-to-date] src/core/allocation.cpp
+[up-to-date] src/core/barriers.cpp
+[up-to-date] src/core/compiler.cpp
+[up-to-date] src/core/plan.cpp
+[up-to-date] src/core/serialization.cpp
+[up-to-date] src/core/validation.cpp
+[up-to-date] core_plan.exe
+output: D:/program/FrameGraphLab/.mqb/bin/core_plan.exe

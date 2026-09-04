@@ -1,0 +1,58 @@
+build contract passed: 12 targets; shared sources and MSVC policies
+[compile] src/app/main.cpp [toolchain changed, dependency changed]
+main.cpp
+[up-to-date] src/core/compiler.cpp
+[up-to-date] src/core/validation.cpp
+[up-to-date] src/core/serialization.cpp
+[up-to-date] src/core/allocation.cpp
+[up-to-date] src/core/barriers.cpp
+[up-to-date] src/core/plan.cpp
+[up-to-date] src/app/options.cpp
+[compile] src/app/report.cpp [toolchain changed, source changed, dependency changed]
+report.cpp
+[compile] src/d3d12/diagnostics.cpp [toolchain changed, dependency changed]
+diagnostics.cpp
+[compile] src/d3d12/shader.cpp [toolchain changed, dependency changed]
+shader.cpp
+cl: 命令行 warning D9025 :正在重写“/W3”(用“/W4”)
+cl: 命令行 warning D9025 :正在重写“/MDd”(用“/MTd”)
+cl: 命令行 warning D9025 :正在重写“/W3”(用“/W4”)
+cl: 命令行 warning D9025 :正在重写“/MDd”(用“/MTd”)
+cl: 命令行 warning D9025 :正在重写“/W3”(用“/W4”)
+cl: 命令行 warning D9025 :正在重写“/MDd”(用“/MTd”)
+cl: 命令行 warning D9025 :正在重写“/W3”(用“/W4”)
+cl: 命令行 warning D9025 :正在重写“/MDd”(用“/MTd”)
+[compile] src/d3d12/runtime.cpp [toolchain changed, source changed, dependency changed]
+runtime.cpp
+cl: 命令行 warning D9025 :正在重写“/W3”(用“/W4”)
+cl: 命令行 warning D9025 :正在重写“/MDd”(用“/MTd”)
+[compile] src/d3d12/window.cpp [toolchain changed, source changed, dependency changed]
+window.cpp
+cl: 命令行 warning D9025 :正在重写“/W3”(用“/W4”)
+cl: 命令行 warning D9025 :正在重写“/MDd”(用“/MTd”)
+[compile] src/d3d12/context.cpp [toolchain changed, dependency changed]
+context.cpp
+cl: 命令行 warning D9025 :正在重写“/W3”(用“/W4”)
+cl: 命令行 warning D9025 :正在重写“/MDd”(用“/MTd”)
+[compile] src/d3d12/capture.cpp [toolchain changed, dependency changed]
+capture.cpp
+[compile] src/d3d12/arena.cpp [toolchain changed, source changed, dependency changed]
+arena.cpp
+[compile] src/d3d12/executor.cpp [toolchain changed, source changed, dependency changed]
+executor.cpp
+[compile] src/app/probe_graph.cpp [toolchain changed, dependency changed]
+probe_graph.cpp
+[compile] src/app/scene.cpp [toolchain changed, source changed, dependency changed]
+scene.cpp
+[link] FrameGraphLab-debug.exe [explicit rebuild, link inputs changed]
+output: D:/program/FrameGraphLab/.mqb/bin/FrameGraphLab-debug.exe
+cl: 命令行 warning D9025 :正在重写“/W3”(用“/W4”)
+cl: 命令行 warning D9025 :正在重写“/MDd”(用“/MTd”)
+cl: 命令行 warning D9025 :正在重写“/W3”(用“/W4”)
+cl: 命令行 warning D9025 :正在重写“/MDd”(用“/MTd”)
+cl: 命令行 warning D9025 :正在重写“/W3”(用“/W4”)
+cl: 命令行 warning D9025 :正在重写“/MDd”(用“/MTd”)
+cl: 命令行 warning D9025 :正在重写“/W3”(用“/W4”)
+cl: 命令行 warning D9025 :正在重写“/MDd”(用“/MTd”)
+cl: 命令行 warning D9025 :正在重写“/W3”(用“/W4”)
+cl: 命令行 warning D9025 :正在重写“/MDd”(用“/MTd”)

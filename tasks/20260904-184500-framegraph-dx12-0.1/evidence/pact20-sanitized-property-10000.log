@@ -1,0 +1,1 @@
+seed=0xF6A123 valid=10000 invalid=10000 dependency/lifetime/allocation/transition/UAV/alias/identity invariants passed

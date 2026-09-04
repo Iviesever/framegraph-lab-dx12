@@ -1,0 +1,23 @@
+build contract passed: 8 targets; shared sources and MSVC policies
+[up-to-date] tests/unit/options_tests.cpp
+[compile] src/app/options.cpp [source changed]
+options.cpp
+D:/program/FrameGraphLab/src/app/options.cpp(28,39): warning C4996: 'std::filesystem::u8path': warning STL4021: The std::filesystem::u8path() overloads are deprecated in C++20. The constructors of std::filesystem::path provide equivalent functionality via construction from u8string, u8string_view, or iterators with value_type char8_t. You can define _SILENCE_CXX20_U8PATH_DEPRECATION_WARNING or _SILENCE_ALL_CXX20_DEPRECATION_WARNINGS to suppress this warning.
+cl: 命令行 warning D9025 :正在重写“/W3”(用“/W4”)
+cl: 命令行 warning D9025 :正在重写“/MDd”(用“/MTd”)
+[link] framegraph_options_tests-debug.exe [explicit rebuild, link inputs changed]
+output: D:/program/FrameGraphLab/.mqb/bin/framegraph_options_tests-debug.exe
+[run] framegraph_options_tests-debug.exe
+PASS default_options
+PASS required_cli
+PASS headless_is_bounded_by_default
+PASS capture_is_bounded_by_default
+PASS adapter_conflict_rejected
+PASS unknown_option_rejected
+PASS missing_value_rejected
+PASS negative_or_junk_number_rejected
+PASS unbounded_or_huge_frames_rejected
+PASS invalid_alias_policy_rejected
+PASS timeout_and_size_bounds
+PASS max_seed_and_explicit_hardware
+cases=12 passed=12 failed=0

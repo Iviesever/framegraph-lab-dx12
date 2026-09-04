@@ -1,0 +1,4 @@
+
+{"schema_version":1,"success":true,"git_sha":"61057208d58d7f0d3b29b5641526700baca003fc","source_clean":false,"backend":"warp","adapter":"Microsoft Basic Render Driver","driver":"10.0.22621.2506","vendor_id":5140,"device_id":140,"software":true,"feature_level":"12.1","width":640,"height":360,"frames":24,"frames_in_flight":3,"debug_enabled":true,"dred_enabled":true,"debug_errors":0,"debug_warnings":0,"debug_corruptions":0,"resize_count":0,"minimize_count":0,"restore_count":0,"hresult":0,"device_removed_reason":0,"failure_code":"","error":"","current_graph":"clear-smoke","current_pass":"Clear","device_diagnostics":"","debug_messages":[]}
+
+native warp clear/present and bounded headless smoke passed

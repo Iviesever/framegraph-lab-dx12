@@ -1,0 +1,5 @@
+Traceback (most recent call last):
+  File "D:\program\FrameGraphLab\tests\d3d12\validate_scene.py", line 25, in <module>
+    assert active == required, active
+           ^^^^^^^^^^^^^^^^^^
+AssertionError: ['ClearProbeA', 'ObserveProbeA', 'InitStatsUav', 'UpdateStatsUav', 'ClearProbeB', 'BlitProbeB', 'Capture', 'Present']

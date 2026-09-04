@@ -1,0 +1,26 @@
+build contract passed: 10 targets; shared sources and MSVC policies
+error: translation unit compilation failed: D:/program/FrameGraphLab/src/d3d12/runtime.cpp
+error: planned MSVC compile action failed
+  MSVC compile invocation failed
+  MSVC compiler returned a non-zero exit code
+cl: 命令行 warning D9025 :正在重写“/W3”(用“/W4”)
+cl: 命令行 warning D9025 :正在重写“/MDd”(用“/MTd”)
+runtime.cpp
+D:/program/FrameGraphLab/src/d3d12/runtime.cpp(31,45): error C2039: "cerr": 不是 "std" 的成员
+C:\Program Files\Microsoft Visual Studio\18\Community\VC\Tools\MSVC\14.51.36231\include\set(22,1): note: 参见“std”的声明
+D:/program/FrameGraphLab/src/d3d12/runtime.cpp(31,45): error C2065: “cerr”: 未声明的标识符
+D:/program/FrameGraphLab/src/d3d12/runtime.cpp(34,26): error C2039: "cerr": 不是 "std" 的成员
+C:\Program Files\Microsoft Visual Studio\18\Community\VC\Tools\MSVC\14.51.36231\include\set(22,1): note: 参见“std”的声明
+D:/program/FrameGraphLab/src/d3d12/runtime.cpp(34,26): error C2065: “cerr”: 未声明的标识符
+D:/program/FrameGraphLab/src/d3d12/runtime.cpp(36,36): error C2039: "cerr": 不是 "std" 的成员
+C:\Program Files\Microsoft Visual Studio\18\Community\VC\Tools\MSVC\14.51.36231\include\set(22,1): note: 参见“std”的声明
+D:/program/FrameGraphLab/src/d3d12/runtime.cpp(36,36): error C2065: “cerr”: 未声明的标识符
+D:/program/FrameGraphLab/src/d3d12/runtime.cpp(36,89): error C2039: "cerr": 不是 "std" 的成员
+C:\Program Files\Microsoft Visual Studio\18\Community\VC\Tools\MSVC\14.51.36231\include\set(22,1): note: 参见“std”的声明
+D:/program/FrameGraphLab/src/d3d12/runtime.cpp(36,89): error C2065: “cerr”: 未声明的标识符
+D:/program/FrameGraphLab/src/d3d12/runtime.cpp(38,42): error C2039: "cerr": 不是 "std" 的成员
+C:\Program Files\Microsoft Visual Studio\18\Community\VC\Tools\MSVC\14.51.36231\include\set(22,1): note: 参见“std”的声明
+D:/program/FrameGraphLab/src/d3d12/runtime.cpp(38,42): error C2065: “cerr”: 未声明的标识符
+D:/program/FrameGraphLab/src/d3d12/runtime.cpp(39,26): error C2039: "cerr": 不是 "std" 的成员
+C:\Program Files\Microsoft Visual Studio\18\Community\VC\Tools\MSVC\14.51.36231\include\set(22,1): note: 参见“std”的声明
+D:/program/FrameGraphLab/src/d3d12/runtime.cpp(39,26): error C2065: “cerr”: 未声明的标识符

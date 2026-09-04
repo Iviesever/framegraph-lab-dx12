@@ -1,0 +1,13 @@
+# Render graph compiler
+
+`GraphBuilder` assigns dense typed `ResourceId` and `PassId` values. They are indices local to one description, not globally unique handles. `GraphDescription` is a plain value that can be produced without a GPU. `GraphCompiler::compile` validates and produces dependencies, stable retained passes and resource lifetimes. `PlanCompiler::compile` extends that output with `TransientAllocator` and `ResourceStatePlanner` into the single `CompiledPlan` consumed by the backend. The public `Expected<T,E>` is a small project-owned value/error type with one unconditional ABI; it avoids compiler/standard-library feature-gate drift.
+
+The validation boundary rejects bad handles, empty/overlong names, unknown enums, descriptor/capability conflicts, duplicate resource declarations within a pass, unsupported access/usage pairs and reads without contents. Descriptions are bounded to 4,096 resources, 4,096 passes, 65,536 usages and 262,144 explicit or resulting dependency edges. Textures are 1–16,384 pixels in each dimension; buffers are nonzero and at most 1 TiB. These are laboratory limits, not a promise that a device can allocate every accepted descriptor.
+
+One pass declares one usage per whole resource. `ReadWrite` is supported only through UAV usage; it reads initialized contents and writes a new logical version. Imported resources supply initial state and whether their contents exist. Only imports may request a final state. Exported resources retain their final producer and preserve contents through graph completion.
+
+Pass declaration order defines logical resource versions. Explicit edges order unrelated work and can expose contradictory ordering as a cycle. Compilation first validates the full description and detects cycles, including unreachable cycles, then culls. No pointer address, clock, random source, filesystem enumeration or unordered container iteration participates.
+
+Schema 1 canonical JSON has stable resources, pass declarations/usages, execution order, culled IDs, dependencies, normalized explicit edges, allocation and barriers. Runtime provenance such as Git SHA is added outside the semantic identity payload. FNV-1a 64-bit identifies the payload; it is a deterministic diagnostic fingerprint, not a security or collision-resistance guarantee. Artifact integrity uses SHA-256 separately. Valid UTF-8 names are preserved; malformed byte sequences are escaped for valid diagnostic JSON.
+
+The public structs are inspectable plan data, not an interchange deserializer or a license to mutate a compiled plan. Build plans through `PlanCompiler` and treat the result as immutable while executing it. A caller must supply truthful memory requirements; the D3D12 backend obtains them from the actual device.

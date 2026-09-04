@@ -1,0 +1,8 @@
+build contract passed: 7 targets; shared sources and MSVC policies
+CMake Error at cmake/BuildManifest.cmake:110 (message):
+  Build manifest drift: framegraph_core LINK_LIBRARIES
+Call Stack (most recent call first):
+  CMakeLists.txt:47 (fgl_verify_targets)
+
+-- Configuring incomplete, errors occurred!
+

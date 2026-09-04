@@ -1,0 +1,5 @@
+Traceback (most recent call last):
+  File "D:\program\FrameGraphLab\tests\d3d12\validate_scene.py", line 44, in <module>
+    assert pixels[0] == pixels[1], "neon scene alias on/off RGBA differs"
+           ^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: neon scene alias on/off RGBA differs

@@ -1,0 +1,5 @@
+Traceback (most recent call last):
+  File "D:\program\FrameGraphLab\tests\d3d12\validate_executor.py", line 25, in <module>
+    assert result.returncode == 0, (command, result.returncode, result.stdout, result.stderr)
+           ^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: (['D:\\program\\FrameGraphLab\\.mqb\\bin\\FrameGraphLab-debug.exe', '--warp', '--headless', '--frames', '8', '--width', '320', '--height', '180', '--scene-seed', '24301', '--aliasing', 'on', '--capture', 'D:\\program\\FrameGraphLab\\artifacts\\executor-validation\\warp-wx7t391l\\on.png', '--rgba', 'D:\\program\\FrameGraphLab\\artifacts\\executor-validation\\warp-wx7t391l\\on.rgba', '--plan', 'D:\\program\\FrameGraphLab\\artifacts\\executor-validation\\warp-wx7t391l\\on-plan.json', '--report', 'D:\\program\\FrameGraphLab\\artifacts\\executor-validation\\warp-wx7t391l\\on.json'], 3221225477, '', '')

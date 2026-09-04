@@ -1,0 +1,8 @@
+
+{"schema_version":1,"success":false,"git_sha":"61057208d58d7f0d3b29b5641526700baca003fc","source_clean":false,"backend":"","adapter":"","driver":"","vendor_id":0,"device_id":0,"software":false,"feature_level":"","width":0,"height":0,"frames":0,"frames_in_flight":3,"debug_enabled":false,"debug_errors":0,"debug_warnings":0,"debug_corruptions":0,"resize_count":0,"minimize_count":0,"restore_count":0,"hresult":0,"device_removed_reason":0,"failure_code":"RuntimeNotReady","error":"native runtime not implemented","debug_messages":[]}
+
+Traceback (most recent call last):
+  File "D:\program\FrameGraphLab\tests\d3d12\runtime_smoke.py", line 16, in <module>
+    assert result.returncode == 0, f"native runtime failed with exit {result.returncode}"
+           ^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: native runtime failed with exit 1

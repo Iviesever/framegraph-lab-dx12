@@ -1,0 +1,8 @@
+[1/8] Building CXX object CMakeFiles\framegraph_core.dir\Release\src\core\barriers.cpp.obj
+[2/8] Linking CXX static library Release\framegraph_core.lib
+[3/8] Linking CXX executable Release\framegraph_compiler_tests.exe
+[4/8] Linking CXX executable Release\framegraph_fuzz.exe
+[5/8] Building CXX object CMakeFiles\framegraph_property.dir\Release\tests\property\graph_sweep.cpp.obj
+[6/8] Building CXX object CMakeFiles\framegraph_planner_tests.dir\Release\tests\unit\planner_tests.cpp.obj
+[7/8] Linking CXX executable Release\framegraph_property.exe
+[8/8] Linking CXX executable Release\framegraph_planner_tests.exe

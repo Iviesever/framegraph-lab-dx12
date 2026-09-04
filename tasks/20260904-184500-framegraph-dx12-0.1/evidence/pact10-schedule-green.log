@@ -1,0 +1,49 @@
+[up-to-date] tests/unit/compiler_tests.cpp
+[compile] src/core/compiler.cpp [source changed]
+compiler.cpp
+[up-to-date] src/core/validation.cpp
+[compile] src/core/serialization.cpp [source changed]
+serialization.cpp
+[link] compiler_tests.exe [explicit rebuild, link inputs changed]
+output: D:/program/FrameGraphLab/.mqb/bin/compiler_tests.exe
+[run] compiler_tests.exe
+PASS empty_graph
+PASS invalid_resource_handle
+PASS invalid_pass_handle
+PASS zero_texture_dimension
+PASS oversized_texture
+PASS invalid_texture_flags
+PASS zero_buffer
+PASS extreme_buffer
+PASS resource_limit
+PASS pass_limit
+PASS name_limit
+PASS duplicate_usage
+PASS conflicting_usage
+PASS illegal_access
+PASS unknown_usage
+PASS unknown_access
+PASS buffer_cannot_be_render_target
+PASS missing_uav_capability
+PASS transient_read_without_producer
+PASS invalid_dead_pass_still_rejected
+PASS imported_read
+PASS uninitialized_import_read
+PASS transient_initial_state_must_be_common
+PASS unwritten_export
+PASS builder_handles_and_bounds
+PASS raw_war_waw_edges
+PASS stable_ready_order
+PASS cycle_diagnostic
+PASS self_cycle
+PASS dead_cycle_rejected
+PASS cull_and_lifetime
+PASS export_root
+PASS present_root_and_import_final
+PASS no_roots_culls_all
+PASS readwrite_uav_hazards
+PASS canonical_identity_repeat_and_change
+PASS canonical_edge_order
+PASS canonical_usage_order
+PASS hash_and_json_escaping
+cases=39 passed=39 failed=0

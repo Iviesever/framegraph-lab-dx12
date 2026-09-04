@@ -1,0 +1,15 @@
+Test project D:/program/FrameGraphLab/build/core-sanitized
+    Start 1: baseline_smoke
+1/5 Test #1: baseline_smoke ...................   Passed    0.02 sec
+    Start 2: compiler_unit
+2/5 Test #2: compiler_unit ....................   Passed    0.03 sec
+    Start 3: property_smoke
+3/5 Test #3: property_smoke ...................   Passed    2.37 sec
+    Start 4: planner_unit
+4/5 Test #4: planner_unit .....................   Passed    0.03 sec
+    Start 5: fuzz_smoke
+5/5 Test #5: fuzz_smoke .......................   Passed    0.27 sec
+
+100% tests passed, 0 tests failed out of 5
+
+Total Test time (real) =   2.72 sec

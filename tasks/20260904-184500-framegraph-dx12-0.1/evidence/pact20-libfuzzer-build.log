@@ -1,0 +1,1 @@
+clang-23: error: unsupported option '-fsanitize=fuzzer' for target 'x86_64-w64-windows-gnu'

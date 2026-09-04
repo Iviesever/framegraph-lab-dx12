@@ -1,0 +1,12 @@
+[0/1] Re-running CMake...
+-- Configuring done (0.1s)
+-- Generating done (0.0s)
+-- Build files have been written to: D:/program/FrameGraphLab/build/core-clang
+[1/9] Building CXX object CMakeFiles/framegraph_core.dir/src/core/validation.cpp.obj
+[2/9] Building CXX object CMakeFiles/framegraph_core.dir/src/core/serialization.cpp.obj
+[3/9] Building CXX object CMakeFiles/framegraph_compiler_tests.dir/tests/unit/compiler_tests.cpp.obj
+[4/9] Building CXX object CMakeFiles/framegraph_core.dir/src/core/compiler.cpp.obj
+[5/9] Linking CXX static library libframegraph_core.a
+[6/9] Building CXX object CMakeFiles/framegraph_property.dir/tests/property/graph_sweep.cpp.obj
+[7/9] Linking CXX executable framegraph_compiler_tests.exe
+[8/9] Linking CXX executable framegraph_property.exe

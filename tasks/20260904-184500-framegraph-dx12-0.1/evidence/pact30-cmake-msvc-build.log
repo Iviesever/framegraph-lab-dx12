@@ -1,0 +1,67 @@
+[0/1] Re-running CMake...
+build contract passed: 10 targets; shared sources and MSVC policies
+-- Configuring done (0.5s)
+-- Generating done (0.0s)
+-- Build files have been written to: D:/program/FrameGraphLab/build/msvc
+[1/36] Building CXX object CMakeFiles\framegraph_core.dir\Debug\src\core\validation.cpp.obj
+cl: 命令行 warning D9025 :正在重写“/Zi”(用“/Z7”)
+[2/36] Building CXX object CMakeFiles\FrameGraphLab.dir\Debug\src\d3d12\window.cpp.obj
+cl: 命令行 warning D9025 :正在重写“/Zi”(用“/Z7”)
+[3/36] Building CXX object CMakeFiles\framegraph_core.dir\Debug\src\core\barriers.cpp.obj
+cl: 命令行 warning D9025 :正在重写“/Zi”(用“/Z7”)
+[4/36] Building CXX object CMakeFiles\framegraph_core.dir\Debug\src\core\allocation.cpp.obj
+cl: 命令行 warning D9025 :正在重写“/Zi”(用“/Z7”)
+[5/36] Building CXX object CMakeFiles\framegraph_smoke.dir\Debug\tests\unit\smoke.cpp.obj
+cl: 命令行 warning D9025 :正在重写“/Zi”(用“/Z7”)
+[6/36] Building CXX object CMakeFiles\FrameGraphLab.dir\Debug\src\app\report.cpp.obj
+cl: 命令行 warning D9025 :正在重写“/Zi”(用“/Z7”)
+[7/36] Building CXX object CMakeFiles\framegraph_core.dir\Debug\src\core\serialization.cpp.obj
+cl: 命令行 warning D9025 :正在重写“/Zi”(用“/Z7”)
+[8/36] Building CXX object CMakeFiles\framegraph_core.dir\Debug\src\core\plan.cpp.obj
+cl: 命令行 warning D9025 :正在重写“/Zi”(用“/Z7”)
+[9/36] Building CXX object CMakeFiles\FrameGraphLab.dir\Debug\src\d3d12\diagnostics.cpp.obj
+cl: 命令行 warning D9025 :正在重写“/Zi”(用“/Z7”)
+[10/36] Building CXX object CMakeFiles\framegraph_plan.dir\Debug\tools\core_plan.cpp.obj
+cl: 命令行 warning D9025 :正在重写“/Zi”(用“/Z7”)
+[11/36] Building CXX object CMakeFiles\framegraph_shader_tests.dir\Debug\src\d3d12\diagnostics.cpp.obj
+cl: 命令行 warning D9025 :正在重写“/Zi”(用“/Z7”)
+[12/36] Building CXX object CMakeFiles\framegraph_fuzz.dir\Debug\tests\property\fuzz_compile.cpp.obj
+cl: 命令行 warning D9025 :正在重写“/Zi”(用“/Z7”)
+[13/36] Building CXX object CMakeFiles\framegraph_core.dir\Debug\src\core\compiler.cpp.obj
+cl: 命令行 warning D9025 :正在重写“/Zi”(用“/Z7”)
+[14/36] Linking CXX executable Debug\framegraph_smoke.exe
+[15/36] Linking CXX static library Debug\framegraph_core.lib
+[16/36] Building CXX object CMakeFiles\framegraph_compiler_tests.dir\Debug\tests\unit\compiler_tests.cpp.obj
+cl: 命令行 warning D9025 :正在重写“/Zi”(用“/Z7”)
+[17/36] Building CXX object CMakeFiles\framegraph_options_tests.dir\Debug\src\app\options.cpp.obj
+cl: 命令行 warning D9025 :正在重写“/Zi”(用“/Z7”)
+D:\program\FrameGraphLab\src\app\options.cpp(28): warning C4996: 'std::filesystem::u8path': warning STL4021: The std::filesystem::u8path() overloads are deprecated in C++20. The constructors of std::filesystem::path provide equivalent functionality via construction from u8string, u8string_view, or iterators with value_type char8_t. You can define _SILENCE_CXX20_U8PATH_DEPRECATION_WARNING or _SILENCE_ALL_CXX20_DEPRECATION_WARNINGS to suppress this warning.
+[18/36] Building CXX object CMakeFiles\framegraph_planner_tests.dir\Debug\tests\unit\planner_tests.cpp.obj
+cl: 命令行 warning D9025 :正在重写“/Zi”(用“/Z7”)
+[19/36] Building CXX object CMakeFiles\FrameGraphLab.dir\Debug\src\app\main.cpp.obj
+cl: 命令行 warning D9025 :正在重写“/Zi”(用“/Z7”)
+[20/36] Building CXX object CMakeFiles\FrameGraphLab.dir\Debug\src\app\options.cpp.obj
+cl: 命令行 warning D9025 :正在重写“/Zi”(用“/Z7”)
+D:\program\FrameGraphLab\src\app\options.cpp(28): warning C4996: 'std::filesystem::u8path': warning STL4021: The std::filesystem::u8path() overloads are deprecated in C++20. The constructors of std::filesystem::path provide equivalent functionality via construction from u8string, u8string_view, or iterators with value_type char8_t. You can define _SILENCE_CXX20_U8PATH_DEPRECATION_WARNING or _SILENCE_ALL_CXX20_DEPRECATION_WARNINGS to suppress this warning.
+[21/36] Building CXX object CMakeFiles\framegraph_property.dir\Debug\tests\property\graph_sweep.cpp.obj
+cl: 命令行 warning D9025 :正在重写“/Zi”(用“/Z7”)
+[22/36] Linking CXX executable Debug\framegraph_fuzz.exe
+[23/36] Linking CXX executable Debug\framegraph_plan.exe
+[24/36] Linking CXX executable Debug\framegraph_compiler_tests.exe
+[25/36] Building CXX object CMakeFiles\framegraph_options_tests.dir\Debug\tests\unit\options_tests.cpp.obj
+cl: 命令行 warning D9025 :正在重写“/Zi”(用“/Z7”)
+[26/36] Building CXX object CMakeFiles\FrameGraphLab.dir\Debug\src\d3d12\shader.cpp.obj
+cl: 命令行 warning D9025 :正在重写“/Zi”(用“/Z7”)
+[27/36] Linking CXX executable Debug\framegraph_planner_tests.exe
+[28/36] Building CXX object CMakeFiles\framegraph_shader_tests.dir\Debug\src\d3d12\shader.cpp.obj
+cl: 命令行 warning D9025 :正在重写“/Zi”(用“/Z7”)
+[29/36] Building CXX object CMakeFiles\FrameGraphLab.dir\Debug\src\d3d12\runtime.cpp.obj
+cl: 命令行 warning D9025 :正在重写“/Zi”(用“/Z7”)
+[30/36] Linking CXX executable Debug\framegraph_property.exe
+[31/36] Building CXX object CMakeFiles\FrameGraphLab.dir\Debug\src\d3d12\context.cpp.obj
+cl: 命令行 warning D9025 :正在重写“/Zi”(用“/Z7”)
+[32/36] Linking CXX executable Debug\framegraph_options_tests.exe
+[33/36] Building CXX object CMakeFiles\framegraph_shader_tests.dir\Debug\tests\d3d12\shader_tests.cpp.obj
+cl: 命令行 warning D9025 :正在重写“/Zi”(用“/Z7”)
+[34/36] Linking CXX executable Debug\FrameGraphLab.exe
+[35/36] Linking CXX executable Debug\framegraph_shader_tests.exe

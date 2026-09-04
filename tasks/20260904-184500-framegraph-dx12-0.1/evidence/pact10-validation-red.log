@@ -1,0 +1,35 @@
+[compile] tests/unit/compiler_tests.cpp [missing cache entry, missing output]
+compiler_tests.cpp
+[compile] src/core/compiler.cpp [missing cache entry, missing output]
+compiler.cpp
+cl: 命令行 warning D9025 :正在重写“/W3”(用“/W4”)
+cl: 命令行 warning D9025 :正在重写“/W3”(用“/W4”)
+[link] compiler_tests.exe [explicit rebuild, missing cache entry, missing output]
+output: D:/program/FrameGraphLab/.mqb/bin/compiler_tests.exe
+[run] compiler_tests.exe
+cases=25 passed=0 failed=25
+FAIL empty_graph: compile failed: compiler not implemented
+FAIL invalid_resource_handle: typed error category at line 43
+FAIL invalid_pass_handle: typed error category at line 43
+FAIL zero_texture_dimension: typed error category at line 43
+FAIL oversized_texture: typed error category at line 43
+FAIL invalid_texture_flags: typed error category at line 43
+FAIL zero_buffer: typed error category at line 43
+FAIL extreme_buffer: typed error category at line 43
+FAIL resource_limit: typed error category at line 43
+FAIL pass_limit: typed error category at line 43
+FAIL name_limit: typed error category at line 43
+FAIL duplicate_usage: typed error category at line 43
+FAIL conflicting_usage: typed error category at line 43
+FAIL illegal_access: typed error category at line 43
+FAIL unknown_usage: typed error category at line 43
+FAIL unknown_access: typed error category at line 43
+FAIL buffer_cannot_be_render_target: typed error category at line 43
+FAIL missing_uav_capability: typed error category at line 43
+FAIL transient_read_without_producer: typed error category at line 43
+FAIL invalid_dead_pass_still_rejected: typed error category at line 43
+FAIL imported_read: compile failed: compiler not implemented
+FAIL uninitialized_import_read: typed error category at line 43
+FAIL transient_initial_state_must_be_common: typed error category at line 43
+FAIL unwritten_export: typed error category at line 43
+FAIL builder_handles_and_bounds: r && r->value == 0 at line 94

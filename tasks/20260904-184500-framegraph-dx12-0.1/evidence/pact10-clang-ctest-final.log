@@ -1,0 +1,11 @@
+Test project D:/program/FrameGraphLab/build/core-clang
+    Start 1: baseline_smoke
+1/3 Test #1: baseline_smoke ...................   Passed    0.01 sec
+    Start 2: compiler_unit
+2/3 Test #2: compiler_unit ....................   Passed    0.01 sec
+    Start 3: property_smoke
+3/3 Test #3: property_smoke ...................   Passed    0.10 sec
+
+100% tests passed, 0 tests failed out of 3
+
+Total Test time (real) =   0.13 sec
