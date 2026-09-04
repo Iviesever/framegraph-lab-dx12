@@ -1,0 +1,9 @@
+-- The CXX compiler identification is Clang 23.1.0
+-- Detecting CXX compiler ABI info
+-- Detecting CXX compiler ABI info - done
+-- Check for working CXX compiler: D:/program/FrameGraphLab/.tools/llvm-mingw-20260826-ucrt-x86_64/bin/clang++.exe - skipped
+-- Detecting CXX compile features
+-- Detecting CXX compile features - done
+-- Configuring done (0.9s)
+-- Generating done (0.0s)
+-- Build files have been written to: D:/program/FrameGraphLab/build/core-clang

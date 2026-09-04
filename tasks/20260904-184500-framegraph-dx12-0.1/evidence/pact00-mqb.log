@@ -1,0 +1,6 @@
+[compile] tests/unit/smoke.cpp [missing cache entry, missing output]
+smoke.cpp
+[link] smoke.exe [explicit rebuild, missing cache entry, missing output]
+output: D:/program/FrameGraphLab/.mqb/bin/smoke.exe
+[run] smoke.exe
+baseline C++23 toolchain smoke passed

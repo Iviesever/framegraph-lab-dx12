@@ -1,0 +1,25 @@
+{
+  "version": 6,
+  "cmakeMinimumRequired": { "major": 3, "minor": 28, "patch": 0 },
+  "configurePresets": [
+    { "name": "msvc-debug", "generator": "Ninja Multi-Config", "architecture": { "value": "x64", "strategy": "external" }, "binaryDir": "${sourceDir}/build/msvc", "cacheVariables": { "CMAKE_CXX_COMPILER": "cl", "BUILD_TESTING": "ON" } },
+    { "name": "msvc-release", "inherits": "msvc-debug" },
+    { "name": "core-clang", "generator": "Ninja", "binaryDir": "${sourceDir}/build/core-clang", "cacheVariables": { "CMAKE_BUILD_TYPE": "Debug", "CMAKE_CXX_COMPILER": "clang++", "FRAMEGRAPH_BUILD_D3D12": "OFF", "BUILD_TESTING": "ON" } },
+    { "name": "core-gcc", "inherits": "core-clang", "binaryDir": "${sourceDir}/build/core-gcc", "cacheVariables": { "CMAKE_CXX_COMPILER": "g++" } },
+    { "name": "core-sanitized", "inherits": "core-clang", "binaryDir": "${sourceDir}/build/core-sanitized", "cacheVariables": { "FRAMEGRAPH_SANITIZERS": "ON" } }
+  ],
+  "buildPresets": [
+    { "name": "msvc-debug", "configurePreset": "msvc-debug", "configuration": "Debug" },
+    { "name": "msvc-release", "configurePreset": "msvc-release", "configuration": "Release" },
+    { "name": "core-clang", "configurePreset": "core-clang" },
+    { "name": "core-gcc", "configurePreset": "core-gcc" },
+    { "name": "core-sanitized", "configurePreset": "core-sanitized" }
+  ],
+  "testPresets": [
+    { "name": "msvc-debug", "configurePreset": "msvc-debug", "configuration": "Debug", "output": { "outputOnFailure": true } },
+    { "name": "msvc-release", "configurePreset": "msvc-release", "configuration": "Release", "output": { "outputOnFailure": true } },
+    { "name": "core-clang", "configurePreset": "core-clang", "output": { "outputOnFailure": true } },
+    { "name": "core-gcc", "configurePreset": "core-gcc", "output": { "outputOnFailure": true } },
+    { "name": "core-sanitized", "configurePreset": "core-sanitized", "output": { "outputOnFailure": true } }
+  ]
+}

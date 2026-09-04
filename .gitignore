@@ -1,0 +1,8 @@
+/build/
+/artifacts/
+/.mqb/
+/.tools/
+/CMakeUserPresets.json
+*.user
+*.pdb
+__pycache__/
