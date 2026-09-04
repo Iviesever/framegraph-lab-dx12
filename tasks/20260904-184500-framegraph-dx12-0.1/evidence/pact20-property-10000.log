@@ -1,0 +1,18 @@
+[compile] tests/property/graph_sweep.cpp [compiler options changed, source changed, dependency changed]
+graph_sweep.cpp
+[compile] src/core/compiler.cpp [compiler options changed]
+compiler.cpp
+[compile] src/core/validation.cpp [compiler options changed]
+validation.cpp
+[compile] src/core/serialization.cpp [compiler options changed]
+serialization.cpp
+[compile] src/core/allocation.cpp [compiler options changed]
+allocation.cpp
+[compile] src/core/barriers.cpp [compiler options changed]
+barriers.cpp
+[compile] src/core/plan.cpp [compiler options changed]
+plan.cpp
+[link] property_sweep.exe [explicit rebuild, link inputs changed]
+output: D:/program/FrameGraphLab/.mqb/bin/property_sweep.exe
+[run] property_sweep.exe
+seed=0xF6A123 valid=10000 invalid=10000 dependency/lifetime/allocation/transition/UAV/alias/identity invariants passed

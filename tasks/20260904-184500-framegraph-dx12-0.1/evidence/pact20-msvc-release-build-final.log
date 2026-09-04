@@ -1,0 +1,4 @@
+[1/4] Building CXX object CMakeFiles\framegraph_fuzz.dir\Release\tests\property\fuzz_compile.cpp.obj
+[2/4] Linking CXX executable Release\framegraph_fuzz.exe
+[3/4] Building CXX object CMakeFiles\framegraph_property.dir\Release\tests\property\graph_sweep.cpp.obj
+[4/4] Linking CXX executable Release\framegraph_property.exe

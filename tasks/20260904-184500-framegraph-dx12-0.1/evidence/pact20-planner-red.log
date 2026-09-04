@@ -1,0 +1,44 @@
+[compile] tests/unit/planner_tests.cpp [missing cache entry, missing output]
+planner_tests.cpp
+[compile] src/core/compiler.cpp [dependency changed]
+compiler.cpp
+[compile] src/core/validation.cpp [dependency changed]
+validation.cpp
+[compile] src/core/serialization.cpp [dependency changed]
+serialization.cpp
+[compile] src/core/allocation.cpp [missing cache entry, missing output]
+allocation.cpp
+[compile] src/core/barriers.cpp [missing cache entry, missing output]
+barriers.cpp
+[compile] src/core/plan.cpp [missing cache entry, missing output]
+plan.cpp
+[link] planner_tests.exe [explicit rebuild, missing cache entry, missing output]
+output: D:/program/FrameGraphLab/.mqb/bin/planner_tests.exe
+[run] planner_tests.exe
+cases=26 passed=0 failed=26
+FAIL disjoint_lifetimes_share_slot: plan compiler not implemented
+FAIL reference_mode_disjoint_bytes: plan compiler not implemented
+FAIL overlap_cannot_alias: plan compiler not implemented
+FAIL export_cannot_be_clobbered: plan compiler not implemented
+FAIL offset_alignment: plan compiler not implemented
+FAIL compatibility_separates_heaps: plan compiler not implemented
+FAIL dedicated_never_reused: plan compiler not implemented
+FAIL size_growth_uses_new_slot: plan compiler not implemented
+FAIL heap_classes_are_separate: plan compiler not implemented
+FAIL imports_are_not_allocated: plan compiler not implemented
+FAIL unused_transients_are_not_allocated: plan compiler not implemented
+FAIL requirement_count_checked: result.error().code == error at line 18
+FAIL zero_size_checked: result.error().code == error at line 18
+FAIL zero_alignment_checked: result.error().code == error at line 18
+FAIL non_power_two_alignment_checked: result.error().code == error at line 18
+FAIL class_descriptor_mismatch_checked: result.error().code == error at line 18
+FAIL size_rounding_overflow_checked: result.error().code == error at line 18
+FAIL sum_overflow_checked: result.error().code == error at line 18
+FAIL alias_activation_precedes_transition: plan compiler not implemented
+FAIL equal_state_has_no_redundant_transition: plan compiler not implemented
+FAIL uav_write_then_read_orders: plan compiler not implemented
+FAIL uav_read_read_needs_no_ordering: plan compiler not implemented
+FAIL imported_required_final_transition: plan compiler not implemented
+FAIL unused_import_final_transition: plan compiler not implemented
+FAIL common_present_are_native_equivalent: plan compiler not implemented
+FAIL execution_identity_covers_policy_and_barriers: plan compiler not implemented

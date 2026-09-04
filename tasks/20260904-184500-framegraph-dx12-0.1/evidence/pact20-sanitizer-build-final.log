@@ -1,0 +1,8 @@
+[0/1] Re-running CMake...
+-- Configuring done (0.1s)
+-- Generating done (0.0s)
+-- Build files have been written to: D:/program/FrameGraphLab/build/core-sanitized
+[1/5] Building CXX object CMakeFiles/framegraph_fuzz.dir/tests/property/fuzz_compile.cpp.obj
+[2/5] Linking CXX executable framegraph_fuzz.exe
+[3/5] Building CXX object CMakeFiles/framegraph_property.dir/tests/property/graph_sweep.cpp.obj
+[4/5] Linking CXX executable framegraph_property.exe

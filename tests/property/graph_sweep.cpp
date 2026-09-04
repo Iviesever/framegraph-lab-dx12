@@ -1,4 +1,5 @@
 #include "../unit/test_support.hpp"
+#include "plan_oracle.hpp"
 #include <algorithm>
 #include <charconv>
 #include <random>
@@ -22,6 +23,12 @@ GraphDescription generate(std::mt19937& rng) {
         g.passes.push_back({"work" + std::to_string(i), uses, rng() % 4 == 0});
     }
     g.passes.back().side_effect = true;
+    // Fresh late resources produce both alias opportunities and partial-size reuse.
+    for (unsigned i = 0, n = 1 + rng() % 4; i < n; ++i) {
+        const auto r = static_cast<std::uint32_t>(g.resources.size());
+        g.resources.push_back(test::texture("scratch" + std::to_string(i)));
+        g.passes.push_back({"scratch-pass" + std::to_string(i), {test::write(r)}, true});
+    }
     for (unsigned i = 0; i < 5; ++i) {
         auto a = static_cast<std::uint32_t>(rng() % g.passes.size());
         auto b = static_cast<std::uint32_t>(rng() % g.passes.size());
@@ -29,6 +36,16 @@ GraphDescription generate(std::mt19937& rng) {
         if (a != b) g.ordering.push_back({PassId{a}, PassId{b}});
     }
     return g;
+}
+
+std::vector<MemoryRequirement> requirements(const GraphDescription& g, std::mt19937& rng) {
+    std::vector<MemoryRequirement> result;
+    for (const auto& r : g.resources) {
+        const auto* t = std::get_if<TextureDesc>(&r.descriptor);
+        const auto type = !t ? HeapClass::Buffer : t->render_target || t->depth_stencil ? HeapClass::RtDsTexture : HeapClass::Texture;
+        result.push_back({1024 + rng() % 65536, std::uint64_t{1} << (rng() % 17), type, rng() % 3, rng() % 11 == 0});
+    }
+    return result;
 }
 
 // Deliberately quadratic pairwise oracle: no production hazard scan or topo helpers.
@@ -108,6 +125,39 @@ int main(int argc, char** argv) {
     try {
         for (unsigned i = 0; i < count; ++i) {
             auto g = generate(rng); verify(g, test::compile(g));
+            // Vary buffer/texture heap class and UAV/read-write ordering without
+            // reusing production conversion helpers in the generator or oracle.
+            auto device_graph = g;
+            for (std::uint32_t r = 0; r < device_graph.resources.size(); ++r) {
+                const auto kind = rng() % 4;
+                if (kind == 0 || kind == 2) {
+                    if (kind == 0)
+                    device_graph.resources[r].descriptor = BufferDesc{65536, true};
+                    else device_graph.resources[r].descriptor = TextureDesc{64, 32, Format::Rgba16Float, false, false, true};
+                    for (auto& pass : device_graph.passes) for (auto& use : pass.usages) if (use.resource.value == r) use.usage = Usage::UnorderedAccess;
+                } else if (kind == 1) {
+                    device_graph.resources[r].descriptor = TextureDesc{64, 32, Format::D32Float, false, true, false};
+                    for (auto& pass : device_graph.passes) for (auto& use : pass.usages) if (use.resource.value == r)
+                        use.usage = use.access == ResourceAccess::Read ? Usage::DepthRead : Usage::DepthWrite;
+                }
+                if (rng() % 7 == 0) {
+                    auto& desc = device_graph.resources[r]; desc.imported = desc.initialized = true;
+                    desc.initial_state = ResourceState::CopySource; desc.final_state = ResourceState::CopySource;
+                }
+            }
+            std::vector<bool> initialized(device_graph.resources.size());
+            for (auto& pass : device_graph.passes) for (auto& use : pass.usages) {
+                if (use.usage == Usage::UnorderedAccess && use.access == ResourceAccess::Write && initialized[use.resource.value] && rng() % 2)
+                    use.access = ResourceAccess::ReadWrite;
+                if (use.access != ResourceAccess::Read) initialized[use.resource.value] = true;
+            }
+            const auto req = requirements(device_graph, rng);
+            const auto plan = PlanCompiler::compile(device_graph, req); CHECK(plan);
+            property::verify_plan(*plan, req);
+            const auto reference = PlanCompiler::compile(device_graph, req, false); CHECK(reference);
+            property::verify_plan(*reference, req);
+            const auto repeat = PlanCompiler::compile(device_graph, req); CHECK(repeat);
+            CHECK(canonical_json(*plan) == canonical_json(*repeat));
             auto invalid = g;
             switch (i % 3) {
             case 0:
@@ -122,6 +172,6 @@ int main(int argc, char** argv) {
                 test::error(invalid, ErrorCode::InvalidUsage); break;
             }
         }
-        std::cout << "seed=0xF6A123 valid=" << count << " invalid=" << count << " dependency/lifetime/identity invariants passed\n";
+        std::cout << "seed=0xF6A123 valid=" << count << " invalid=" << count << " dependency/lifetime/allocation/transition/UAV/alias/identity invariants passed\n";
     } catch (const std::exception& e) { std::cerr << "property failure: " << e.what() << '\n'; return 1; }
 }

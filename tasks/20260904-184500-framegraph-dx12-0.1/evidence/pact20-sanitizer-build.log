@@ -1,0 +1,15 @@
+[1/15] Building CXX object CMakeFiles/framegraph_smoke.dir/tests/unit/smoke.cpp.obj
+[2/15] Building CXX object CMakeFiles/framegraph_core.dir/src/core/validation.cpp.obj
+[3/15] Building CXX object CMakeFiles/framegraph_core.dir/src/core/serialization.cpp.obj
+[4/15] Building CXX object CMakeFiles/framegraph_core.dir/src/core/barriers.cpp.obj
+[5/15] Linking CXX executable framegraph_smoke.exe
+[6/15] Building CXX object CMakeFiles/framegraph_core.dir/src/core/plan.cpp.obj
+[7/15] Building CXX object CMakeFiles/framegraph_core.dir/src/core/allocation.cpp.obj
+[8/15] Building CXX object CMakeFiles/framegraph_compiler_tests.dir/tests/unit/compiler_tests.cpp.obj
+[9/15] Building CXX object CMakeFiles/framegraph_core.dir/src/core/compiler.cpp.obj
+[10/15] Linking CXX static library libframegraph_core.a
+[11/15] Building CXX object CMakeFiles/framegraph_planner_tests.dir/tests/unit/planner_tests.cpp.obj
+[12/15] Linking CXX executable framegraph_compiler_tests.exe
+[13/15] Linking CXX executable framegraph_planner_tests.exe
+[14/15] Building CXX object CMakeFiles/framegraph_property.dir/tests/property/graph_sweep.cpp.obj
+[15/15] Linking CXX executable framegraph_property.exe
