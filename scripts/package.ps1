@@ -60,7 +60,8 @@ git archive --format=zip --output=$sourceZip HEAD
 if($LASTEXITCODE -ne 0){throw 'git archive failed'}
 $packages=@(Get-Item $winZip,$sourceZip|ForEach-Object{Entry $_ $projectRoot})
 $innerHash=(Get-FileHash -LiteralPath (Join-Path $stage 'DELIVERY_MANIFEST.json') -Algorithm SHA256).Hash.ToLowerInvariant()
-$outer=[ordered]@{schema_version=1;product='FrameGraphLab';version='0.1.0';git_sha=$head;source_clean=$true;source_only_github_release=$false;binary_upload_authorized=$true;github_release_assets=@([IO.Path]::GetRelativePath($projectRoot,$winZip).Replace('\','/'),[IO.Path]::GetRelativePath($projectRoot,$winZip).Replace('\','/')+'.sha256','artifacts/release/DELIVERY_MANIFEST.json');inner_manifest_sha256=$innerHash;packages=$packages}
+$winRelative=[IO.Path]::GetRelativePath($projectRoot,$winZip).Replace('\','/')
+$outer=[ordered]@{schema_version=1;product='FrameGraphLab';version='0.1.0';git_sha=$head;source_clean=$true;source_only_github_release=$false;binary_upload_authorized=$true;github_release_assets=@($winRelative,($winRelative+'.sha256'),'artifacts/release/DELIVERY_MANIFEST.json');inner_manifest_sha256=$innerHash;packages=$packages}
 $outerPath=Join-Path $releaseRoot 'DELIVERY_MANIFEST.json'
 [IO.File]::WriteAllText($outerPath,($outer|ConvertTo-Json -Depth 8))
 foreach($package in $packages){$name=[IO.Path]::GetFileName($package.path);[IO.File]::WriteAllText((Join-Path $releaseRoot ($name+'.sha256')),($package.sha256+' *'+$name+"`n"))}
