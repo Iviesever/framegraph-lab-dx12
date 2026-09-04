@@ -1,0 +1,9 @@
+[compile] tests/property/graph_sweep.cpp [missing cache entry, missing output]
+graph_sweep.cpp
+[up-to-date] src/core/compiler.cpp
+[up-to-date] src/core/validation.cpp
+[up-to-date] src/core/serialization.cpp
+[link] property_sweep.exe [explicit rebuild, missing cache entry, missing output]
+output: D:/program/FrameGraphLab/.mqb/bin/property_sweep.exe
+[run] property_sweep.exe
+seed=16163107 valid=256 invalid=256 dependency/lifetime/identity invariants passed
