@@ -1,0 +1,3 @@
+PASS adapter: UnsupportedAdapter; HRESULT=-2005270524; frames=0
+PASS watchdog: WatchdogTimeout; HRESULT=-2147467259; frames=6
+PASS CLI invalid frame count: typed configuration failure

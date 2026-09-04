@@ -16,6 +16,10 @@ if ($LASTEXITCODE -ne 0) { throw 'Build contract check failed' }
 $manifest = Get-Content -LiteralPath 'build-manifest.json' -Raw | ConvertFrom-Json -AsHashtable
 if (-not $manifest.targets.ContainsKey($Target)) { throw "Unknown target: $Target" }
 $definition = $manifest.targets[$Target]
+if ($Target -eq 'app') {
+    python tools/write_revision.py
+    if ($LASTEXITCODE -ne 0) { throw 'Revision generation failed' }
+}
 $sources = @($definition.sources)
 foreach ($group in $definition.groups) { $sources += @($manifest.groups[$group]) }
 if (-not $sources.Count) { throw 'Target has no source files' }

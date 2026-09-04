@@ -1,0 +1,13 @@
+# PACT-40 executable contract before production changes
+
+Replace the temporary clear path with `CompiledPlan` execution. Keep dependency, lifetime, allocation and transition/UAV/activation decisions entirely in Core. Backend only maps descriptors/enums, creates objects and records the plan. Add a deterministic GPU validation graph before the full PACT-50 scene so real placed-resource reuse and readback can be isolated.
+
+Acceptance first: invoke alias-on and alias-off at the same adapter/seed/frame/size, require actual CreateHeap/CreatePlacedResource counts, nonzero reuse events in on mode, zero reuse events in off mode, correct activation counts, matching predicted/created heap sizes, parsed plan/report, completed RGBA readback and exact byte parity. Fail closed on undeclared callback access and zero capture deadline. This must fail against the current PACT-30 clear path, which creates none of these outputs.
+
+Files: src/d3d12/arena.*, executor.*, capture.*; src/app/probe_graph.*; tests/d3d12/validate_executor.py. Add every C++ source/group to build-manifest.json and regenerate mqb.json. Local compilation/linking remains MQB. Emit canonical plan with Git metadata outside identity; runtime report distinguishes transient logical/committed/planned/actual heap bytes and per-frame versus all-frame arena totals.
+
+Resource contract: query GetResourceAllocationInfo with native descriptor Alignment=0, no MSAA and default 64-KiB placement. Validate actual requirement alignment and resource capabilities before Core compilation. Separate RT/DS/non-RT texture/buffer heap classes. Create one arena per frame context. Imports borrow the currently acquired backbuffer and owned readback buffer; they never become transient allocations. Drain fences and destroy old arenas before ResizeBuffers/recompile. Normal frames reuse the compiled graph.
+
+Execution contract: plan first-use activation, transitions, UAV and epilogues are emitted in stored order. Pass context exposes only resources listed in that pass. Newly activated RT/DS resources receive full clears. Timestamp query pairs and per-frame resolve/readback buffers use the same frame fence. Readback copies are declared graph usages before final Present; capture waits the completing frame and strips row pitch before hashing/writing WIC PNG. No implicit full-queue flush during ordinary frames.
+
+The validation graph can use sequential RT clear/copy work to force A→B aliasing and a small UAV buffer fixture for real UAV ordering. It is an executor probe, not the final visual demo. PACT-50 follows with the required procedural depth/HDR/bloom/tone-map scene using the same executor.

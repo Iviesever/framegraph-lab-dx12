@@ -7,11 +7,11 @@
 | Property | 10,000 valid / 10,000 invalid, independent invariants | Passed final MSVC Release and Clang ASan+UBSan |
 | Sanitizers | ASan and UBSan execution | Passed CTest 6/6 and 10k + 10k sweep |
 | Determinism | repeated byte-identical canonical plans | Passed full-plan sweeps, fresh processes, parsed JSON and MSVC/Clang equality |
-| Runtime | hardware interactive, WARP headless, adapter report | Pending |
+| Runtime | hardware interactive, WARP headless, adapter report | PACT-30 clear/present passed; full scene remains pending |
 | Barriers/alias | real heap/resource counts, on/off byte parity | Pending |
-| Debug | error 0 / corruption 0 / unclassified warning 0 | Pending |
+| Debug | error 0 / corruption 0 / unclassified warning 0 | 0/0/0 in hardware/WARP/resize clear runs; full executor/scene pending |
 | Stress | 1,000 WARP + hardware frames; resize; minimize/restore | Pending |
-| Negative | shader, unsupported adapter, invalid graph, timeout | Pending |
+| Negative | shader, unsupported adapter, invalid graph, timeout | Shader file/entry/compiler, adapter, watchdog, CLI passed; capture/executor negatives pending |
 | Capture | seed/frame/camera, dimensions/color/hash, PNG | Pending |
 | Inspector | actual browser desktop/narrow, selection/highlight, console | Pending |
 | Package | fresh unzip 240-frame WARP smoke, JSON/PNG/alias/debug | Pending |

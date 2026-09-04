@@ -9,7 +9,8 @@
     "ltcg": false,
     "include_dirs": [
       "include",
-      "src"
+      "src",
+      "artifacts/generated"
     ],
     "compiler_args": [
       "/EHsc",
@@ -179,6 +180,77 @@
         ]
       }
     },
+    "options_tests-debug": {
+      "build": {
+        "configuration": "debug",
+        "runtime": "MTd",
+        "defines": [],
+        "compiler_args": [
+          "/Od",
+          "/Z7",
+          "/Ob0",
+          "/RTC1"
+        ],
+        "subsystem": "console",
+        "linker_args": [
+          "/DEBUG:FULL",
+          "/INCREMENTAL:NO"
+        ],
+        "libraries": [
+          "kernel32"
+        ]
+      }
+    },
+    "app-debug": {
+      "build": {
+        "configuration": "debug",
+        "runtime": "MTd",
+        "defines": [],
+        "compiler_args": [
+          "/Od",
+          "/Z7",
+          "/Ob0",
+          "/RTC1"
+        ],
+        "subsystem": "console",
+        "linker_args": [
+          "/DEBUG:FULL",
+          "/INCREMENTAL:NO"
+        ],
+        "libraries": [
+          "kernel32",
+          "d3d12",
+          "dxgi",
+          "d3dcompiler",
+          "windowscodecs",
+          "ole32",
+          "user32"
+        ]
+      }
+    },
+    "shader_tests-debug": {
+      "build": {
+        "configuration": "debug",
+        "runtime": "MTd",
+        "defines": [],
+        "compiler_args": [
+          "/Od",
+          "/Z7",
+          "/Ob0",
+          "/RTC1"
+        ],
+        "subsystem": "console",
+        "linker_args": [
+          "/DEBUG:FULL",
+          "/INCREMENTAL:NO"
+        ],
+        "libraries": [
+          "kernel32",
+          "d3dcompiler",
+          "user32"
+        ]
+      }
+    },
     "release": {
       "build": {
         "configuration": "release",
@@ -321,6 +393,80 @@
         ],
         "libraries": [
           "kernel32"
+        ]
+      }
+    },
+    "options_tests-release": {
+      "build": {
+        "configuration": "release",
+        "runtime": "MT",
+        "defines": [
+          "NDEBUG"
+        ],
+        "compiler_args": [
+          "/O2",
+          "/Ob2"
+        ],
+        "subsystem": "console",
+        "linker_args": [
+          "/OPT:REF",
+          "/OPT:ICF",
+          "/INCREMENTAL:NO"
+        ],
+        "libraries": [
+          "kernel32"
+        ]
+      }
+    },
+    "app-release": {
+      "build": {
+        "configuration": "release",
+        "runtime": "MT",
+        "defines": [
+          "NDEBUG"
+        ],
+        "compiler_args": [
+          "/O2",
+          "/Ob2"
+        ],
+        "subsystem": "console",
+        "linker_args": [
+          "/OPT:REF",
+          "/OPT:ICF",
+          "/INCREMENTAL:NO"
+        ],
+        "libraries": [
+          "kernel32",
+          "d3d12",
+          "dxgi",
+          "d3dcompiler",
+          "windowscodecs",
+          "ole32",
+          "user32"
+        ]
+      }
+    },
+    "shader_tests-release": {
+      "build": {
+        "configuration": "release",
+        "runtime": "MT",
+        "defines": [
+          "NDEBUG"
+        ],
+        "compiler_args": [
+          "/O2",
+          "/Ob2"
+        ],
+        "subsystem": "console",
+        "linker_args": [
+          "/OPT:REF",
+          "/OPT:ICF",
+          "/INCREMENTAL:NO"
+        ],
+        "libraries": [
+          "kernel32",
+          "d3dcompiler",
+          "user32"
         ]
       }
     }

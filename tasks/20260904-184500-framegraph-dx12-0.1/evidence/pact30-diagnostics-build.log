@@ -1,0 +1,60 @@
+build contract passed: 10 targets; shared sources and MSVC policies
+[compile] src/app/main.cpp [compiler options changed, dependency changed]
+main.cpp
+[compile] src/core/compiler.cpp [compiler options changed]
+compiler.cpp
+[compile] src/core/validation.cpp [compiler options changed]
+validation.cpp
+[compile] src/core/serialization.cpp [compiler options changed]
+serialization.cpp
+cl: 命令行 warning D9025 :正在重写“/W3”(用“/W4”)
+cl: 命令行 warning D9025 :正在重写“/MDd”(用“/MTd”)
+cl: 命令行 warning D9025 :正在重写“/W3”(用“/W4”)
+cl: 命令行 warning D9025 :正在重写“/MDd”(用“/MTd”)
+cl: 命令行 warning D9025 :正在重写“/W3”(用“/W4”)
+cl: 命令行 warning D9025 :正在重写“/MDd”(用“/MTd”)
+cl: 命令行 warning D9025 :正在重写“/W3”(用“/W4”)
+cl: 命令行 warning D9025 :正在重写“/MDd”(用“/MTd”)
+cl: 命令行 warning D9025 :正在重写“/W3”(用“/W4”)
+[compile] src/core/allocation.cpp [compiler options changed]
+allocation.cpp
+cl: 命令行 warning D9025 :正在重写“/MDd”(用“/MTd”)
+[compile] src/core/barriers.cpp [compiler options changed]
+barriers.cpp
+cl: 命令行 warning D9025 :正在重写“/W3”(用“/W4”)
+[compile] src/core/plan.cpp [compiler options changed]
+plan.cpp
+cl: 命令行 warning D9025 :正在重写“/MDd”(用“/MTd”)
+cl: 命令行 warning D9025 :正在重写“/W3”(用“/W4”)
+cl: 命令行 warning D9025 :正在重写“/MDd”(用“/MTd”)
+[compile] src/app/options.cpp [compiler options changed]
+options.cpp
+D:/program/FrameGraphLab/src/app/options.cpp(28,39): warning C4996: 'std::filesystem::u8path': warning STL4021: The std::filesystem::u8path() overloads are deprecated in C++20. The constructors of std::filesystem::path provide equivalent functionality via construction from u8string, u8string_view, or iterators with value_type char8_t. You can define _SILENCE_CXX20_U8PATH_DEPRECATION_WARNING or _SILENCE_ALL_CXX20_DEPRECATION_WARNINGS to suppress this warning.
+[compile] src/app/report.cpp [compiler options changed, source changed, dependency changed]
+report.cpp
+cl: 命令行 warning D9025 :正在重写“/W3”(用“/W4”)
+cl: 命令行 warning D9025 :正在重写“/MDd”(用“/MTd”)
+cl: 命令行 warning D9025 :正在重写“/W3”(用“/W4”)
+cl: 命令行 warning D9025 :正在重写“/MDd”(用“/MTd”)
+[compile] src/d3d12/diagnostics.cpp [compiler options changed, source changed, dependency changed]
+diagnostics.cpp
+cl: 命令行 warning D9025 :正在重写“/W3”(用“/W4”)
+cl: 命令行 warning D9025 :正在重写“/MDd”(用“/MTd”)
+[compile] src/d3d12/shader.cpp [compiler options changed, dependency changed]
+shader.cpp
+cl: 命令行 warning D9025 :正在重写“/W3”(用“/W4”)
+cl: 命令行 warning D9025 :正在重写“/MDd”(用“/MTd”)
+[compile] src/d3d12/runtime.cpp [compiler options changed, source changed, dependency changed]
+runtime.cpp
+cl: 命令行 warning D9025 :正在重写“/W3”(用“/W4”)
+cl: 命令行 warning D9025 :正在重写“/MDd”(用“/MTd”)
+[compile] src/d3d12/window.cpp [compiler options changed, dependency changed]
+window.cpp
+cl: 命令行 warning D9025 :正在重写“/W3”(用“/W4”)
+cl: 命令行 warning D9025 :正在重写“/MDd”(用“/MTd”)
+cl: 命令行 warning D9025 :正在重写“/W3”(用“/W4”)
+[compile] src/d3d12/context.cpp [compiler options changed, source changed, dependency changed]
+context.cpp
+cl: 命令行 warning D9025 :正在重写“/MDd”(用“/MTd”)
+[link] FrameGraphLab-debug.exe [explicit rebuild, link inputs changed]
+output: D:/program/FrameGraphLab/.mqb/bin/FrameGraphLab-debug.exe

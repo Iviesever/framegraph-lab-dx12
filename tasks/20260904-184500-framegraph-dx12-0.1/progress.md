@@ -1,6 +1,6 @@
 # Persistent progress
 
-Started 2026-09-04 18:45 UTC+8. Current PACT: 20 completed locally; next PACT: 30.
+Started 2026-09-04 18:45 UTC+8. Current PACT: 30 completed locally; next PACT: 40.
 
 - Goal file read in full; original copied into task directory.
 - Target directory was absent and created without overwriting files. No ancestor `.agents` folder was present at D:/ or D:/program; repository rules now exist.
@@ -44,3 +44,15 @@ Reread AGENTS/rules/contract/blueprint/progress/handoff and fresh-fetched. Local
 Build supplement implemented: `build-manifest.json` is the sole source/policy inventory; generated strict `mqb.json` provides 7 existing targets/profiles and scripts/build.ps1 dispatches actual MQB compilation/link/archives. CMake consumes the same manifest and rejects target/global flag drift. Python checks reject missing/unlisted sources, policy changes and duplicate keys. MQB default plan entry and repeat incremental no-op were verified. Both tools resolve installed MSVC 14.51.36231. Raw compiler-PDB `/Zi` is explicitly unsupported by MQB 5.4, so both routes use `/Z7` instead. Static CRT policies now align MTd/MT.
 
 Build supplement verification: fresh MQB Core/static + compiler/planner/property/plan commands passed; CMake MSVC and Clang CTest 8/8 passed; installed Clang Core exported package compiled and ran a separate consumer using transitive C++23. No source behavior changed except making an already-empty optional initializer explicit to remove Clang aggregate warnings. All logs are evidence/build-contract-*. Supplement checkpoint precedes PACT-30 and does not repeat earlier PACT work.
+
+Build supplement pushed SHA: `61057208d58d7f0d3b29b5641526700baca003fc`.
+
+## PACT-30
+
+Native Win32/DXGI/D3D12 device, explicit hardware/WARP/auto selection, hidden-window headless mode, 3 frame allocators/lists/fence values, bounded waits/watchdog, resize/RTV rebuilding and zero-size suspension are implemented. COM/event/window/class are RAII. Debug Layer is enabled before device creation in both configurations; DRED capability is enabled when available. Failure reports retain HRESULT, removed reason, current graph/pass and available diagnostics. Shader errors retain file/entry/target/compiler output.
+
+RED/GREEN: 12 typed CLI cases and 4 shader cases failed before implementation, then all passed. Native acceptance failed against RuntimeNotReady stub, then passed on real hardware and WARP. Windows CTest now 10/10 (86 unit cases across compiler/planner/options/shader); portable Core/CLI Clang CTest 9/9. MQB Debug and Release native builds passed; Release WARP smoke passed.
+
+Hardware: NVIDIA GeForce RTX 4070 Laptop GPU, DXGI driver 31.0.15.5161, feature level 12.2. WARP: Microsoft Basic Render Driver, 10.0.22621.2506, feature level 12.1. Both final Debug runs rendered/presented 24 frames at 640x360 with 3 frames in flight, Debug Layer Error/Warning/Corruption 0/0/0 and DRED enabled. Visible hardware 60-frame run at 1280x720 completed 3 resizes, 1 minimize and 1 restore, also 0/0/0. Typed unsupported-adapter, watchdog and invalid CLI negatives passed. No owned GPU process remained.
+
+Evidence: tasks/.../evidence/pact30-*.log and ignored artifacts/reports/runtime-*.json. Development reports truthfully indicate source_clean=false and the prior HEAD; after commit a clean rebuild/smoke receipt is written under artifacts/checkpoints/pact30.json. No PNG, real transient heap reuse, pixel parity, HDR/Bloom, GPU timestamps or final artifact is claimed by this clear/present checkpoint. PACT-40 directly follows.

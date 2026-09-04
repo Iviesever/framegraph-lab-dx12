@@ -1,0 +1,25 @@
+build contract passed: 8 targets; shared sources and MSVC policies
+[compile] tests/unit/options_tests.cpp [missing cache entry, missing output]
+options_tests.cpp
+[compile] src/app/options.cpp [missing cache entry, missing output]
+options.cpp
+cl: 命令行 warning D9025 :正在重写“/W3”(用“/W4”)
+cl: 命令行 warning D9025 :正在重写“/MDd”(用“/MTd”)
+cl: 命令行 warning D9025 :正在重写“/W3”(用“/W4”)
+cl: 命令行 warning D9025 :正在重写“/MDd”(用“/MTd”)
+[link] framegraph_options_tests-debug.exe [explicit rebuild, missing cache entry, missing output]
+output: D:/program/FrameGraphLab/.mqb/bin/framegraph_options_tests-debug.exe
+[run] framegraph_options_tests-debug.exe
+PASS adapter_conflict_rejected
+PASS unknown_option_rejected
+PASS missing_value_rejected
+PASS negative_or_junk_number_rejected
+PASS unbounded_or_huge_frames_rejected
+PASS invalid_alias_policy_rejected
+PASS timeout_and_size_bounds
+cases=12 passed=7 failed=5
+FAIL default_options: o at line 10
+FAIL required_cli: o at line 15
+FAIL headless_is_bounded_by_default: o && o->frames == 240 at line 18
+FAIL capture_is_bounded_by_default: o && o->frames == 240 at line 19
+FAIL max_seed_and_explicit_hardware: o && o->scene_seed == UINT32_MAX && o->adapter == fgl::AdapterMode::Hardware at line 29
