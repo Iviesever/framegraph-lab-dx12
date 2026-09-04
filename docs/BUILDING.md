@@ -29,4 +29,6 @@ cmake --install build/core-clang --prefix artifacts/install/core
 
 Clang must be on the process PATH. This machine's portable toolchain is ignored under `.tools`; consumers may use their own installed Clang/GCC. No committed absolute toolchain path is required. Python 3 is required for the build-contract gate. `core-sanitized` enables ASan+UBSan. Local LLVM-MinGW rejects coverage-guided `-fsanitize=fuzzer`; bounded mutation smoke is verified and the libFuzzer entry can be used on a supported target.
 
+`core-clang-fallback` forces the local `Expected<T,E>` implementation across the full Core/test build. It prevents a compiler/standard-library mismatch such as Ubuntu Clang 18 with libstdc++ from turning an otherwise valid C++23 build into a missing-`std::expected` failure. The ordinary preset still uses the standard implementation whenever its feature macro is available.
+
 Installing the Core exports `FrameGraphLab::framegraph_core` and public headers, with transitive C++23 requirements. UE is outside scope: MQB is not described as a replacement for UBT/UHT, and no other repository or global tool configuration is modified.

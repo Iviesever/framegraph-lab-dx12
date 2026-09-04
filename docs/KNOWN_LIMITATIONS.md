@@ -17,3 +17,4 @@
 - GitHub CI builds/tests Core and Windows code but does not claim hosted GPU validation.
 - Local binary/source packages are required and validated, but binaries are never attached to the source-only release policy.
 - PACT-70 GPU-driven culling is conditional post-P0 work and is not part of this baseline until its separate gates pass.
+- Some C++23 compiler/standard-library pairings omit `std::expected`; a tested API-compatible project subset is used for the Result operations needed here.

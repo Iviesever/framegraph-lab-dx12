@@ -2,7 +2,7 @@
 
 #include <compare>
 #include <cstdint>
-#include <expected>
+#include "framegraph/expected.hpp"
 #include <limits>
 #include <optional>
 #include <string>
@@ -82,7 +82,7 @@ struct GraphError {
     ResourceId resource;
     std::vector<PassId> cycle;
 };
-template<class T> using Result = std::expected<T, GraphError>;
+template<class T> using Result = Expected<T, GraphError>;
 
 enum class Hazard : std::uint8_t { Raw, War, Waw, Explicit };
 struct DependencyEdge {

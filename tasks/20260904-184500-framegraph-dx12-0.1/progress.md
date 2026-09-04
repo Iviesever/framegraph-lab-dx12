@@ -1,6 +1,6 @@
 # Persistent progress
 
-Started 2026-09-04 18:45 UTC+8. Current PACT: 60 completed locally; next PACT: 80 P0 closure.
+Started 2026-09-04 18:45 UTC+8. Current PACT: 80 audit fixes; final recertification/CI/PR next.
 
 - Goal file read in full; original copied into task directory.
 - Target directory was absent and created without overwriting files. No ancestor `.agents` folder was present at D:/ or D:/program; repository rules now exist.
@@ -102,3 +102,7 @@ Checked-in viewer sample data and two documentation PNGs are real PACT-50 output
 Added 6 focused boundary cases: invalid format/state, imported WAR and ReadWrite chains, overwrite retention, concrete cycle edge membership, exact 65,536 usage limit and exact 262,144 edge limit plus derived overflow. MQB passed all; total focused unit cases are now 94 (41 compiler + 29 planner + 14 options + 4 shader + 6 boundary).
 
 All required portfolio documents, source-only release policy, documentation/link checker and Windows/Ubuntu CI are present. Added fail-closed scripts for the clean full matrix, local package/manifest/SHA and fresh extraction. Build/document contracts pass and PowerShell scripts parse. These are preparation results; packages, 1000-frame stress, clean extraction, CI, independent audit and Draft PR remain pending until after the preparation commit and clean-head run.
+
+First clean local full run at `cb592de52bf9dd767a1efe3359379aef12ff1218`: all 21 steps passed, including MQB, MSVC Debug/Release 11/11, Clang 10/10, ASan+UBSan 10/10 plus 10k+10k, both parity suites, both 1000-frame stress runs, resize, negatives, primary Inspector, package and fresh-extraction 240-frame WARP. Win64 ZIP 1,291,346 bytes SHA `4c01868092a6c89b9c01f4c3858747a58f8edd805867b751d5b8318dcbdcd4aa`; source ZIP 1,835,587 bytes SHA `60b5aa23b6fb87d6129ce6996624eb80c736d6b5b277c0dd057a0dc9295b617c`. This receipt becomes historical after the audit fix and must be fully rerun.
+
+Independent audit found only the Ubuntu Clang CI blocker and stale progress Medium. Windows CI passed; GCC compiled before matrix cancellation. The fallback compatibility RED/GREEN, warning fix, CI fail-fast change and install/export/fallback verification are staged. Final local recertification, green remote CI, audit-fix review and Draft PR remain pending.

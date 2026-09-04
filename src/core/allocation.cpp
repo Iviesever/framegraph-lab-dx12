@@ -17,7 +17,7 @@ bool align(std::uint64_t value, std::uint64_t alignment, std::uint64_t& out) {
 }
 Result<AllocationPlan> TransientAllocator::plan(const CompiledGraph& g, const std::vector<MemoryRequirement>& requirements, bool aliasing) {
     auto failure = [](ErrorCode code, const char* text, ResourceId r = {}) -> Result<AllocationPlan> {
-        return std::unexpected(GraphError{code, text, {}, r, {}});
+        return unexpected(GraphError{code, text, {}, r, {}});
     };
     if (requirements.size() != g.description.resources.size() || g.lifetimes.size() != g.description.resources.size())
         return failure(ErrorCode::InvalidMemoryRequirement, "requirements/lifetimes must be indexed by every resource");

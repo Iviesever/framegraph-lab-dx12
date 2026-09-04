@@ -2,7 +2,7 @@
 #include "app/options.hpp"
 
 namespace {
-std::expected<fgl::Options, fgl::OptionError> parse(std::initializer_list<std::string_view> args) {
+fgl::OptionResult parse(std::initializer_list<std::string_view> args) {
     return fgl::parse_options(std::span(args.begin(), args.size()));
 }
 void error(std::initializer_list<std::string_view> args, fgl::OptionCode expected) {

@@ -34,7 +34,7 @@ bool usage_supported(const ResourceDescription& r, const ResourceUsage& u) {
 
 Result<void> validate(const GraphDescription& g) {
     auto failure = [](ErrorCode code, std::string text, PassId p = {}, ResourceId r = {}) -> Result<void> {
-        return std::unexpected(GraphError{code, std::move(text), p, r, {}});
+        return unexpected(GraphError{code, std::move(text), p, r, {}});
     };
     if (g.resources.size() > max_resources || g.passes.size() > max_passes || g.ordering.size() > max_edges)
         return failure(ErrorCode::LimitExceeded, "graph exceeds bounded resource/pass/edge count");

@@ -1,6 +1,6 @@
 #pragma once
 #include <cstdint>
-#include <expected>
+#include "framegraph/expected.hpp"
 #include <filesystem>
 #include <span>
 #include <string>
@@ -20,6 +20,7 @@ struct Options {
 };
 enum class OptionCode { Unknown, Missing, InvalidValue, Conflict, Internal };
 struct OptionError { OptionCode code; std::string message; };
-std::expected<Options, OptionError> parse_options(std::span<const std::string_view> arguments);
+using OptionResult = framegraph::Expected<Options, OptionError>;
+OptionResult parse_options(std::span<const std::string_view> arguments);
 std::string usage_text();
 }

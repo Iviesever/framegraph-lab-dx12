@@ -1,11 +1,11 @@
 #include "options.hpp"
 #include <charconv>
 namespace fgl {
-std::expected<Options, OptionError> parse_options(std::span<const std::string_view> arguments) {
+OptionResult parse_options(std::span<const std::string_view> arguments) {
     Options options;
     bool adapter_set = false, frames_set = false;
-    auto fail = [](OptionCode code, std::string text) -> std::expected<Options, OptionError> {
-        return std::unexpected(OptionError{code, std::move(text)});
+    auto fail = [](OptionCode code, std::string text) -> OptionResult {
+        return framegraph::unexpected(OptionError{code, std::move(text)});
     };
     for (std::size_t i = 0; i < arguments.size(); ++i) {
         const auto key = arguments[i];

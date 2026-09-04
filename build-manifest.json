@@ -166,6 +166,12 @@
       "sources": ["tests/unit/boundary_tests.cpp"],
       "libraries": []
     },
+    "expected_fallback_tests": {
+      "type": "exe",
+      "groups": [],
+      "sources": ["tests/unit/expected_fallback_tests.cpp"],
+      "libraries": []
+    },
     "app": {
       "type": "exe",
       "groups": [

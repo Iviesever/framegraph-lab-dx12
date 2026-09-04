@@ -13,7 +13,7 @@ Result<ResourceState> state_for(Usage usage) {
     case Usage::CopyDest: return ResourceState::CopyDest;
     case Usage::Present: return ResourceState::Present;
     }
-    return std::unexpected(GraphError{ErrorCode::InvalidUsage, "unknown state usage", {}, {}, {}});
+    return unexpected(GraphError{ErrorCode::InvalidUsage, "unknown state usage", {}, {}, {}});
 }
 bool equivalent(ResourceState a, ResourceState b) {
     // Legacy D3D12 COMMON and PRESENT both denote the zero state. Core records this
@@ -24,7 +24,7 @@ bool equivalent(ResourceState a, ResourceState b) {
 }
 Result<ResourceStatePlan> ResourceStatePlanner::plan(const CompiledGraph& g, const AllocationPlan& allocation) {
     if (allocation.resources.size() != g.description.resources.size() || g.lifetimes.size() != g.description.resources.size())
-        return std::unexpected(GraphError{ErrorCode::InvalidMemoryRequirement, "state planning requires matching allocations and lifetimes", {}, {}, {}});
+        return unexpected(GraphError{ErrorCode::InvalidMemoryRequirement, "state planning requires matching allocations and lifetimes", {}, {}, {}});
     ResourceStatePlan result;
     result.passes.resize(g.passes.size());
     std::vector<ResourceState> states;
@@ -40,10 +40,10 @@ Result<ResourceStatePlan> ResourceStatePlanner::plan(const CompiledGraph& g, con
         for (const auto& usage : g.passes[position].usages) {
             const auto id = usage.resource;
             if (id.value >= states.size() || !g.lifetimes[id.value])
-                return std::unexpected(GraphError{ErrorCode::InvalidHandle, "compiled usage lacks lifetime", g.passes[position].id, id, {}});
+                return unexpected(GraphError{ErrorCode::InvalidHandle, "compiled usage lacks lifetime", g.passes[position].id, id, {}});
             const auto& physical = allocation.resources[id.value];
             if (!g.description.resources[id.value].imported && !physical)
-                return std::unexpected(GraphError{ErrorCode::InvalidMemoryRequirement, "active transient lacks allocation", g.passes[position].id, id, {}});
+                return unexpected(GraphError{ErrorCode::InvalidMemoryRequirement, "active transient lacks allocation", g.passes[position].id, id, {}});
             // Use the simple placed-resource activation model even for nonaliased
             // resources. Reference mode has activation barriers but no reuse events.
             if (physical && g.lifetimes[id.value]->first == position) {
@@ -51,7 +51,7 @@ Result<ResourceStatePlan> ResourceStatePlanner::plan(const CompiledGraph& g, con
                 ++result.aliasing_count;
             }
             auto desired = state_for(usage.usage);
-            if (!desired) return std::unexpected(desired.error());
+            if (!desired) return unexpected(desired.error());
             if (*desired == ResourceState::UnorderedAccess && states[id.value] == *desired && last_access[id.value]
                 && (*last_access[id.value] != ResourceAccess::Read || usage.access != ResourceAccess::Read)) {
                 lists.before.push_back({BarrierKind::Uav, id, *desired, *desired, {}}); ++result.uav_count;

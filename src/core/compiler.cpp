@@ -33,7 +33,7 @@ std::vector<PassId> find_cycle(const std::vector<std::vector<std::uint32_t>>& ne
 }
 }
 Result<CompiledGraph> GraphCompiler::compile(const GraphDescription& description) {
-    if (auto result = detail::validate(description); !result) return std::unexpected(result.error());
+    if (auto result = detail::validate(description); !result) return unexpected(result.error());
     CompiledGraph graph;
     graph.description = description;
     auto& source = graph.description;
@@ -61,7 +61,7 @@ Result<CompiledGraph> GraphCompiler::compile(const GraphDescription& description
     }
     for (const auto& e : source.ordering) edge(e.before, e.after, {}, Hazard::Explicit);
     if (edges.size() > max_edges)
-        return std::unexpected(GraphError{ErrorCode::LimitExceeded, "derived dependencies exceed edge limit", {}, {}, {}});
+        return unexpected(GraphError{ErrorCode::LimitExceeded, "derived dependencies exceed edge limit", {}, {}, {}});
     std::sort(edges.begin(), edges.end());
     edges.erase(std::unique(edges.begin(), edges.end()), edges.end());
 
@@ -87,7 +87,7 @@ Result<CompiledGraph> GraphCompiler::compile(const GraphDescription& description
         auto cycle = find_cycle(next);
         std::string diagnostic = "cycle";
         for (const auto p : cycle) diagnostic += " -> " + source.passes[p.value].name + "[" + std::to_string(p.value) + "]";
-        return std::unexpected(GraphError{ErrorCode::Cycle, std::move(diagnostic), {}, {}, std::move(cycle)});
+        return unexpected(GraphError{ErrorCode::Cycle, std::move(diagnostic), {}, {}, std::move(cycle)});
     }
     std::vector<bool> alive(source.passes.size());
     std::vector<std::uint32_t> pending;
@@ -124,23 +124,23 @@ Result<CompiledGraph> GraphCompiler::compile(const GraphDescription& description
 }
 Result<ResourceId> GraphBuilder::add_resource(ResourceDescription resource) {
     if (graph_.resources.size() >= max_resources)
-        return std::unexpected(GraphError{ErrorCode::LimitExceeded, "resource limit", {}, {}, {}});
+        return unexpected(GraphError{ErrorCode::LimitExceeded, "resource limit", {}, {}, {}});
     ResourceId id{static_cast<std::uint32_t>(graph_.resources.size())};
     graph_.resources.push_back(std::move(resource));
     return id;
 }
 Result<PassId> GraphBuilder::add_pass(PassDescription pass) {
     if (graph_.passes.size() >= max_passes)
-        return std::unexpected(GraphError{ErrorCode::LimitExceeded, "pass limit", {}, {}, {}});
+        return unexpected(GraphError{ErrorCode::LimitExceeded, "pass limit", {}, {}, {}});
     PassId id{static_cast<std::uint32_t>(graph_.passes.size())};
     graph_.passes.push_back(std::move(pass));
     return id;
 }
 Result<void> GraphBuilder::order(PassId before, PassId after) {
     if (before.value >= graph_.passes.size() || after.value >= graph_.passes.size())
-        return std::unexpected(GraphError{ErrorCode::InvalidHandle, "ordering references unknown pass", {}, {}, {}});
+        return unexpected(GraphError{ErrorCode::InvalidHandle, "ordering references unknown pass", {}, {}, {}});
     if (graph_.ordering.size() >= max_edges)
-        return std::unexpected(GraphError{ErrorCode::LimitExceeded, "ordering limit", {}, {}, {}});
+        return unexpected(GraphError{ErrorCode::LimitExceeded, "ordering limit", {}, {}, {}});
     graph_.ordering.push_back({before, after});
     return {};
 }

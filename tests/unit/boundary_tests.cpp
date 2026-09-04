@@ -38,7 +38,7 @@ CASE(cycle_pairs_are_real_edges) {
 }
 CASE(exact_usage_limit_and_plus_one) {
     GraphDescription g; for (unsigned r=0;r<32;++r) g.resources.push_back(test::texture("r"+std::to_string(r)));
-    for (unsigned p=0;p<2048;++p) { PassDescription pass{"p"+std::to_string(p)}; for(unsigned r=0;r<32;++r) pass.usages.push_back(test::write(r)); g.passes.push_back(std::move(pass)); }
+    for (unsigned p=0;p<2048;++p) { PassDescription pass{"p"+std::to_string(p),{},false}; for(unsigned r=0;r<32;++r) pass.usages.push_back(test::write(r)); g.passes.push_back(std::move(pass)); }
     CHECK(GraphCompiler::compile(g));
     g.passes.back().usages.push_back(test::write(0)); test::error(g, ErrorCode::LimitExceeded);
 }

@@ -20,6 +20,16 @@ try{
   Step msvc-release {./scripts/with-msvc.ps1 cmake --build --preset msvc-release;if($LASTEXITCODE){throw 'build'};ctest --preset msvc-release;if($LASTEXITCODE){throw 'ctest'}}
   $env:PATH=(Join-Path $root '.tools/llvm-mingw-20260826-ucrt-x86_64/bin')+';'+$env:PATH
   Step clang {cmake --preset core-clang --fresh;if($LASTEXITCODE){throw 'configure'};cmake --build --preset core-clang;if($LASTEXITCODE){throw 'build'};ctest --preset core-clang;if($LASTEXITCODE){throw 'ctest'}}
+  Step expected-fallback {cmake --preset core-clang-fallback --fresh;if($LASTEXITCODE){throw 'configure'};cmake --build --preset core-clang-fallback;if($LASTEXITCODE){throw 'build'};ctest --preset core-clang-fallback;if($LASTEXITCODE){throw 'ctest'}}
+  Step cmake-install {
+    $prefix=Join-Path $out 'install';cmake --install build/core-clang --prefix $prefix;if($LASTEXITCODE){throw 'install'}
+    $consumer=Join-Path $out 'consumer';New-Item -ItemType Directory -Path $consumer -Force|Out-Null
+    [IO.File]::WriteAllText((Join-Path $consumer 'CMakeLists.txt'),"cmake_minimum_required(VERSION 3.28)`nproject(Consumer LANGUAGES CXX)`nfind_package(FrameGraphLab 0.1 CONFIG REQUIRED)`nadd_executable(consumer main.cpp)`ntarget_link_libraries(consumer PRIVATE FrameGraphLab::framegraph_core)`n")
+    [IO.File]::WriteAllText((Join-Path $consumer 'main.cpp'),"#include <framegraph/plan.hpp>`nint main(){return framegraph::PlanCompiler::compile({},{}).has_value()?0:1;}`n")
+    cmake -S $consumer -B (Join-Path $consumer 'build') -G Ninja "-DCMAKE_PREFIX_PATH=$prefix" -DCMAKE_CXX_COMPILER=clang++;if($LASTEXITCODE){throw 'consumer configure'}
+    cmake --build (Join-Path $consumer 'build');if($LASTEXITCODE){throw 'consumer build'}
+    & (Join-Path $consumer 'build/consumer.exe');if($LASTEXITCODE){throw 'consumer run'}
+  }
   $env:ASAN_OPTIONS='halt_on_error=1';$env:UBSAN_OPTIONS='halt_on_error=1:print_stacktrace=1'
   Step sanitizers {cmake --preset core-sanitized --fresh;if($LASTEXITCODE){throw 'configure'};cmake --build --preset core-sanitized;if($LASTEXITCODE){throw 'build'};ctest --preset core-sanitized;if($LASTEXITCODE){throw 'ctest'};& './build/core-sanitized/framegraph_property.exe' --cases 10000;if($LASTEXITCODE){throw 'sanitized property'}}
   Step executor-probe {python tests/d3d12/validate_executor.py .mqb/bin/FrameGraphLab-release.exe warp;if($LASTEXITCODE){throw 'probe'}}

@@ -5,11 +5,11 @@
 namespace framegraph {
 Result<CompiledPlan> PlanCompiler::compile(const GraphDescription& description, const std::vector<MemoryRequirement>& requirements, bool aliasing) {
     auto graph = GraphCompiler::compile(description);
-    if (!graph) return std::unexpected(graph.error());
+    if (!graph) return unexpected(graph.error());
     auto allocation = TransientAllocator::plan(*graph, requirements, aliasing);
-    if (!allocation) return std::unexpected(allocation.error());
+    if (!allocation) return unexpected(allocation.error());
     auto barriers = ResourceStatePlanner::plan(*graph, *allocation);
-    if (!barriers) return std::unexpected(barriers.error());
+    if (!barriers) return unexpected(barriers.error());
     return CompiledPlan{std::move(*graph), std::move(*allocation), std::move(*barriers)};
 }
 namespace {
