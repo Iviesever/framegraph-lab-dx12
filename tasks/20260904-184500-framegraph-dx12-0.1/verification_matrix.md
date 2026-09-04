@@ -16,6 +16,6 @@
 | Capture | seed/frame/camera, dimensions/color/hash, PNG | Hardware/WARP scene PNG/distribution/hash and same-adapter parity passed |
 | Inspector | actual browser desktop/narrow, selection/highlight, console | Passed: console 0, linked selections, 375px page overflow 0 |
 | Package | fresh unzip 240-frame WARP smoke, JSON/PNG/alias/debug | P0 passed on 7f90d9f; PACT-70 final-head recertification pending |
-| CI | Windows and Ubuntu core/unit/property/canonical/build/links | P0 run 33878631431 green; PACT-70 push/CI pending |
+| CI | Windows and Ubuntu core/unit/property/canonical/build/links | P0 run 33878631431 green; PACT-70 push complete and successor CI pending |
 | Audit | fresh read-only full origin/main...HEAD review | P0 whole-diff and ABI fix approved; PACT-70 final whole-diff audit pending |
-| Delivery | clean exact HEAD, ZIP + SHA manifest, push, Draft PR | P0 baseline complete; PACT-70 package/PR update pending |
+| Delivery | clean exact HEAD, ZIP + SHA manifest, push, Draft PR | PACT-70 code checkpoint 984c228 pushed/receipted; final package/PR update pending |
