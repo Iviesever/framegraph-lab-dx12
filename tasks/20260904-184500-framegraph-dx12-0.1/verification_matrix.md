@@ -13,7 +13,7 @@
 | Stress | 1,000 WARP + hardware frames; resize; minimize/restore | Pending |
 | Negative | shader, unsupported adapter, invalid graph, timeout | Shader file/entry/compiler, adapter, watchdog, CLI passed; capture/executor negatives pending |
 | Capture | seed/frame/camera, dimensions/color/hash, PNG | Probe WIC/raw hash/parity passed; final visual scene pending |
-| Inspector | actual browser desktop/narrow, selection/highlight, console | Pending |
+| Inspector | actual browser desktop/narrow, selection/highlight, console | Passed: console 0, linked selections, 375px page overflow 0 |
 | Package | fresh unzip 240-frame WARP smoke, JSON/PNG/alias/debug | Pending |
 | CI | Windows and Ubuntu core/unit/property/canonical/build/links | Pending |
 | Audit | fresh read-only full origin/main...HEAD review | Pending |

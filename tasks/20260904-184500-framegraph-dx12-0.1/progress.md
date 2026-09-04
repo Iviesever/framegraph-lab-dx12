@@ -1,6 +1,6 @@
 # Persistent progress
 
-Started 2026-09-04 18:45 UTC+8. Current PACT: 50 completed locally; next PACT: 60.
+Started 2026-09-04 18:45 UTC+8. Current PACT: 60 completed locally; next PACT: 80 P0 closure.
 
 - Goal file read in full; original copied into task directory.
 - Target directory was absent and created without overwriting files. No ancestor `.agents` folder was present at D:/ or D:/program; repository rules now exist.
@@ -86,3 +86,13 @@ Visible 1280x720 hardware ran 120 frames: logical bytes 16,588,800; committed re
 Graph-aware visible/hidden hardware 60-frame resize test passed 3 sizes, minimize/restore, and exactly 4 plan compilations (initial + each dimension change). Controls implemented: arrows/mouse orbit; pause, single step, reset, alias toggle with fence drain/recompile; final/HDR/bloom views. Default executable-relative shader lookup and manifest-owned asset copying work under the MQB run boundary.
 
 Clang ASan+UBSan CTest 9/9 plus updated 10,000 valid/10,000 invalid full-plan sweep passed. Windows CMake/MSVC 10/10 and MQB scene/option/planner builds passed. After commit, clean-head WARP primary artifacts and parity receipt are generated before PACT-60. Inspector/report packaging, long stress and final clean package remain pending.
+
+PACT-50 pushed/checkpoint SHA: `007e8bf609b09e2f0e456a81e58bf1237e7f64b1`; clean primary/parity receipt: artifacts/checkpoints/pact50.json. Primary plan identity `14099d56b14abe68`; pixel hash `3cd8249e79e81191`.
+
+## PACT-60
+
+`tools/build_inspector.py` now generates a 715,480-byte self-contained HTML from the exact clean primary plan/report/PNG. Static validation decodes each base64 payload and compares semantic JSON/image bytes, checks provenance/identity, sections/interactions/responsive CSS and no external URLs. Embedded PNG SHA-256: `fd2c80f9ef13d5e7ec4be85d2f390ddfb80eca03ff8b7b728da725b67a2157d2`.
+
+Actual browser desktop/narrow QA and interaction passed after one responsive RED/GREEN fix. Console Error/Warning 0. At 375px client/scroll width is 360/360 and horizontal scroll is 0; internal data tracks scroll independently. SceneHDR and BloomC selections updated pass/resource/barrier detail correctly. Browser viewport reset, tab closed and owned server stopped. A 1440x1100 actual browser screenshot was visually checked.
+
+Checked-in viewer sample data and two documentation PNGs are real PACT-50 outputs with explicit SHA/identity provenance. Large full artifacts remain ignored. Final artifacts must still be regenerated from final PACT-80 HEAD. Remaining: complete docs/CI, full clean rebuild, 1000-frame WARP/hardware stress, final negative/resize, packages/manifest/SHA, clean extraction smoke, independent audit and Draft PR. PACT-70 remains gated until every P0 and base PR/package gate is green.

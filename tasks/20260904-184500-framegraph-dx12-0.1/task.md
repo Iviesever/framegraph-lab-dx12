@@ -17,6 +17,7 @@ Stack: C++23, CMake 3.28+, MSVC x64, Windows SDK/D3D12/DXGI/D3DCompiler/WIC, por
 - [x] PACT-30: native hardware/WARP device, frame/fence lifecycle, clear/present, resize/minimize/restore, diagnostics and shader errors.
 - [x] PACT-40: Core-plan executor, actual per-frame placed arenas, automatic barriers, timestamps/readback/PNG and hardware/WARP on/off RGBA parity.
 - [x] PACT-50: real Depth/HDR/Bloom/ToneMap scene, controls, GPU timing, deterministic WIC capture and hardware/WARP scene parity.
-- [ ] PACT-60 through 80: follow blueprint order, write each concrete acceptance test before the respective production change and append commands/results to evidence. Update this checklist as contracts land.
+- [x] PACT-60: real-data self-contained Inspector, integrity/static checks, desktop/narrow/browser console and interaction QA.
+- [ ] PACT-80: final docs/CI/full/stress/package/clean-extraction/audit/Draft PR closure.
 
 No unrelated repository writes. Feature changes on `feat/framegraph-dx12-0.1` only. The user-requested new repository directory is the isolated workspace; no second checkout is needed.
