@@ -1,4 +1,3 @@
-#define FRAMEGRAPH_FORCE_EXPECTED_FALLBACK 1
 #include "framegraph/expected.hpp"
 #include <string>
 int main(){

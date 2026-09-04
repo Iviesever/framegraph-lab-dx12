@@ -2,7 +2,7 @@
 
 Fresh read-only agent audited `origin/main...cb592de52bf9dd767a1efe3359379aef12ff1218`, the clean verification summary and release manifests. It did not edit files or rerun GPU/browser work.
 
-Confirmed Blocker: GitHub run 33876963427 Windows passed, but Ubuntu default Clang 18/libstdc++ did not expose `std::expected`; fail-fast cancelled GCC tests and sanitizer. Fix uses `Expected<T,E>` that selects standard expected when available and a forced-tested fallback otherwise; CI fail-fast is disabled. A dedicated RED/GREEN test and full forced-fallback preset cover the required subset. Green CI rerun remains required.
+Confirmed Blocker: GitHub run 33876963427 Windows passed, but Ubuntu default Clang 18/libstdc++ did not expose `std::expected`; fail-fast cancelled GCC tests and sanitizer. The first fix conditionally selected standard/fallback types. Follow-up audit correctly rejected that public ABI because library and consumer feature macros could select different return layouts. Final fix uses one unconditional project-owned `Expected<T,E>` layout; CI fail-fast is disabled. A dedicated RED/GREEN test and installed consumer cover the required subset/ABI. Green CI rerun remains required.
 
 Confirmed Medium: progress/matrix lagged after the first clean full matrix. Updated after final recertification, not before.
 

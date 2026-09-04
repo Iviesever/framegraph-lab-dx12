@@ -1,8 +1,5 @@
 #pragma once
 
-#if __has_include(<expected>) && !defined(FRAMEGRAPH_FORCE_EXPECTED_FALLBACK)
-#include <expected>
-#endif
 #include <memory>
 #include <optional>
 #include <type_traits>
@@ -10,10 +7,6 @@
 #include <variant>
 
 namespace framegraph {
-#if defined(__cpp_lib_expected) && __cpp_lib_expected >= 202202L && !defined(FRAMEGRAPH_FORCE_EXPECTED_FALLBACK)
-template<class T, class E> using Expected = std::expected<T, E>;
-template<class E> auto unexpected(E error) { return std::unexpected<E>(std::move(error)); }
-#else
 template<class E> struct UnexpectedValue { E error; };
 template<class E> UnexpectedValue<E> unexpected(E error) { return {std::move(error)}; }
 
@@ -47,5 +40,4 @@ public:
 private:
     std::optional<E> error_;
 };
-#endif
 }

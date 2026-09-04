@@ -20,7 +20,6 @@ try{
   Step msvc-release {./scripts/with-msvc.ps1 cmake --build --preset msvc-release;if($LASTEXITCODE){throw 'build'};ctest --preset msvc-release;if($LASTEXITCODE){throw 'ctest'}}
   $env:PATH=(Join-Path $root '.tools/llvm-mingw-20260826-ucrt-x86_64/bin')+';'+$env:PATH
   Step clang {cmake --preset core-clang --fresh;if($LASTEXITCODE){throw 'configure'};cmake --build --preset core-clang;if($LASTEXITCODE){throw 'build'};ctest --preset core-clang;if($LASTEXITCODE){throw 'ctest'}}
-  Step expected-fallback {cmake --preset core-clang-fallback --fresh;if($LASTEXITCODE){throw 'configure'};cmake --build --preset core-clang-fallback;if($LASTEXITCODE){throw 'build'};ctest --preset core-clang-fallback;if($LASTEXITCODE){throw 'ctest'}}
   Step cmake-install {
     $prefix=Join-Path $out 'install';cmake --install build/core-clang --prefix $prefix;if($LASTEXITCODE){throw 'install'}
     $consumer=Join-Path $out 'consumer';New-Item -ItemType Directory -Path $consumer -Force|Out-Null
